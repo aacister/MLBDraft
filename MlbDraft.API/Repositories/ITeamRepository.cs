@@ -1,0 +1,21 @@
+using MLBDraft.API.Entities;
+using System;
+using System.Collections.Generic;
+
+namespace MLBDraft.API.Repositories
+{
+    public interface ITeamRepository
+    {
+        bool TeamExists(Guid teamId);
+        Team GetTeam(Guid teamId);
+
+        IEnumerable<Team> GetTeams(IEnumerable<Guid> teamIds);
+
+        Team GetTeamForLeague(Guid leagueId, Guid teamId);
+
+        IEnumerable<Team> GetTeamsForLeague(Guid leagueId);
+
+        void DeleteTeam(Team team);
+        
+    }
+}

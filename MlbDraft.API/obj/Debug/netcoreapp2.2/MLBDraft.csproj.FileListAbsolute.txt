@@ -1,0 +1,14 @@
+C:\Andrew\MLBDraft\MlbDraft.API\obj\Debug\netcoreapp2.2\MLBDraft.csprojAssemblyReference.cache
+C:\Andrew\MLBDraft\MlbDraft.API\obj\Debug\netcoreapp2.2\MLBDraft.csproj.CoreCompileInputs.cache
+C:\Andrew\MLBDraft\MlbDraft.API\obj\Debug\netcoreapp2.2\MLBDraft.RazorAssemblyInfo.cache
+C:\Andrew\MLBDraft\MlbDraft.API\obj\Debug\netcoreapp2.2\MLBDraft.RazorAssemblyInfo.cs
+C:\Andrew\MLBDraft\MlbDraft.API\obj\Debug\netcoreapp2.2\MLBDraft.AssemblyInfoInputs.cache
+C:\Andrew\MLBDraft\MlbDraft.API\obj\Debug\netcoreapp2.2\MLBDraft.AssemblyInfo.cs
+C:\Andrew\MLBDraft\MlbDraft.API\bin\Debug\netcoreapp2.2\MLBDraft.deps.json
+C:\Andrew\MLBDraft\MlbDraft.API\bin\Debug\netcoreapp2.2\MLBDraft.runtimeconfig.json
+C:\Andrew\MLBDraft\MlbDraft.API\bin\Debug\netcoreapp2.2\MLBDraft.runtimeconfig.dev.json
+C:\Andrew\MLBDraft\MlbDraft.API\bin\Debug\netcoreapp2.2\MLBDraft.dll
+C:\Andrew\MLBDraft\MlbDraft.API\bin\Debug\netcoreapp2.2\MLBDraft.pdb
+C:\Andrew\MLBDraft\MlbDraft.API\obj\Debug\netcoreapp2.2\MLBDraft.RazorTargetAssemblyInfo.cache
+C:\Andrew\MLBDraft\MlbDraft.API\obj\Debug\netcoreapp2.2\MLBDraft.dll
+C:\Andrew\MLBDraft\MlbDraft.API\obj\Debug\netcoreapp2.2\MLBDraft.pdb
