@@ -1,4 +1,4 @@
-# MLBDraft #
+# MLBDraft (In Progress) #
 
 MLBDraft is to be used by fantasy baseball leagues to host an online snake draft.
 
