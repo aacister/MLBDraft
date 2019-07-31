@@ -15,7 +15,11 @@ namespace MLBDraft.API.Models
 
         public int MaxTeams { get; set; }
 
-        public ICollection<Team> Teams { get; set; }
-            = new List<Team>();
+        public IList<TeamModel> Teams { get; set; }
+
+        public LeagueModel(){
+            this.Teams = new List<TeamModel>();
+        }
+            
     }
 }
