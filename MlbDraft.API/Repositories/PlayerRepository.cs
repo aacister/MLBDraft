@@ -23,12 +23,25 @@ namespace MLBDraft.API.Repositories
             return _context.Players.FirstOrDefault(a => a.Id == playerId);
         }
 
+        public IEnumerable<Player> GetPlayers(){
+            return _context.Players
+                .OrderBy(a => a.LastName)
+                .OrderBy(a => a.FirstName)
+                .ToList();
+        }
         public IEnumerable<Player> GetPlayers(IEnumerable<Guid> playerIds)
         {
             return _context.Players.Where(a => playerIds.Contains(a.Id))
                 .OrderBy(a => a.LastName)
                 .OrderBy(a => a.FirstName)
                 .ToList();
+        }
+
+         public void AddPlayer(Player player)
+        {
+            player.Id = Guid.NewGuid();
+            _context.Players.Add(player);
+
         }
     }
 }

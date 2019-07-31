@@ -12,3 +12,4 @@ C:\Andrew\MLBDraft\MlbDraft.API\bin\Debug\netcoreapp2.2\MLBDraft.pdb
 C:\Andrew\MLBDraft\MlbDraft.API\obj\Debug\netcoreapp2.2\MLBDraft.RazorTargetAssemblyInfo.cache
 C:\Andrew\MLBDraft\MlbDraft.API\obj\Debug\netcoreapp2.2\MLBDraft.dll
 C:\Andrew\MLBDraft\MlbDraft.API\obj\Debug\netcoreapp2.2\MLBDraft.pdb
+C:\Andrew\MLBDraft\MlbDraft.API\bin\Debug\netcoreapp2.2\nlog.config

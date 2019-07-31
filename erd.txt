@@ -21,6 +21,7 @@ Player
 -FirstName
 -LastName
 -picture
+-Team
 -position (C,1B,2B, 3B, SS, OF, SP)
 BA
 HR
