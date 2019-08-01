@@ -137,16 +137,15 @@ namespace MLBDraft.API.Migrations
 
             modelBuilder.Entity("MLBDraft.API.Entities.User", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Password")
-                        .IsRequired();
 
                     b.Property<string>("Username")
                         .IsRequired();
 
-                    b.HasKey("Id");
+                    b.Property<byte[]>("Hash");
+                    
+                    b.Property<byte[]>("Salt");
+
+                    b.HasKey("Username");
 
                     b.ToTable("Users");
                 });

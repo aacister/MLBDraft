@@ -51,13 +51,13 @@ namespace MLBDraft.API.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
                     Username = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(nullable: false)
+                    Hash = table.Column<byte[]>(nullable: true),
+                    Salt = table.Column<byte[]>(nullable: true),
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Username);
                 });
 
             migrationBuilder.CreateTable(

@@ -6,14 +6,14 @@ namespace MLBDraft.API.Entities
 {
     public class User
     {
-        [Key]       
-        public Guid Id { get; set; }
 
-        [Required]     
+        [Key]     
         public string Username { get; set; }
 
         [Required]
         public string Password { get; set; }
+        public byte[] Hash { get; set; }
+        public byte[] Salt { get; set; }
 
     }
 }

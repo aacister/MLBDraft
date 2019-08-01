@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Http;
 using NLog.Extensions.Logging;
@@ -19,6 +22,7 @@ using MLBDraft.API.Repositories;
 using MLBDraft.API.Entities;
 using MLBDraft.API.Models;
 using MLBDraft.API.Converters;
+using MLBDraft.API.Security;
 using AutoMapper;
 
 
@@ -35,26 +39,70 @@ namespace MLBDraft
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {;
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddHttpContextAccessor();
  
+            //register db
              var connectionString = Configuration["connectionStrings:mlbDraftDBConnectionString"];
              services.AddDbContext<MLBDraftContext>
                 (options => options.UseSqlite(connectionString));
+
+            
+
+            //register bearer token authentication 
+            var secretKey = Configuration.GetSection("Tokens:Key").Value;
+            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
+
+            services.AddAuthentication()
+                .AddJwtBearer(cfg => {
+                    cfg.RequireHttpsMetadata = false;
+                    cfg.SaveToken = true;
+                    cfg.TokenValidationParameters = new TokenValidationParameters(){
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = signingKey,
+                        ValidateIssuer = true,
+                        ValidIssuer = Configuration.GetSection("Tokens:Issuer").Value,
+                        ValidateAudience = true,
+                        ValidAudience = Configuration.GetSection("Tokens:Audience").Value,
+                        ValidateLifetime = false
+                   };
+                });
+                
+             //add TokenGeneratorOptions object to configuration -- used by TokenGenerator
+            services.Configure<TokenGeneratorOptions>(options => {
+                options.Audience = Configuration.GetSection("Tokens:Audience").Value;
+                options.Issuer = Configuration.GetSection("Tokens:Issuer").Value;
+                options.SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
+            });
 
             //register the repository
             services.AddScoped<IMlbDraftRepository, MlbDraftRepository>();
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddScoped<ITeamRepository, TeamRepository>();
             services.AddScoped<ILeagueRepository, LeagueRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            
+            //register security services
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
+            services.AddScoped<ITokenGenerator, TokenGenerator>();
+            
+            //register cors 
+            services.AddCors(cfg =>
+            {
+                cfg.AddPolicy("MlbDraftCors", bldr => { 
+                    bldr.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin();  //Restrict origin on load to Prod env.
+                });
+            });
 
-            //Add AutoMapper
+            //Add AutoMapper with profile
             var mappingConfig = new MapperConfiguration(mc =>{
                 mc.AddProfile(new Converter());
             });
-
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
           
@@ -77,6 +125,7 @@ namespace MLBDraft
                 
             }
 
+            //Global error handling
             app.UseExceptionHandler(appBuilder => {
                     appBuilder.Run(async context =>
                     {
@@ -96,8 +145,8 @@ namespace MLBDraft
                     });
                 });
 
-
             app.UseHttpsRedirection();
+            app.UseAuthentication(); //Uses jwt authentication
 
             mlbDraftContext.EnsureSeedDataForContext();
             app.UseMvc();
