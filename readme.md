@@ -10,7 +10,7 @@ Includes 2 projects:
 ## MlbDraft.Api ##
  * Developed utilizing Asp.net Core Web Api 2
  * SqLite data storage
- * JWT authorization
+ * JWT auth
  * Entity Framework
  * AutoMapper
  * NLog
