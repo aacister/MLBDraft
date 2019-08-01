@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 # MLBDraft (In progress) #
+=======
+# MLBDraft (In Progress) #
+>>>>>>> e2296377fccea953301813c35bb140295a1892c7
 
-Application is a hosting location for fantasy baseball leagues to host an online snake draft.
+MLBDraft is to be used by fantasy baseball leagues to host an online snake draft.
 
 Includes 2 projects:
  1. MlbDraft.Api
