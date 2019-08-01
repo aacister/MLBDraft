@@ -10,6 +10,7 @@ namespace MLBDraft.API.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string ImagePath { get; set; }
+        public string Team {get; set;}
         public string Position {get; set;}
         public string BattingAverage {get; set; }
 

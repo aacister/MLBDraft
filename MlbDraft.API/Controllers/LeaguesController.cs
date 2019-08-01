@@ -12,55 +12,55 @@ using Microsoft.Extensions.Logging;
 
 namespace MLBDraft.API.Controllers
 {
-    [Route("api/players")]
+    [Route("api/leagues")]
     [ApiController]
-    public class PlayersController : ControllerBase
+    public class LeaguesController : ControllerBase
     {
         private IMlbDraftRepository _mlbDraftRepository;
-        private IPlayerRepository _playerRepository;
+        private ILeagueRepository _leagueRepository;
         private IMapper _mapper;
-        private ILogger<PlayersController> _logger;
+        private ILogger<LeaguesController> _logger;
     
-        public PlayersController(IPlayerRepository playerRepository,
+        public LeaguesController(ILeagueRepository leagueRepository,
         IMlbDraftRepository mlbDraftRepository,
         IMapper mapper,
-        ILogger<PlayersController> logger)
+        ILogger<LeaguesController> logger)
         {
-            _playerRepository = playerRepository;
+            _leagueRepository = leagueRepository;
             _mlbDraftRepository = mlbDraftRepository;
             _mapper = mapper;
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetPlayers")]
+        [HttpGet(Name = "GetLeagues")]
         public ActionResult<IEnumerable<string>> Get()
         {
-                var players = _playerRepository.GetPlayers();
+                var leagues = _leagueRepository.GetLeagues();
                 
-                if(players == null){
-                    _logger.LogWarning("No players were found.");
+                if(leagues == null){
+                    _logger.LogWarning("No leagues were found.");
                     return NotFound();
                 }
                 
-                var playerModels = _mapper.Map<IEnumerable<PlayerModel>>(players);
-                _logger.LogInformation($"{playerModels.Count()} players were found.");
-                return Ok(playerModels);
+                var leagueModels = _mapper.Map<IEnumerable<LeagueModel>>(leagues);
+                _logger.LogInformation($"{leagueModels.Count()} leagues were found.");
+                return Ok(leagueModels);
 
         }
 
-        [HttpGet("{id}", Name="GetPlayer")]
-        public IActionResult GetPlayer(Guid id)
+        [HttpGet("{id}", Name="GetLeague")]
+        public IActionResult GetLeague(Guid id)
         {
 
-                var player = _playerRepository.GetPlayer(id);
+                var league = _leagueRepository.GetLeague(id);
                 
-                if(player == null){
-                    _logger.LogWarning("Not player found.");
+                if(league == null){
+                    _logger.LogWarning("No league found.");
                     return NotFound();
                 }
 
-                var playerModel = _mapper.Map<PlayerModel>(player);
-                return Ok(playerModel);
+                var leagueModel = _mapper.Map<LeagueModel>(league);
+                return Ok(leagueModel);
 
         }
 /* 
@@ -85,8 +85,8 @@ namespace MLBDraft.API.Controllers
         }
 */
         [HttpPost]
-        public IActionResult CreatePlayer([FromBody] PlayerCreateModel playerCreateModel){
-            if(playerCreateModel == null)
+        public IActionResult CreateLeague([FromBody] LeagueCreateModel leagueCreateModel){
+            if(leagueCreateModel == null)
             {
                 return BadRequest();
             }
@@ -96,36 +96,35 @@ namespace MLBDraft.API.Controllers
                 return BadRequest();
             }
 
-            var playerEntity = _mapper.Map<Player>(playerCreateModel);
-            _playerRepository.AddPlayer(playerEntity);
+            var leagueEntity = _mapper.Map<League>(leagueCreateModel);
+            _leagueRepository.AddLeague(leagueEntity);
 
             if(!_mlbDraftRepository.Save()){
-                throw new Exception("Creating a player failed on save.");
+                throw new Exception("Creating a league failed on save.");
             }
 
-            var playerToReturn = _mapper.Map<PlayerModel>(playerEntity);
+            var leagueToReturn = _mapper.Map<LeagueModel>(leagueEntity);
 
-            return CreatedAtRoute("GetPlayer",
-                    new Player{Id = playerToReturn.Id},
-                    playerToReturn);
+            return CreatedAtRoute("GetLeague",
+                    new League{Id = leagueToReturn.Id},
+                    leagueToReturn);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
-            if(!_playerRepository.PlayerExists(id))
+            if(!_leagueRepository.LeagueExists(id))
             {
-                _logger.LogError("Player does not exist.");
+                _logger.LogError("League does not exist.");
                 return NotFound();
             }
+            var  league = _leagueRepository.GetLeague(id);
 
-            var player = _playerRepository.GetPlayer(id);
-
-            _playerRepository.DeletePlayer(player);
+            _leagueRepository.DeleteLeague(league);
             if(!_mlbDraftRepository.Save())
             {
-                _logger.LogError($"Could not delete player {id}");
-                throw new Exception($"Deleting player {id} failed on save.");
+                _logger.LogError($"Could not delete league {id}");
+                throw new Exception($"Deleting league {id} failed on save.");
             }
              
             return NoContent();

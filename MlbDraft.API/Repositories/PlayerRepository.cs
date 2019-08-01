@@ -43,5 +43,12 @@ namespace MLBDraft.API.Repositories
             _context.Players.Add(player);
 
         }
+
+        public void DeletePlayer(Player player)
+        {
+
+            _context.Players.Remove(player);
+           
+        }
     }
 }

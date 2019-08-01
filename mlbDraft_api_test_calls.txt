@@ -1,0 +1,22 @@
+GET http://localhost:5050/api/players
+
+POST http://localhost:5050/api/players
+{
+"firstName":"Aaron",
+"lastName": "Judge",
+"position":"OF",
+"battingAverage":".278",
+"homeRuns":"27",
+"runs":"77",
+"runsBattedIn":"67",
+"stolenBases":"6",
+"inningsPitched":"",
+"wins":"",
+"strikeouts":"",
+"earnedRunAverage":"",
+"whip: ""
+}
+
+GET http://localhost:5050/api/teams
+
+POST http://localhost:5050/api/teams

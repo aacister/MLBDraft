@@ -15,7 +15,6 @@ namespace MLBDraft.API.Entities
         [Required]
         public string LastName { get; set; }
 
-        [Required]
         public string ImagePath {get; set;}
         
         [Required]

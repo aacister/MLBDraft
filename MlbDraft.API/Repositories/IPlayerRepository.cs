@@ -10,6 +10,9 @@ namespace MLBDraft.API.Repositories
         Player GetPlayer(Guid playerId);
 
         void AddPlayer(Player player);
+
+        void DeletePlayer(Player player);
+
         IEnumerable<Player> GetPlayers();
         IEnumerable<Player> GetPlayers(IEnumerable<Guid> playerIds);
 

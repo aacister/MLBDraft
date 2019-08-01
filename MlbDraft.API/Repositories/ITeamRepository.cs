@@ -9,11 +9,15 @@ namespace MLBDraft.API.Repositories
         bool TeamExists(Guid teamId);
         Team GetTeam(Guid teamId);
 
+        IEnumerable<Team> GetTeams();
+
         IEnumerable<Team> GetTeams(IEnumerable<Guid> teamIds);
 
         Team GetTeamForLeague(Guid leagueId, Guid teamId);
 
         IEnumerable<Team> GetTeamsForLeague(Guid leagueId);
+
+        void AddTeam(Team team);
 
         void DeleteTeam(Team team);
         

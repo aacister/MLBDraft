@@ -22,6 +22,12 @@ namespace MLBDraft.API.Repositories
         {
             return _context.Teams.FirstOrDefault(a => a.Id == teamId);
         }
+
+         public IEnumerable<Team> GetTeams(){
+            return _context.Teams
+                .OrderBy(a => a.Name)
+                .ToList();
+        }
          public IEnumerable<Team> GetTeams(IEnumerable<Guid> teamIds)
         {
             return _context.Teams.Where(a => teamIds.Contains(a.Id))
@@ -38,6 +44,13 @@ namespace MLBDraft.API.Repositories
         public IEnumerable<Team> GetTeamsForLeague(Guid leagueId){
             return _context.Teams
                 .Where(t => t.LeagueId == leagueId).OrderBy(t => t.Name).ToList();
+        }
+
+        public void AddTeam(Team team)
+        {
+            team.Id = Guid.NewGuid();
+            _context.Teams.Add(team);
+
         }
 
         public void DeleteTeam(Team team)

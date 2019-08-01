@@ -2,13 +2,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace MLBDraft.API.Models
 {
     public class PlayerCreateModel
     {
+        [Required]
         public string FirstName { get; set; }
+        [Required]
         public string LastName { get; set; }
+        [Required]
+        public string Team {get; set;}
+
+        //TODO: Add byte[] Image {get; set;} -- convert to Player entity with custom model binder
+        [Required]
         public string Position {get; set;}
         public string BattingAverage {get; set; }
 

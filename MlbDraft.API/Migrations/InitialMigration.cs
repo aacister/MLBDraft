@@ -27,7 +27,7 @@ namespace MLBDraft.API.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     FirstName = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(nullable: false),
-                    ImagePath = table.Column<string>(nullable: false),
+                    ImagePath = table.Column<string>(nullable: true),
                     Team = table.Column<string>(nullable: false),
                     Position = table.Column<string>(nullable: false),
                     BattingAverage = table.Column<string>(nullable: false),
