@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,10 +11,12 @@ namespace MLBDraft.API.Entities
         [Key]     
         public string Username { get; set; }
 
-        [Required]
-        public string Password { get; set; }
         public byte[] Hash { get; set; }
         public byte[] Salt { get; set; }
+        public ICollection<Team> Teams { get; set; }
+            = new List<Team>();
+
+        
 
     }
 }

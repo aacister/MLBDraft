@@ -66,17 +66,17 @@ namespace MLBDraft.API.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: false),
-                    OwnerId = table.Column<Guid>(nullable: false),
+                    OwnerId = table.Column<string>(nullable: false),
                     LeagueId = table.Column<Guid>(nullable: false),
-                    CatcherId = table.Column<Guid>(nullable: false),
-                    FirstBaseId = table.Column<Guid>(nullable: false),
-                    SecondBaseId = table.Column<Guid>(nullable: false),
-                    ThirdBaseId = table.Column<Guid>(nullable: false),
-                    ShortStopId = table.Column<Guid>(nullable: false),
-                    Outfield1Id = table.Column<Guid>(nullable: false),
-                    Outfield2Id = table.Column<Guid>(nullable: false),
-                    Outfield3Id = table.Column<Guid>(nullable: false),
-                    StartingPitcherId = table.Column<Guid>(nullable: false)
+                    CatcherId = table.Column<Guid>(nullable: true),
+                    FirstBaseId = table.Column<Guid>(nullable: true),
+                    SecondBaseId = table.Column<Guid>(nullable: true),
+                    ThirdBaseId = table.Column<Guid>(nullable: true),
+                    ShortStopId = table.Column<Guid>(nullable: true),
+                    Outfield1Id = table.Column<Guid>(nullable: true),
+                    Outfield2Id = table.Column<Guid>(nullable: true),
+                    Outfield3Id = table.Column<Guid>(nullable: true),
+                    StartingPitcherId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -121,7 +121,7 @@ namespace MLBDraft.API.Migrations
                         name: "FK_Teams_Users_OwnerId",
                         column: x => x.OwnerId,
                         principalTable: "Users",
-                        principalColumn: "Id",
+                        principalColumn: "Username",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Teams_Players_SecondBaseId",

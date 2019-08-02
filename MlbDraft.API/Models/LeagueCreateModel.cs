@@ -7,17 +7,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MLBDraft.API.Models
 {
-    public class LeagueCreateModel
+    public class LeagueCreateModel : LeagueAbstractModel
     {
-        [Required]
-        public Guid Id { get; set; }
-        [Required]
-        public string Name { get; set; }
 
-        public int MinTeams { get; set; } = 2;
+        [Required]
+        public override string Name { get; set; }
+
+        public override int MinTeams { get; set; } = 2;
         
         [Required]
-        public int MaxTeams { get; set; }
+        public override int MaxTeams { get; set; }
             
     }
 }

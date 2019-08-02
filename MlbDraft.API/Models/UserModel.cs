@@ -11,5 +11,7 @@ namespace MLBDraft.API.Models
         [Required]
         public string Token { get; set; }
 
+        public IList<TeamModel> Teams { get; set; } = new List<TeamModel>();
+
     }
 }

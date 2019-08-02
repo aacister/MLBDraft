@@ -56,39 +56,18 @@ namespace MLBDraft.API.Controllers
         [HttpGet("{id}", Name="GetTeam")]
         public IActionResult GetTeam(Guid id)
         {
-
-                var team = _teamRepository.GetTeam(id);
-                
-                if(team == null){
-                    _logger.LogWarning("No team found.");
+                if(!_teamRepository.TeamExists(id))
+                {
+                    _logger.LogError($"Team {id} does not exist.");
                     return NotFound();
                 }
+                var team = _teamRepository.GetTeam(id);
 
                 var teamModel = _mapper.Map<TeamModel>(team);
                 return Ok(teamModel);
 
         }
-/* 
-        [HttpGet("({ids})", Name="GetPlayersByIds")]
-        public IActionResult GetPlayersByIds(
-            [ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
-        {           
-            if (ids == null)
-            {
-                return BadRequest();
-            }
 
-            var playerEntities = _playerRepository.GetPlayers(ids);
-
-            if (ids.Count() != playerEntities.Count())
-            {
-                return NotFound();
-            }
-
-            var playersToReturn = _mapper.Map<IEnumerable<Player>>(playerEntities);
-            return Ok(playersToReturn);
-        }
-*/
         [HttpPost("{leagueId}")]
         public IActionResult CreateTeamForLeague(Guid leagueId, [FromBody] TeamCreateModel teamCreateModel){
             if(teamCreateModel == null)
@@ -124,6 +103,59 @@ namespace MLBDraft.API.Controllers
                     new Team{Id = teamToReturn.Id},
                     teamToReturn);
         }
+
+         [HttpPut("{leagueId}/{id}")]
+        public IActionResult UpdateTeamForLeague(Guid leagueId, Guid id,
+            [FromBody] TeamUpdateModel team)
+        {
+            if (team == null)
+            {
+                return BadRequest();
+            }
+
+
+            if (!ModelState.IsValid)
+            {
+                return new UnprocessableEntityObjectResult(ModelState);
+            }
+
+
+            if (!_leagueRepository.LeagueExists(leagueId))
+            {
+                return NotFound();
+            }
+
+            var teamForLeagueFromRepo = _teamRepository.GetTeamForLeague(leagueId, id);
+            if (teamForLeagueFromRepo == null)
+            {
+                var teamToAdd = _mapper.Map<Team>(team);
+                teamToAdd.Id = id;
+
+                _teamRepository.AddTeamForLeague(leagueId, teamToAdd);
+
+                if (!_mlbDraftRepository.Save())
+                {
+                    throw new Exception($"Upserting team {id} for league {leagueId} failed on save.");
+                }
+
+                var teamToReturn = _mapper.Map<TeamModel>(teamToAdd);
+
+                return CreatedAtRoute("GetTeamForLeague",
+                    new { leagueId = leagueId, id = teamToReturn.Id},
+                    teamToReturn);
+            }
+
+            var teamUpdate = _mapper.Map<Team>(team);
+            _teamRepository.UpdateTeamForLeague(teamForLeagueFromRepo, teamUpdate);
+
+            if (!_mlbDraftRepository.Save())
+            {
+                throw new Exception($"Updating team {id} for league {leagueId} failed on save.");
+            }
+
+           return NoContent();
+        }
+
 
         
         [HttpDelete("{id}")]

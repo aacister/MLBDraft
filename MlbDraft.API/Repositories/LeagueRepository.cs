@@ -2,6 +2,7 @@ using MLBDraft.API.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace MLBDraft.API.Repositories
 {
@@ -20,18 +21,23 @@ namespace MLBDraft.API.Repositories
 
         public League GetLeague(Guid leagueId)
         {
-            return _context.Leagues.FirstOrDefault(a => a.Id == leagueId);
+            return _context.Leagues
+            .Include(league => league.Teams)
+            .FirstOrDefault(a => a.Id == leagueId);
         }
 
         public IEnumerable<League> GetLeagues(){
             return _context.Leagues
+                .Include(league => league.Teams)
                 .OrderBy(a => a.Name)
                 .ToList();
         }
 
          public IEnumerable<League> GetLeagues(IEnumerable<Guid> leagueIds)
         {
-            return _context.Leagues.Where(a => leagueIds.Contains(a.Id))
+            return _context.Leagues.
+                Where(a => leagueIds.Contains(a.Id))
+                .Include(league => league.Teams)
                 .OrderBy(a => a.Name)
                 .ToList();
         }

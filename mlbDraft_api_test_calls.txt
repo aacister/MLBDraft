@@ -1,9 +1,28 @@
+AUTHCONTROLLER.CS
+POST http://localhost:5050/api/auth/register
+{
+    "userName" : "username",
+    "password" : "password"
+}
+
+POST http://localhost:5050/api/auth/login
+{
+    "userName" : "username",
+    "password" : "password"
+}
+-----------------------------------------------------------
+
+PLAYERSCONTROLLER.CS
 GET http://localhost:5050/api/players
+
+GET http://localhost:5050/api/players
+http://localhost:5050/api/players/a9b09d66-80f7-461f-b1f0-46accd6f489f
 
 POST http://localhost:5050/api/players
 {
 "firstName":"Aaron",
 "lastName": "Judge",
+"team" : "NYY",
 "position":"OF",
 "battingAverage":".278",
 "homeRuns":"27",
@@ -14,9 +33,60 @@ POST http://localhost:5050/api/players
 "wins":"",
 "strikeouts":"",
 "earnedRunAverage":"",
-"whip: ""
+"whip": ""
 }
 
+DELETE http://localhost:5050/api/players/a9b09d66-80f7-461f-b1f0-46accd6f489f
+
+------------------------------------------------------------
+
+LEAGUESCONTROLLER.CS
+GET http://localhost:5050/api/leagues
+
+POST http://localhost:5050/api/leagues
+{
+"name": "League #1",
+"maxTeams": 10
+}
+
+GET http://localhost:5050/api/leagues/db962cc1-b204-4a41-a243-79badd1049ea
+
+DELETE http://localhost:5050/api/leagues/db962cc1-b204-4a41-a243-79badd1049ea
+
+------------------------------------------------------------
+
+TEAMSCONTROLLER.CS
 GET http://localhost:5050/api/teams
 
-POST http://localhost:5050/api/teams
+
+POST http://localhost:5050/api/teams/30c7f14f-c74b-4a55-8a63-2524594b7b14
+
+{
+"name": "Team #1",
+"ownerId": "username"
+}
+
+GET http://localhost:5050/api/teams/e8889984-7ee6-447f-8980-db2907cfe54c
+
+
+PUT http://localhost:5050/api/teams/a5f0f2fe-465e-4782-bad9-6b1ac834827b/3d77c468-1138-4170-9201-885501d9617d
+{
+	"name": "Team #1 Updated",
+	"ownerId": "username",
+	"catcherId": "f2d2aefe-ff6e-4d40-9656-c5dd01a735ab",
+	"firstBaseId": "d5553712-08d3-416d-8477-9d04afccfb08",
+	"shortStopId": "4af0341c-a285-4f79-931d-3bb653a177e2",
+	"outfield1Id": "3510d06e-f826-449f-8229-44f5998da8de",
+	"outfield2Id": "4adcf3cd-366e-47ee-ab6b-eb3368d78bf8",
+	"startingPitcherId": "a713c338-094a-4cc6-8a3f-cbefcc05fea8"
+}
+
+Delete http://localhost:5050/api/teams/e8889984-7ee6-447f-8980-db2907cfe54c
+
+------------------------------------------------
+USERSCONTROLLER.CS
+GET http://localhost:5050/api/users
+
+GET http://localhost:5050/api/users/username
+
+DELETE http://localhost:5050/api/users/username

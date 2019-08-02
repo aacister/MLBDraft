@@ -2,6 +2,7 @@ using MLBDraft.API.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace MLBDraft.API.Repositories
 {
@@ -20,17 +21,22 @@ namespace MLBDraft.API.Repositories
 
         public User GetUser(string username)
         {
-            return _context.Users.FirstOrDefault(a => a.Username == username);
+            return _context.Users
+            .Include(u => u.Teams)
+            .FirstOrDefault(a => a.Username == username);
         }
 
         public IEnumerable<User> GetUsers(){
             return _context.Users
+                .Include(u => u.Teams)
                 .OrderBy(a => a.Username)
                 .ToList();
         }
         public IEnumerable<User> GetUsers(IEnumerable<string> usernames)
         {
-            return _context.Users.Where(a => usernames.Contains(a.Username))
+            return _context.Users
+                .Where(a => usernames.Contains(a.Username))
+                .Include(u => u.Teams)
                 .OrderBy(a => a.Username)
                 .ToList();
         }

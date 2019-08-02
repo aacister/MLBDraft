@@ -39,6 +39,7 @@ namespace MLBDraft.API.Controllers
         [HttpGet(Name = "GetUserss")]
         public IActionResult Get()
         {
+                
                 var users =  _userRepository.GetUsers();
 
                 if(users == null){
@@ -53,37 +54,15 @@ namespace MLBDraft.API.Controllers
         [HttpGet("{username}", Name = "GetUser")]
         public  IActionResult Get(string username)
         {
-           
-               User user = null;
-                user =  _userRepository.GetUser(username);
-                
-                if(user == null ) return NotFound($"User {username} was not found.");
-                
-                return Ok(_mapper.Map<UserModel>(user));
-          
-        }
-
-
-        [HttpPut("{username}")]
-        public IActionResult Put(string username, [FromBody] UserModel model)
-        {
             if(!_userRepository.UserExists(username))
             {
-                _logger.LogError($"{username} User does not exist.");
+                _logger.LogError($"User {username} not found.");
                 return NotFound();
             }
-
-                var userEntity = _userRepository.GetUser(username);
-
-                
-
-                _userRepository.UpdateUser(username);
-                if(!_mlbDraftRepository.Save())
-                {
-                    throw new Exception($"Updating user {username} failed on save.");
-                }
-                
-                return Ok(_mapper.Map<UserModel>(userEntity));
+            
+            var user =  _userRepository.GetUser(username);
+            return Ok(_mapper.Map<UserModel>(user));
+          
         }
 
         [HttpDelete("{username}")]
@@ -96,9 +75,9 @@ namespace MLBDraft.API.Controllers
                 return NotFound();
             }
 
-            var oldUser =  _userRepository.GetUser(username);
+            var user =  _userRepository.GetUser(username);
 
-            _userRepository.DeleteUser(oldUser);
+            _userRepository.DeleteUser(user);
             if(!_mlbDraftRepository.Save())
             {
                  _logger.LogError($"Could not delete user {username}");

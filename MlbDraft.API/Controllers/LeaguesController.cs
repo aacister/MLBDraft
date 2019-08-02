@@ -53,39 +53,19 @@ namespace MLBDraft.API.Controllers
         [HttpGet("{id}", Name="GetLeague")]
         public IActionResult GetLeague(Guid id)
         {
-
-                var league = _leagueRepository.GetLeague(id);
-                
-                if(league == null){
-                    _logger.LogWarning("No league found.");
-                    return NotFound();
-                }
-
-                var leagueModel = _mapper.Map<LeagueModel>(league);
-                return Ok(leagueModel);
-
-        }
-/* 
-        [HttpGet("({ids})", Name="GetPlayersByIds")]
-        public IActionResult GetPlayersByIds(
-            [ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
-        {           
-            if (ids == null)
+            if (!_leagueRepository.LeagueExists(id))
             {
-                return BadRequest();
-            }
-
-            var playerEntities = _playerRepository.GetPlayers(ids);
-
-            if (ids.Count() != playerEntities.Count())
-            {
+                _logger.LogWarning($"No league found for {id}.");
                 return NotFound();
             }
 
-            var playersToReturn = _mapper.Map<IEnumerable<Player>>(playerEntities);
-            return Ok(playersToReturn);
+            var league = _leagueRepository.GetLeague(id);
+
+            var leagueModel = _mapper.Map<LeagueModel>(league);
+            return Ok(leagueModel);
+
         }
-*/
+
         [HttpPost]
         public IActionResult CreateLeague([FromBody] LeagueCreateModel leagueCreateModel){
             if(leagueCreateModel == null)
@@ -117,7 +97,7 @@ namespace MLBDraft.API.Controllers
         {
             if(!_leagueRepository.LeagueExists(id))
             {
-                _logger.LogError("League does not exist.");
+                _logger.LogError($"League {id} does not exist.");
                 return NotFound();
             }
             var  league = _leagueRepository.GetLeague(id);

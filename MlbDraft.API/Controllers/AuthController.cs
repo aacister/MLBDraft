@@ -101,14 +101,13 @@ namespace MLBDraft.API.Controllers
                 return BadRequest();
             }
 
-            if(!_userRepository.UserExists(credModel.UserName))
+            if(_userRepository.UserExists(credModel.UserName))
             {
-                _logger.LogError($"{credModel.UserName} does not exist.");
-                return NotFound();
+                _logger.LogError($"{credModel.UserName} user exists.");
+                return Forbid();  //Need to create custom error code for 409 Conflict
             }
                 
-            var user =  _userRepository.GetUser(credModel.UserName);
-            user = _mapper.Map<User>(credModel);
+            var user = _mapper.Map<User>(credModel);
             user.Salt = CreateSalt();
             user.Hash = _passwordHasher.Hash(credModel.Password, user.Salt);
             _userRepository.AddUser(user);

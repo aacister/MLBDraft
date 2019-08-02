@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 
 namespace MLBDraft.API.Models
 {
-    public class LeagueModel
+    public class LeagueModel: LeagueAbstractModel
     {
         public Guid Id { get; set; }
 
-        public string Name { get; set; }
+        public override string Name { get; set; }
 
-        public int MinTeams { get; set; }
+        public override int MinTeams { get; set; }
 
-        public int MaxTeams { get; set; }
+        public override int MaxTeams { get; set; }
 
         public IList<TeamModel> Teams { get; set; } = new List<TeamModel>();
 

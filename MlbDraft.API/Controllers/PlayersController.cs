@@ -53,39 +53,19 @@ namespace MLBDraft.API.Controllers
         [HttpGet("{id}", Name="GetPlayer")]
         public IActionResult GetPlayer(Guid id)
         {
-
-                var player = _playerRepository.GetPlayer(id);
-                
-                if(player == null){
-                    _logger.LogWarning("Not player found.");
-                    return NotFound();
-                }
-
-                var playerModel = _mapper.Map<PlayerModel>(player);
-                return Ok(playerModel);
-
-        }
-/* 
-        [HttpGet("({ids})", Name="GetPlayersByIds")]
-        public IActionResult GetPlayersByIds(
-            [ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
-        {           
-            if (ids == null)
+            if (!_playerRepository.PlayerExists(id))
             {
-                return BadRequest();
-            }
-
-            var playerEntities = _playerRepository.GetPlayers(ids);
-
-            if (ids.Count() != playerEntities.Count())
-            {
+                _logger.LogWarning($"No player found for {id}.");
                 return NotFound();
             }
 
-            var playersToReturn = _mapper.Map<IEnumerable<Player>>(playerEntities);
-            return Ok(playersToReturn);
+            var player = _playerRepository.GetPlayer(id);
+
+            var playerModel = _mapper.Map<PlayerModel>(player);
+            return Ok(playerModel);
+
         }
-*/
+
         [HttpPost]
         public IActionResult CreatePlayer([FromBody] PlayerCreateModel playerCreateModel){
             if(playerCreateModel == null)
