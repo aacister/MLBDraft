@@ -1,7 +1,7 @@
 
 # MLBDraft (In progress) #
 
-MLBDraft is to be used by fantasy baseball leagues to host an online snake draft.
+MLBDraft is used to simulate online snake drafts.
 
 Includes 2 projects:
  1. MlbDraft.Api
@@ -14,6 +14,6 @@ Includes 2 projects:
  * Entity Framework
  * AutoMapper
  * NLog
- * Caching
+
 
 
