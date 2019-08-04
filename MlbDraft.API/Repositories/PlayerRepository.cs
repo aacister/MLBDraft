@@ -2,6 +2,7 @@ using MLBDraft.API.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MLBDraft.API.Helpers;
 
 namespace MLBDraft.API.Repositories
 {
@@ -23,18 +24,15 @@ namespace MLBDraft.API.Repositories
             return _context.Players.FirstOrDefault(a => a.Id == playerId);
         }
 
-        public IEnumerable<Player> GetPlayers(){
-            return _context.Players
+        public PagedList<Player> GetPlayers(int pageNumber, int pageSize){
+            var playerColl = _context.Players
                 .OrderBy(a => a.LastName)
                 .OrderBy(a => a.FirstName)
-                .ToList();
-        }
-        public IEnumerable<Player> GetPlayers(IEnumerable<Guid> playerIds)
-        {
-            return _context.Players.Where(a => playerIds.Contains(a.Id))
-                .OrderBy(a => a.LastName)
-                .OrderBy(a => a.FirstName)
-                .ToList();
+                .AsQueryable();
+
+            return PagedList<Player>.Create(playerColl,
+                pageNumber,
+                pageSize);    
         }
 
          public void AddPlayer(Player player)

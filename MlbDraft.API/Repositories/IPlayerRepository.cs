@@ -1,6 +1,8 @@
 using MLBDraft.API.Entities;
+using MLBDraft.API.Helpers;
 using System;
 using System.Collections.Generic;
+
 
 namespace MLBDraft.API.Repositories
 {
@@ -13,8 +15,8 @@ namespace MLBDraft.API.Repositories
 
         void DeletePlayer(Player player);
 
-        IEnumerable<Player> GetPlayers();
-        IEnumerable<Player> GetPlayers(IEnumerable<Guid> playerIds);
+        PagedList<Player> GetPlayers(int pageNumber, int pageSize);
+ 
 
     }
 }
