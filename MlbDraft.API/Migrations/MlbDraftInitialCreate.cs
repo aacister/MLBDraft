@@ -1,11 +1,12 @@
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
-namespace MLBDraft.API.Migrations
+namespace MLBDraft.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class MlbDraftInitialCreate : Migration
     {
-        protected override void Up(MigrationBuilder migrationBuilder){
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
             migrationBuilder.CreateTable(
                 name: "Leagues",
                 columns: table => new
@@ -21,30 +22,43 @@ namespace MLBDraft.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Players",
+                name: "MlbTeams",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    FirstName = table.Column<string>(nullable: false),
-                    LastName = table.Column<string>(nullable: false),
-                    ImagePath = table.Column<string>(nullable: true),
-                    Team = table.Column<string>(nullable: false),
-                    Position = table.Column<string>(nullable: false),
-                    BattingAverage = table.Column<string>(nullable: false),
-                    HomeRuns = table.Column<string>(nullable: false),
-                    Runs = table.Column<string>(nullable: false),
-                    RunsBattedIn = table.Column<string>(nullable: false),
-                    StolenBases = table.Column<string>(nullable: false),
-                    InningsPitched = table.Column<string>(nullable: false),
-                    Wins = table.Column<string>(nullable: false),
-                    Strikeouts = table.Column<string>(nullable: false),
-                    EarnedRunAverage = table.Column<string>(nullable: false),
-                    WHIP = table.Column<string>(nullable: false)
-                    
+                    Description = table.Column<string>(nullable: false),
+                    Abbreviation = table.Column<string>(nullable: true),
+                    LogoPath = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Players", x => x.Id);
+                    table.PrimaryKey("PK_MlbTeams", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Positions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Description = table.Column<string>(nullable: false),
+                    Abbreviation = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Positions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StatCategories",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Description = table.Column<string>(nullable: false),
+                    Abbreviation = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StatCategories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -53,11 +67,85 @@ namespace MLBDraft.API.Migrations
                 {
                     Username = table.Column<string>(nullable: false),
                     Hash = table.Column<byte[]>(nullable: true),
-                    Salt = table.Column<byte[]>(nullable: true),
+                    Salt = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Username);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Drafts",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    LeagueId = table.Column<Guid>(nullable: false),
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Drafts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Drafts_Leagues_LeagueId",
+                        column: x => x.LeagueId,
+                        principalTable: "Leagues",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Players",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    FirstName = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(nullable: false),
+                    ImagePath = table.Column<string>(nullable: true),
+                    MlbTeamId = table.Column<Guid>(nullable: true),
+                    PositionId = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Players", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Players_MlbTeams_MlbTeamId",
+                        column: x => x.MlbTeamId,
+                        principalTable: "MlbTeams",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Players_Positions_PositionId",
+                        column: x => x.PositionId,
+                        principalTable: "Positions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PlayerStatCategories",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    PlayerId = table.Column<Guid>(nullable: false),
+                    StatCategoryId = table.Column<Guid>(nullable: false),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlayerStatCategories", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PlayerStatCategories_Players_PlayerId",
+                        column: x => x.PlayerId,
+                        principalTable: "Players",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PlayerStatCategories_StatCategories_StatCategoryId",
+                        column: x => x.StatCategoryId,
+                        principalTable: "StatCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -66,7 +154,7 @@ namespace MLBDraft.API.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: false),
-                    OwnerId = table.Column<string>(nullable: false),
+                    OwnerId = table.Column<string>(nullable: true),
                     LeagueId = table.Column<Guid>(nullable: false),
                     CatcherId = table.Column<Guid>(nullable: true),
                     FirstBaseId = table.Column<Guid>(nullable: true),
@@ -86,13 +174,13 @@ namespace MLBDraft.API.Migrations
                         column: x => x.CatcherId,
                         principalTable: "Players",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Teams_Players_FirstBaseId",
                         column: x => x.FirstBaseId,
                         principalTable: "Players",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Teams_Leagues_LeagueId",
                         column: x => x.LeagueId,
@@ -104,72 +192,79 @@ namespace MLBDraft.API.Migrations
                         column: x => x.Outfield1Id,
                         principalTable: "Players",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Teams_Players_Outfield2Id",
                         column: x => x.Outfield2Id,
                         principalTable: "Players",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Teams_Players_Outfield3Id",
                         column: x => x.Outfield3Id,
                         principalTable: "Players",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Teams_Users_OwnerId",
                         column: x => x.OwnerId,
                         principalTable: "Users",
                         principalColumn: "Username",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Teams_Players_SecondBaseId",
                         column: x => x.SecondBaseId,
                         principalTable: "Players",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Teams_Players_ShortStopId",
                         column: x => x.ShortStopId,
                         principalTable: "Players",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Teams_Players_StartingPitcherId",
                         column: x => x.StartingPitcherId,
                         principalTable: "Players",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Teams_Players_ThirdBaseId",
                         column: x => x.ThirdBaseId,
                         principalTable: "Players",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Drafts",
+                name: "DraftSelections",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    SelectionNo = table.Column<int>(nullable: false),
-                    Password = table.Column<string>(nullable: false),
+                    DraftId = table.Column<Guid>(nullable: false),
                     TeamId = table.Column<Guid>(nullable: false),
-                    PlayerId = table.Column<Guid>(nullable: false)
+                    PlayerId = table.Column<Guid>(nullable: true),
+                    Round = table.Column<string>(nullable: false),
+                    SelectionNo = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Drafts", x => x.Id);
+                    table.PrimaryKey("PK_DraftSelections", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Drafts_Players_PlayerId",
-                        column: x => x.PlayerId,
-                        principalTable: "Players",
+                        name: "FK_DraftSelections_Drafts_DraftId",
+                        column: x => x.DraftId,
+                        principalTable: "Drafts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Drafts_Teams_TeamId",
+                        name: "FK_DraftSelections_Players_PlayerId",
+                        column: x => x.PlayerId,
+                        principalTable: "Players",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_DraftSelections_Teams_TeamId",
                         column: x => x.TeamId,
                         principalTable: "Teams",
                         principalColumn: "Id",
@@ -177,14 +272,44 @@ namespace MLBDraft.API.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Drafts_PlayerId",
+                name: "IX_Drafts_LeagueId",
                 table: "Drafts",
+                column: "LeagueId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DraftSelections_DraftId",
+                table: "DraftSelections",
+                column: "DraftId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DraftSelections_PlayerId",
+                table: "DraftSelections",
                 column: "PlayerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Drafts_TeamId",
-                table: "Drafts",
+                name: "IX_DraftSelections_TeamId",
+                table: "DraftSelections",
                 column: "TeamId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Players_MlbTeamId",
+                table: "Players",
+                column: "MlbTeamId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Players_PositionId",
+                table: "Players",
+                column: "PositionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlayerStatCategories_PlayerId",
+                table: "PlayerStatCategories",
+                column: "PlayerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlayerStatCategories_StatCategoryId",
+                table: "PlayerStatCategories",
+                column: "StatCategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Teams_CatcherId",
@@ -242,13 +367,22 @@ namespace MLBDraft.API.Migrations
                 column: "ThirdBaseId");
         }
 
-         protected override void Down(MigrationBuilder migrationBuilder)
+        protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "DraftSelections");
+
+            migrationBuilder.DropTable(
+                name: "PlayerStatCategories");
+
             migrationBuilder.DropTable(
                 name: "Drafts");
 
             migrationBuilder.DropTable(
                 name: "Teams");
+
+            migrationBuilder.DropTable(
+                name: "StatCategories");
 
             migrationBuilder.DropTable(
                 name: "Players");
@@ -258,6 +392,12 @@ namespace MLBDraft.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "MlbTeams");
+
+            migrationBuilder.DropTable(
+                name: "Positions");
         }
     }
 }

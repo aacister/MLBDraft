@@ -24,15 +24,32 @@ namespace MLBDraft.API.Repositories
             return _context.Players.FirstOrDefault(a => a.Id == playerId);
         }
 
-        public PagedList<Player> GetPlayers(int pageNumber, int pageSize){
+        public PagedList<Player> GetPlayers(PlayerParameters playerParams){
             var playerColl = _context.Players
                 .OrderBy(a => a.LastName)
                 .OrderBy(a => a.FirstName)
                 .AsQueryable();
 
+            //Filter by  position using abbrev
+            if(!string.IsNullOrEmpty(playerParams.Position))
+            {
+                var positionFilter = playerParams.Position.Trim().ToLowerInvariant();
+                playerColl = playerColl
+                    .Where(p => p.Position.Abbreviation.ToLowerInvariant() == positionFilter);
+            }
+
+            //Filter by MlbTeam using abbrev
+            if(!string.IsNullOrEmpty(playerParams.Team))
+            {
+                var mlbTeamFilter = playerParams.Team.Trim().ToLowerInvariant();
+                playerColl = playerColl
+                    .Where(p => p.MlbTeam.Abbreviation.ToLowerInvariant() == mlbTeamFilter);
+            }
+
+
             return PagedList<Player>.Create(playerColl,
-                pageNumber,
-                pageSize);    
+                playerParams.PageNumber,
+                playerParams.PageSize);    
         }
 
          public void AddPlayer(Player player)

@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using MLBDraft.API.Entities;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace MLBDraft.API.Entities
 {
@@ -7,7 +10,320 @@ namespace MLBDraft.API.Entities
     {
         public static void EnsureSeedDataForContext(this MLBDraftContext context){
 
+            
+            context.DraftSelections.RemoveRange(context.DraftSelections);
+            context.SaveChanges();
+
+            context.Drafts.RemoveRange(context.Drafts);
+            context.SaveChanges();
+
+            context.PlayerStatCategories.RemoveRange(context.PlayerStatCategories);
+            context.SaveChanges();
+
             context.Players.RemoveRange(context.Players);
+            context.SaveChanges();
+
+            context.Teams.RemoveRange(context.Teams);
+            context.SaveChanges();
+
+            context.Leagues.RemoveRange(context.Leagues);
+            context.SaveChanges();
+
+            context.Users.RemoveRange(context.Users);
+            context.SaveChanges();
+
+            context.StatCategories.RemoveRange(context.StatCategories);
+            context.SaveChanges();
+
+            context.MlbTeams.RemoveRange(context.MlbTeams);
+            context.SaveChanges();
+
+            context.Positions.RemoveRange(context.Positions);
+            context.SaveChanges();
+
+
+            var mlbTeams = new List<MlbTeam>()
+            {
+                new MlbTeam(){
+                    Id = new Guid("611d6452-7a69-4d81-9cdc-a07d171afac1"),
+                    Description = "Anaheim Angels",
+                    Abbreviation = "ANA",
+                    LogoPath = "la_angels.gif"
+                },
+                new MlbTeam()
+                {
+                    Id= new Guid("5c52309d-c5eb-4bdd-a944-479184435096"),
+                    Description = "Arizona Diamondbacks",
+                    Abbreviation = "ARI",
+                    LogoPath= "arizona_diamondbacks.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("9340a994-fae9-4b16-b091-1a22df63f02b"),
+                    Description = "Atlanta Braves",
+                    Abbreviation = "ATL",
+                    LogoPath = "atlanta_braves.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("9af12d76-8dd8-4d77-83b9-50fae8c4e1a0"),
+                    Description = "Baltimore Orioles",
+                    Abbreviation = "BAL",
+                    LogoPath = "baltimore_orioles.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("7614b3ae-b661-4dbb-929a-c5f4c3804248"),
+                    Description = "Boston Red Sox",
+                    Abbreviation = "BOS",
+                    LogoPath = "boston_redsox.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("a4cddcc7-adc3-471b-acb6-d5dd9e440460"),
+                    Description = "Chicago Cubs",
+                    Abbreviation = "CHC",
+                    LogoPath = "chicago_cubs.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("b923f780-80e5-4e65-8161-eafe8046b980"),
+                    Description = "Chicago White Sox",
+                    Abbreviation = "CWS",
+                    LogoPath = "chicago_whitesox.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("60909f72-1fc5-4fb7-8a55-40390db127d9"),
+                    Description = "Cincinnati Reds",
+                    Abbreviation = "CIN",
+                    LogoPath = "cincinnati_reds.gif"
+                },
+                new MlbTeam() {
+                    Id = new Guid("5877ed68-be79-4871-898a-edfa4fdefcad"),
+                    Description = "Cleveland Indians",
+                    Abbreviation = "CLE",
+                    LogoPath = "cleveland_indians.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("8683bd02-8b00-4203-8ccb-d38698ae02c4"),
+                    Description = "Colorado Rockies",
+                    Abbreviation = "COL",
+                    LogoPath = "colorado_rockies.gif"
+                },
+                new MlbTeam(){
+                    Id  = new Guid("a6b60598-3749-4b4a-a6fd-e91bb2cdcd35"),
+                    Description = "Detroit Tigers",
+                    Abbreviation = "DET",
+                    LogoPath = "detroit_tigers.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("88d0421c-913c-4dbe-a86f-bfa1ac392e38"),
+                    Description = "Houston Astros",
+                    Abbreviation = "HOU",
+                    LogoPath = "houston_astros.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("23aa79c5-2ae1-4b0b-8dc9-8d14f6eaf82c"),
+                    Description = "Kansas City Royals",
+                    Abbreviation = "KC",
+                    LogoPath = "kansascity_royals.gif"
+                },
+                
+                new MlbTeam(){
+                    Id = new Guid("03b71a1d-61ca-4c06-b3ab-618a42e43f8d"),
+                    Description = "Los Angeles Dodgers",
+                    Abbreviation = "LAD",
+                    LogoPath = "la_dodgers.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("555dcea5-341d-4ec3-93ef-5d74682e8e01"),
+                    Description = "Miami Marlins",
+                    Abbreviation = "MIA",
+                    LogoPath = "miami_marlins.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("09c2bddd-e7bf-406f-ab1d-5135d22d133d"),
+                    Description = "Milwaukee Brewers",
+                    Abbreviation = "MIL",
+                    LogoPath = "milwaukee_brewers.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("3f560a78-a371-4cb9-820d-c34aff25db24"),
+                    Description = "Minnesota Twins",
+                    Abbreviation = "MIN",
+                    LogoPath = "minn_twins.gif"
+                },
+                new MlbTeam() {
+                    Id = new Guid("ff51458d-d1ea-4f3c-84ed-20e05f1e02e2"),
+                    Description = "New York Mets",
+                    Abbreviation = "NYM",
+                    LogoPath = "ny_mets.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("c4aaf363-6756-4faf-a6ea-3acf578fa3d4"),
+                    Description = "New York Yankees",
+                    Abbreviation = "NYY",
+                    LogoPath = "ny_yankees.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("9513f8ce-7199-4d0d-a15c-6eaafb92040d"),
+                    Description = "Oakland Athletics",
+                    Abbreviation = "OAK",
+                    LogoPath = "oakland_athletics.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("b34669f4-72b0-46e2-ad34-a7d911e99eec"),
+                    Description = "Philadelphia Phillies",
+                    Abbreviation = "PHI",
+                    LogoPath = "philadelphia_phillies.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("3f0cc811-927c-419d-aa50-e58ab6dc0ab0"),
+                    Description = "San Diego Padres",
+                    Abbreviation = "SD",
+                    LogoPath = "sd_padres.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("da177ce8-eda0-4ba1-ab8a-823c8affafb3"),
+                    Description = "Seattle Mariners",
+                    Abbreviation = "SEA",
+                    LogoPath = "seattle_mariners.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("9609e6df-2759-4d45-81dd-b0919c100c3a"),
+                    Description = "San Francisco Giants",
+                    Abbreviation = "SF",
+                    LogoPath = "sf_giants.gif"
+                },
+                 new MlbTeam(){
+                    Id = new Guid("cf360a44-2a91-423e-bd8a-ca163626de9b"),
+                    Description = "St Louis Cardinals",
+                    Abbreviation = "STL",
+                    LogoPath = "stlouis_cardinals.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("3ac900ab-011b-4677-9380-0b4d453ad24d"),
+                    Description = "Tampa Bay Rays",
+                    Abbreviation = "TB",
+                    LogoPath = "tb_rays.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("d1950c34-b856-483f-b6cd-4712db85dd7f"),
+                    Description = "Texas Rangers",
+                    Abbreviation = "TEX",
+                    LogoPath = "texas_rangers.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("72304b8a-1473-4586-931c-36c837bb7515"),
+                    Description = "Toronto Blue Jays",
+                    Abbreviation = "TOR",
+                    LogoPath = "toronto_bluejays.gif"
+                },
+                new MlbTeam(){
+                    Id = new Guid("7e567e06-6394-4c6b-be5a-3cc490b8ff5a"),
+                    Description = "Washington Nationals",
+                    Abbreviation = "WSH",
+                    LogoPath = "washington_nationals.gif"
+                }
+
+            };
+
+            context.MlbTeams.AddRange(mlbTeams);
+            context.SaveChanges();
+
+            var positions = new List<Position>()
+            {
+                new Position()
+                {
+                    Id = new Guid("b4c79dba-7cef-428c-8c3b-902b14422119"),
+                    Description = "Catcher",
+                    Abbreviation = "C"
+                },
+                new Position(){
+                    Id = new Guid("8e600cfe-a4db-4e2c-baac-a0c3415a5eef"),
+                    Description = "First Base",
+                    Abbreviation = "1B"
+                },
+                new Position()
+                {
+                    Id = new Guid("3a012591-c93e-4ae2-9335-b5761efe988f"),
+                    Description = "Second Base",
+                    Abbreviation = "2B"
+                },
+                new Position(){
+                    Id = new Guid("59ca324f-36a7-4eef-8e69-39426ac0557f"),
+                    Description = "Short Stop",
+                    Abbreviation="SS"
+                },
+                new Position(){
+                    Id = new Guid("f8accbb3-9e59-4790-b433-3ef38a2f6a38"),
+                    Description = "Third Base",
+                    Abbreviation = "3B"
+                },
+                new Position(){
+                    Id = new Guid("d70591c4-71f8-4a5a-9cd0-0b33b8d62d04"),
+                    Description = "Outfieler",
+                    Abbreviation = "OF"
+                },
+                new Position(){
+                    Id = new Guid("5b1e3df7-bbfc-4d21-a346-7731fb4a8aa8"),
+                    Description = "Starting Pitcher",
+                    Abbreviation = "SP"
+                }
+            };
+
+            context.Positions.AddRange(positions);
+            context.SaveChanges();
+
+            var statCategories = new List<StatCategory>(){
+                 new StatCategory(){
+                     Id = new Guid("1db8e859-103a-4606-82c4-f2a3396cbd57"),
+                     Description = "Batting Average",
+                     Abbreviation = "BA"                   
+                 },
+                 new StatCategory(){
+                     Id = new Guid("4426c890-b095-4c45-bff3-f424d7289ee0"),
+                     Description = "Home Runs",
+                     Abbreviation = "HR"                   
+                 },
+                 new StatCategory(){
+                     Id = new Guid("bff1f6ec-14b0-4605-ad4a-ecf124a6a9a5"),
+                     Description = "Runs",
+                     Abbreviation = "R"
+                 },
+                 new StatCategory(){
+                     Id = new Guid("180359b2-8af7-4b48-a05c-ced702883c23"),
+                     Description = "Runs Batted In",
+                     Abbreviation = "RBI"
+                 },
+                  new StatCategory(){
+                     Id = new Guid("967b3e17-4059-4fe1-8dcd-cd83efcd5584"),
+                     Description = "Stolen Bases",
+                     Abbreviation = "SB"
+                 },
+                  new StatCategory(){
+                     Id = new Guid("9f82e159-7984-4b17-8be3-5a90519ee1f2"),
+                     Description = "Innings Pitched",
+                     Abbreviation = "IP"
+                 }, 
+                  new StatCategory(){
+                     Id = new Guid("7a8bafb4-c36b-4cf2-a6a1-811f250c5a32"),
+                     Description = "Wins",
+                     Abbreviation = "W"
+                 },
+                  new StatCategory(){
+                     Id = new Guid("b80ac00d-ee7e-4b64-99ab-a7dc3abc71a0"),
+                     Description = "Strikeouts",
+                     Abbreviation = "K"
+                 },
+                 new StatCategory(){
+                     Id = new Guid("4ee78456-6b15-4532-890d-10f436a56af9"),
+                     Description = "Earned Run Average",
+                     Abbreviation = "ERA"
+                 },
+                 new StatCategory(){
+                     Id = new Guid("1292425d-f25d-4c70-83e9-e88d54672778"),
+                     Description = "Walks Hits Per Innings Pitched",
+                     Abbreviation = "WHIP"
+                 }
+            };
+
+            context.StatCategories.AddRange(statCategories);
             context.SaveChanges();
 
             var players = new List<Player>()
@@ -18,18 +334,51 @@ namespace MLBDraft.API.Entities
                     FirstName = "J.T.",
                     LastName = "Realmuto",
                     ImagePath = "JT_Realmuto.jpg",
-                    Team = "PHI",
-                    Position = "C",
-                    BattingAverage = ".277",
-                    HomeRuns = "21",
-                    Runs = "74",
-                    RunsBattedIn = "74",
-                    StolenBases = "3",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "PHI").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "C").FirstOrDefault(),
+                    StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".277"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "22"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "74"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "74"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "3"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
+
                 },
                 new Player()
                 {
@@ -37,18 +386,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Salvador",
                     LastName = "Perez",
                     ImagePath = "Salvador_Perez.jpg",
-                    Team = "KC",
-                    Position = "C",
-                    BattingAverage = ".235",
-                    HomeRuns = "27",
-                    Runs = "52",
-                    RunsBattedIn = "80",
-                    StolenBases = "1",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "KC").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "C").FirstOrDefault(),
+                    StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".235"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "27"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "52"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "80"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "1"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -56,18 +437,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Wilson",
                     LastName = "Contreras",
                     ImagePath = "Wilson_Contreras.jpg",
-                    Team = "CHC",
-                    Position = "C",
-                    BattingAverage = ".249",
-                    HomeRuns = "54",
-                    Runs = "50",
-                    RunsBattedIn = "54",
-                    StolenBases = "4",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "CHC").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "C").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".249"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "54"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "50"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "54"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "4"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -75,18 +488,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Buster",
                     LastName = "Posey",
                     ImagePath = "Buster_Posey.jpg",
-                    Team = "SF",
-                    Position = "C",
-                    BattingAverage = ".284",
-                    HomeRuns = "5",
-                    Runs = "47",
-                    RunsBattedIn = "41",
-                    StolenBases = "3",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "SF").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "C").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".284"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "5"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "47"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "41"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "3"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -94,18 +539,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Yadier",
                     LastName = "Molina",
                     ImagePath = "Yadier_Molina.jpg",
-                    Team = "STL",
-                    Position = "C",
-                    BattingAverage = ".261",
-                    HomeRuns = "20",
-                    Runs = "55",
-                    RunsBattedIn = "74",
-                    StolenBases = "4",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "STL").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "C").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".261"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "20"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "55"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "74"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "4"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -113,18 +590,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Freddie",
                     LastName = "Freeman",
                     ImagePath = "Freddie_Freeman.jpg",
-                    Team = "ATL",
-                    Position = "1B",
-                    BattingAverage = ".309",
-                    HomeRuns = "23",
-                    Runs = "94",
-                    RunsBattedIn = "98",
-                    StolenBases = "10",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "ATL").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "1B").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".309"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "23"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "94"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "98"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "10"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -132,18 +641,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Paul",
                     LastName = "Goldschmidt",
                     ImagePath = "Paul_Goldschmidt.jpg",
-                    Team = "STL",
-                    Position = "1B",
-                    BattingAverage = ".290",
-                    HomeRuns = "33",
-                    Runs = "95",
-                    RunsBattedIn = "83",
-                    StolenBases = "7",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "STL").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "1B").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".290"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "33"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "95"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "83"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "7"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -151,18 +692,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Anthony",
                     LastName = "Rizzo",
                     ImagePath = "Anthony_Rizzo.jpg",
-                    Team = "CHC",
-                    Position = "1B",
-                    BattingAverage = ".283",
-                    HomeRuns = "25",
-                    Runs = "74",
-                    RunsBattedIn = "101",
-                    StolenBases = "6",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "CHC").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "1B").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".283"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "25"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "74"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "101"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "6"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -170,18 +743,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Joey",
                     LastName = "Votto",
                     ImagePath = "Joey_Votto.jpg",
-                    Team = "CIN",
-                    Position = "1B",
-                    BattingAverage = ".284",
-                    HomeRuns = "12",
-                    Runs = "67",
-                    RunsBattedIn = "67",
-                    StolenBases = "2",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                   MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "CIN").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "1B").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".284"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "12"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "67"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "67"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "2"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -189,18 +794,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Albert",
                     LastName = "Pujols",
                     ImagePath = "Albert_Pujols.jpg",
-                    Team = "LAA",
-                    Position = "1B",
-                    BattingAverage = ".245",
-                    HomeRuns = "19",
-                    Runs = "50",
-                    RunsBattedIn = "64",
-                    StolenBases = "1",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "ANA").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "1B").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".245"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "19"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "50"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "64"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "1"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -208,18 +845,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Jose",
                     LastName = "Altuve",
                     ImagePath = "Jose_Altuve.jpg",
-                    Team = "HOU",
-                    Position = "2B",
-                    BattingAverage = ".316",
-                    HomeRuns = "13",
-                    Runs = "84",
-                    RunsBattedIn = "61",
-                    StolenBases = "17",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "HOU").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "2B").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".316"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "13"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "84"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "61"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "17"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -227,18 +896,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Ozzie",
                     LastName = "Albies",
                     ImagePath = "Ozzie_Albies.jpg",
-                    Team = "ATL",
-                    Position = "2B",
-                    BattingAverage = ".261",
-                    HomeRuns = "24",
-                    Runs = "105",
-                    RunsBattedIn = "72",
-                    StolenBases = "14",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                     MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "ATL").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "2B").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".261"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "24"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "105"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "72"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "14"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -246,18 +947,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Whit",
                     LastName = "Merrifield",
                     ImagePath = "Whit_Merrifield.jpg",
-                    Team = "KC",
-                    Position = "2B",
-                    BattingAverage = ".304",
-                    HomeRuns = "12",
-                    Runs = "88",
-                    RunsBattedIn = "60",
-                    StolenBases = "45",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                     MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "KC").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "2B").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".304"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "12"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "88"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "60"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "45"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -265,18 +998,51 @@ namespace MLBDraft.API.Entities
                     FirstName = "DJ",
                     LastName = "LeMahieu",
                     ImagePath = "DJ_LeMahieu.jpg",
-                    Team = "NYY",
-                    Position = "2B",
-                    BattingAverage = ".276",
-                    HomeRuns = "15",
-                    Runs = "90",
-                    RunsBattedIn = "62",
-                    StolenBases = "6",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                     MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "NYY").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "2B").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".276"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "15"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "90"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "62"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "6"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
+
                 },
                 new Player()
                 {
@@ -284,18 +1050,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Starlin",
                     LastName = "Castro",
                     ImagePath = "Starlin_Castro.jpg",
-                    Team = "MIA",
-                    Position = "2B",
-                    BattingAverage = ".278",
-                    HomeRuns = "12",
-                    Runs = "76",
-                    RunsBattedIn = "54",
-                    StolenBases = "6",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                     MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "MIA").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "2B").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".278"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "12"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "76"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "54"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "6"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -303,18 +1101,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Trea",
                     LastName = "Turner",
                     ImagePath = "Trea_Turner.jpg",
-                    Team = "WAS",
-                    Position = "SS",
-                    BattingAverage = ".271",
-                    HomeRuns = "19",
-                    Runs = "103",
-                    RunsBattedIn = "73",
-                    StolenBases = "43",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                     MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "WSH").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "SS").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".271"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "19"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "103"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "73"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "43"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -322,18 +1152,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Francisco",
                     LastName = "Lindor",
                     ImagePath = "Francisco_Lindor.jpg",
-                    Team = "CLE",
-                    Position = "SS",
-                    BattingAverage = ".277",
-                    HomeRuns = "38",
-                    Runs = "129",
-                    RunsBattedIn = "92",
-                    StolenBases = "25",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "CLE").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "SS").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".277"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "38"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "129"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "92"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "25"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -341,18 +1203,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Alex",
                     LastName = "Bregman",
                     ImagePath = "Alex_Bregman.jpg",
-                    Team = "HOU",
-                    Position = "SS",
-                    BattingAverage = ".286",
-                    HomeRuns = "31",
-                    Runs = "105",
-                    RunsBattedIn = "103",
-                    StolenBases = "10",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "HOU").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "SS").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".286"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "31"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "105"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "103"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "10"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -360,18 +1254,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Didi",
                     LastName = "Gregorius",
                     ImagePath = "Didi_Gregorius.jpg",
-                    Team = "NYY",
-                    Position = "SS",
-                    BattingAverage = ".268",
-                    HomeRuns = "27",
-                    Runs = "89",
-                    RunsBattedIn = "86",
-                    StolenBases = "10",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "NYY").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "SS").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".268"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "27"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "89"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "86"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "10"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -379,18 +1305,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Xander",
                     LastName = "Bogaerts",
                     ImagePath = "Xander_Bogaerts.jpg",
-                    Team = "BOS",
-                    Position = "SS",
-                    BattingAverage = ".288",
-                    HomeRuns = "23",
-                    Runs = "72",
-                    RunsBattedIn = "103",
-                    StolenBases = "8",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "BOS").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "SS").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".288"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "23"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "72"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "103"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "8"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -398,18 +1356,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Nolan",
                     LastName = "Arenado",
                     ImagePath = "Nolan_Arenado.jpg",
-                    Team = "COL",
-                    Position = "3B",
-                    BattingAverage = ".297",
-                    HomeRuns = "38",
-                    Runs = "104",
-                    RunsBattedIn = "110",
-                    StolenBases = "2",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "COL").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "3B").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".297"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "38"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "104"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "110"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "2"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -417,18 +1407,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Jose",
                     LastName = "Ramirez",
                     ImagePath = "Jose_Ramirez.jpg",
-                    Team = "CLE",
-                    Position = "3B",
-                    BattingAverage = ".270",
-                    HomeRuns = "38",
-                    Runs = "110",
-                    RunsBattedIn = "105",
-                    StolenBases = "34",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "CLE").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "3B").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".270"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "38"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "110"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "105"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "34"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -436,18 +1458,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Miguel",
                     LastName = "Andujar",
                     ImagePath = "Miguel_Andujar.jpg",
-                    Team = "NYY",
-                    Position = "3B",
-                    BattingAverage = ".297",
-                    HomeRuns = "27",
-                    Runs = "92",
-                    RunsBattedIn = "83",
-                    StolenBases = "2",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "NYY").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "3B").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".297"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "27"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "92"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "83"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "2"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -455,18 +1509,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Evan",
                     LastName = "Longoria",
                     ImagePath = "Evan_Longoria.jpg",
-                    Team = "SF",
-                    Position = "3B",
-                    BattingAverage = ".244",
-                    HomeRuns = "16",
-                    Runs = "51",
-                    RunsBattedIn = "54",
-                    StolenBases = "3",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "SF").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "3B").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".244"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "16"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "51"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "54"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "3"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -474,18 +1560,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Anthony",
                     LastName = "Rendon",
                     ImagePath = "Anthony_Rendon.jpg",
-                    Team = "WAS",
-                    Position = "3B",
-                    BattingAverage = ".308",
-                    HomeRuns = "24",
-                    Runs = "88",
-                    RunsBattedIn = "92",
-                    StolenBases = "2",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "WSH").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "3B").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".308"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "24"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "88"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "92"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "2"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -493,18 +1611,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Nicholas",
                     LastName = "Castellanos",
                     ImagePath = "Nicholas_Castellanos.jpg",
-                    Team = "DET",
-                    Position = "OF",
-                    BattingAverage = ".298",
-                    HomeRuns = "23",
-                    Runs = "88",
-                    RunsBattedIn = "89",
-                    StolenBases = "2",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "DET").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "OF").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".298"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "23"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "88"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "89"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "2"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -512,18 +1662,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Giancarlo",
                     LastName = "Stanton",
                     ImagePath = "Giancarlo_Stanton.jpg",
-                    Team = "NYY",
-                    Position = "OF",
-                    BattingAverage = ".266",
-                    HomeRuns = "38",
-                    Runs = "102",
-                    RunsBattedIn = "100",
-                    StolenBases = "5",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "NYY").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "OF").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".266"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "38"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "102"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "100"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "5"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -531,18 +1713,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Ender",
                     LastName = "Inciarte",
                     ImagePath = "Ender_Inciarte.jpg",
-                    Team = "ATL",
-                    Position = "OF",
-                    BattingAverage = ".265",
-                    HomeRuns = "10",
-                    Runs = "83",
-                    RunsBattedIn = "61",
-                    StolenBases = "28",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "ATL").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "OF").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".265"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "10"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "83"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "61"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "28"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -550,18 +1764,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Mitch",
                     LastName = "Haniger",
                     ImagePath = "Mitch_Haniger.jpg",
-                    Team = "SEA",
-                    Position = "OF",
-                    BattingAverage = ".285",
-                    HomeRuns = "26",
-                    Runs = "90",
-                    RunsBattedIn = "93",
-                    StolenBases = "8",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "SEA").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "OF").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".285"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "26"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "90"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "93"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "8"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -569,18 +1815,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Marcell",
                     LastName = "Ozuna",
                     ImagePath = "Marcell_Ozuna.jpg",
-                    Team = "STL",
-                    Position = "OF",
-                    BattingAverage = ".280",
-                    HomeRuns = "23",
-                    Runs = "69",
-                    RunsBattedIn = "88",
-                    StolenBases = "3",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "STL").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "OF").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".280"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "23"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "69"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "88"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "3"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -588,18 +1866,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Adam",
                     LastName = "Jones",
                     ImagePath = "Adam_Jones.jpg",
-                    Team = "BAL",
-                    Position = "OF",
-                    BattingAverage = ".281",
-                    HomeRuns = "15",
-                    Runs = "54",
-                    RunsBattedIn = "63",
-                    StolenBases = "7",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "BAL").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "OF").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".281"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "15"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "54"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "63"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "7"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -607,18 +1917,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Andrew",
                     LastName = "Benintendi",
                     ImagePath = "Andrew_Benintendi.jpg",
-                    Team = "BOS",
-                    Position = "OF",
-                    BattingAverage = ".290",
-                    HomeRuns = "16",
-                    Runs = "103",
-                    RunsBattedIn = "87",
-                    StolenBases = "21",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "BOS").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "OF").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".290"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "16"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "103"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "87"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "21"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -626,18 +1968,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Christian",
                     LastName = "Yelich",
                     ImagePath = "Christian_Yelich.jpg",
-                    Team = "MIL",
-                    Position = "OF",
-                    BattingAverage = ".326",
-                    HomeRuns = "36",
-                    Runs = "118",
-                    RunsBattedIn = "110",
-                    StolenBases = "22",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "MIL").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "OF").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".326"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "36"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "118"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "110"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "22"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -645,18 +2019,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Michael",
                     LastName = "Brantley",
                     ImagePath = "Michael_Brantley.jpg",
-                    Team = "CLE",
-                    Position = "OF",
-                    BattingAverage = ".309",
-                    HomeRuns = "17",
-                    Runs = "89",
-                    RunsBattedIn = "76",
-                    StolenBases = "12",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "CLE").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "OF").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".309"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "17"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "89"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "76"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "12"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -664,18 +2070,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "J.D.",
                     LastName = "Martinez",
                     ImagePath = "JD_Martinez.jpg",
-                    Team = "BOS",
-                    Position = "OF",
-                    BattingAverage = ".330",
-                    HomeRuns = "43",
-                    Runs = "111",
-                    RunsBattedIn = "130",
-                    StolenBases = "6",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "BOS").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "OF").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".330"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "43"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "111"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "130"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "6"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -683,18 +2121,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "David",
                     LastName = "Peralta",
                     ImagePath = "David_Peralta.jpg",
-                    Team = "ARI",
-                    Position = "OF",
-                    BattingAverage = ".293",
-                    HomeRuns = "30",
-                    Runs = "75",
-                    RunsBattedIn = "87",
-                    StolenBases = "4",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "ARI").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "OF").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".293"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "30"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "75"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "87"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "4"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -702,18 +2172,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Mookie",
                     LastName = "Betts",
                     ImagePath = "Mookie_Betts.jpg",
-                    Team = "BOS",
-                    Position = "OF",
-                    BattingAverage = ".346",
-                    HomeRuns = "32",
-                    Runs = "129",
-                    RunsBattedIn = "80",
-                    StolenBases = "30",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "BOS").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "OF").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".346"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "32"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "129"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "80"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "30"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -721,18 +2223,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Max",
                     LastName = "Kepler",
                     ImagePath = "Max_Kepler.jpg",
-                    Team = "TEX",
-                    Position = "OF",
-                    BattingAverage = ".224",
-                    HomeRuns = "20",
-                    Runs = "80",
-                    RunsBattedIn = "58",
-                    StolenBases = "4",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "TEX").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "OF").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".224"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "20"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "80"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "58"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "4"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -740,18 +2274,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Aaron",
                     LastName = "Hicks",
                     ImagePath = "Aaron_Hicks.jpg",
-                    Team = "NYY",
-                    Position = "OF",
-                    BattingAverage = ".248",
-                    HomeRuns = "27",
-                    Runs = "90",
-                    RunsBattedIn = "79",
-                    StolenBases = "11",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "NYY").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "OF").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".248"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "27"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "90"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "79"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "11"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -759,18 +2325,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Andrew",
                     LastName = "McCutchen",
                     ImagePath = "Andrew_McCutchen.jpg",
-                    Team = "PHI",
-                    Position = "OF",
-                    BattingAverage = ".255",
-                    HomeRuns = "15",
-                    Runs = "65",
-                    RunsBattedIn = "55",
-                    StolenBases = "13",
-                    InningsPitched = "",
-                    Wins = "",
-                    Strikeouts = "",
-                    EarnedRunAverage = "",
-                    WHIP = ""
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "PHI").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "OF").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ".255"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = "15"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = "65"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = "55"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = "13"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = ""
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -778,18 +2376,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Max",
                     LastName = "Scherzer",
                     ImagePath = "Max_Scherzer.jpg",
-                    Team = "WAS",
-                    Position = "P",
-                    BattingAverage = "",
-                    HomeRuns = "",
-                    Runs = "",
-                    RunsBattedIn = "",
-                    StolenBases = "",
-                    InningsPitched = "220.2",
-                    Wins = "18",
-                    Strikeouts = "300",
-                    EarnedRunAverage = "2.53",
-                    WHIP = "0.91"
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "WSH").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "SP").FirstOrDefault(),
+                     StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = "220.2"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = "18"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = "300"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = "2.53"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = "0.91"
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -797,18 +2427,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Jacob",
                     LastName = "deGrom",
                     ImagePath = "Jacob_deGrom.jpg",
-                    Team = "NYM",
-                    Position = "P",
-                    BattingAverage = "",
-                    HomeRuns = "",
-                    Runs = "",
-                    RunsBattedIn = "",
-                    StolenBases = "",
-                    InningsPitched = "217.0",
-                    Wins = "10",
-                    Strikeouts = "269",
-                    EarnedRunAverage = "1.70",
-                    WHIP = "0.91"
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "NYM").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "SP").FirstOrDefault(),
+                    StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = "217.0"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = "10"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = "269"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = "1.70"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = "0.91"
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -816,18 +2478,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Blake",
                     LastName = "Snell",
                     ImagePath = "Blake_Snell.jpg",
-                    Team = "TB",
-                    Position = "P",
-                    BattingAverage = "",
-                    HomeRuns = "",
-                    Runs = "",
-                    RunsBattedIn = "",
-                    StolenBases = "",
-                    InningsPitched = "180.2",
-                    Wins = "21",
-                    Strikeouts = "221",
-                    EarnedRunAverage = "1.89",
-                    WHIP = "0.97"
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "TB").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "SP").FirstOrDefault(),
+                    StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = "180.2"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = "21"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = "221"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = "1.89"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = "0.97"
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -835,18 +2529,50 @@ namespace MLBDraft.API.Entities
                     FirstName = "Justin",
                     LastName = "Verlander",
                     ImagePath = "Justin_Verlander.jpg",
-                    Team = "HOU",
-                    Position = "P",
-                    BattingAverage = "",
-                    HomeRuns = "",
-                    Runs = "",
-                    RunsBattedIn = "",
-                    StolenBases = "",
-                    InningsPitched = "214.0",
-                    Wins = "16",
-                    Strikeouts = "290",
-                    EarnedRunAverage = "2.52",
-                    WHIP = "0.90"
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "HOU").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "SP").FirstOrDefault(),
+                    StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = "214.0"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = "16"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = "290"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = "2.52"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = "0.90"
+                        }
+                    }
                 },
                 new Player()
                 {
@@ -854,23 +2580,57 @@ namespace MLBDraft.API.Entities
                     FirstName = "Aaron",
                     LastName = "Nola",
                     ImagePath = "Aaron_Nola.jpg",
-                    Team = "PHI",
-                    Position = "P",
-                    BattingAverage = "",
-                    HomeRuns = "",
-                    Runs = "",
-                    RunsBattedIn = "",
-                    StolenBases = "",
-                    InningsPitched = "212.1",
-                    Wins = "17",
-                    Strikeouts = "224",
-                    EarnedRunAverage = "2.37",
-                    WHIP = "0.97"
+                    MlbTeam = context.MlbTeams.Where(t => t.Abbreviation == "PHI").FirstOrDefault(),
+                    Position = context.Positions.Where(p => p.Abbreviation == "SP").FirstOrDefault(),
+                    StatCategories = new List<PlayerStatCategory>(){
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "BA").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "HR").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "R").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "RBI").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "SB").FirstOrDefault(),
+                            Value = ""
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "IP").FirstOrDefault(),
+                            Value = "212.1"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "W").FirstOrDefault(),
+                            Value = "17"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "K").FirstOrDefault(),
+                            Value = "224"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "ERA").FirstOrDefault(),
+                            Value = "2.37"
+                        },
+                        new PlayerStatCategory(){
+                            StatCategory = context.StatCategories.Where(sc => sc.Abbreviation == "WHIP").FirstOrDefault(),
+                            Value = "0.97"
+                        }
+                    }
                 }
             };
 
             context.Players.AddRange(players);
             context.SaveChanges();
+
+
         }
     }
 }

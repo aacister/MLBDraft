@@ -3,14 +3,16 @@ using System;
 using MLBDraft.API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MLBDraft.Migrations
 {
     [DbContext(typeof(MLBDraftContext))]
-    partial class MLBDraftContextModelSnapshot : ModelSnapshot
+    [Migration("MlbDraftInitialCreate")]
+    partial class MlbDraftInitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

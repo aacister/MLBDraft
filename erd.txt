@@ -21,18 +21,8 @@ Player
 -FirstName
 -LastName
 -picture
--Team
--position (C,1B,2B, 3B, SS, OF, SP)
-BA
-HR
-R
-RBI
-SB
-IP
-W
-Ks
-ERA
-WHIP
+-Team (foreign key MlbTeam)
+-position (foreign key) 
 
 
 League
@@ -41,11 +31,37 @@ League
 -MaxTeams
 -MinTeams
 
+MlbTeam
+-Id
+-Description
+-ImagePath
+
+Position (C,1B,2B, 3B, SS, OF, SP)
+-Id
+-Description
+
+StatCategory
+-Id
+-Description
+
+PlayerStatCategory (BA, HR, R, RBI, SB, IP, W, K, ERA, WHIP)
+P-layerId  (foreign key) (composite key)
+-StatCategoryId (foreign key) (composite key)
+-Value
+
 Draft
--draftId
+-Id
+-leagueId
+-startDate
+-endDate
+
+
+DraftSelection
+-DraftId (foreign key) (composite key)
+-TeamId (foreign key) (composite key)
+-PlayerId (foreign key)
+-Round
 -SelectionNo
--TeamId
--PlayerId
 
 
 

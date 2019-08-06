@@ -15,7 +15,7 @@ namespace MLBDraft.API.Repositories
 
         void DeletePlayer(Player player);
 
-        PagedList<Player> GetPlayers(int pageNumber, int pageSize);
+        PagedList<Player> GetPlayers(PlayerParameters playerParams);
  
 
     }

@@ -9,21 +9,16 @@ namespace MLBDraft.API.Entities
         [Key]       
         public Guid Id { get; set; }
 
-        [Required]     
-        public int SelectionNo { get; set; }
+        [ForeignKey("LeagueId")]
+        public League League {get; set; }
 
+        public Guid LeagueId {get; set;}
+        
         [Required]
-        public string Password { get; set; }
+        public DateTime StartDate {get; set;}
+        public DateTime EndDate {get; set;}
 
-         [ForeignKey("TeamId")]
-        public Team Team {get; set; }
-
-        public Guid TeamId {get; set;}
-
-         [ForeignKey("PlayerId")]
-        public Player Player {get; set; }
-
-        public Guid PlayerId {get; set;}
+ 
 
     }
 }

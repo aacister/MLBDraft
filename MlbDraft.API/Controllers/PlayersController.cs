@@ -40,9 +40,9 @@ namespace MLBDraft.API.Controllers
         }
 
         [HttpGet(Name = "GetPlayers")]
-        public IActionResult Get(PlayerParametersModel playerParamsModel)
+        public IActionResult Get(PlayerParameters playerParams)
         {
-                var players = _playerRepository.GetPlayers(playerParamsModel.PageNumber, playerParamsModel.PageSize);
+                var players = _playerRepository.GetPlayers(playerParams);
                 
                 if(players == null){
                     _logger.LogWarning("No players were found.");
@@ -50,11 +50,11 @@ namespace MLBDraft.API.Controllers
                 }
 
                 var previousPageLink = players.HasPrevious ?
-                CreatePlayersUri(playerParamsModel,
+                CreatePlayersUri(playerParams,
                 PageUriType.PreviousPage) : null;
 
                 var nextPageLink = players.HasNext ? 
-                    CreatePlayersUri(playerParamsModel,
+                    CreatePlayersUri(playerParams,
                     PageUriType.NextPage) : null;
 
                 var paginationMetadata = new
@@ -140,7 +140,7 @@ namespace MLBDraft.API.Controllers
         }
 
          private string CreatePlayersUri(
-            PlayerParametersModel playerParamsModel,
+            PlayerParameters playerParams,
             PageUriType type)
         {
             switch (type)
@@ -149,23 +149,29 @@ namespace MLBDraft.API.Controllers
                     return _urlHelper.Link("GetPlayers",
                       new
                       {
-                          pageNumber = playerParamsModel.PageNumber - 1,
-                          pageSize = playerParamsModel.PageSize
+                          position = playerParams.Position,
+                          team = playerParams.Team,
+                          pageNumber = playerParams.PageNumber - 1,
+                          pageSize = playerParams.PageSize
                       });
                 case PageUriType.NextPage:
                     return _urlHelper.Link("GetPlayers",
                       new
                       {
-                          pageNumber = playerParamsModel.PageNumber + 1,
-                          pageSize = playerParamsModel.PageSize
+                          position = playerParams.Position,
+                          team = playerParams.Team,
+                          pageNumber = playerParams.PageNumber + 1,
+                          pageSize = playerParams.PageSize
                       });
 
                 default:
                     return _urlHelper.Link("GetPlayers",
                     new
                     {
-                        pageNumber = playerParamsModel.PageNumber,
-                        pageSize = playerParamsModel.PageSize
+                        position = playerParams.Position,
+                          team = playerParams.Team,
+                        pageNumber = playerParams.PageNumber,
+                        pageSize = playerParams.PageSize
                     });
             }
         }

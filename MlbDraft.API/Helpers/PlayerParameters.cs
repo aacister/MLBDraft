@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MLBDraft.API.Models
+namespace MLBDraft.API.Helpers
 {
-    public class PlayerParametersModel
+    public class PlayerParameters
     {
         const int maxPageSize = 20;
         public int PageNumber { get; set; } = 1;
@@ -22,6 +22,10 @@ namespace MLBDraft.API.Models
                 _pageSize = (value > maxPageSize) ? maxPageSize : value;
             }
         }
+
+        public string Team { get; set; }
+        public string Position {get; set;}
+        
         
     }
 }
