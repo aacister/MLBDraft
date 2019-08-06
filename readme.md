@@ -14,6 +14,7 @@ Includes 2 projects:
  * Entity Framework
  * AutoMapper
  * NLog
+ * Player paging, filtering, and search
 
 
 
