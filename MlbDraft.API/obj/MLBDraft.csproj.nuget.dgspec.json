@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Andrew\\MLBDraft\\MlbDraft.API\\MLBDraft.csproj": {}
+    "C:\\Andrew\\MLBDraft\\MlbDraft.ApI\\MLBDraft.csproj": {}
   },
   "projects": {
-    "C:\\Andrew\\MLBDraft\\MlbDraft.API\\MLBDraft.csproj": {
+    "C:\\Andrew\\MLBDraft\\MlbDraft.ApI\\MLBDraft.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Andrew\\MLBDraft\\MlbDraft.API\\MLBDraft.csproj",
+        "projectUniqueName": "C:\\Andrew\\MLBDraft\\MlbDraft.ApI\\MLBDraft.csproj",
         "projectName": "MLBDraft",
-        "projectPath": "C:\\Andrew\\MLBDraft\\MlbDraft.API\\MLBDraft.csproj",
+        "projectPath": "C:\\Andrew\\MLBDraft\\MlbDraft.ApI\\MLBDraft.csproj",
         "packagesPath": "C:\\Users\\acisternino\\.nuget\\packages\\",
-        "outputPath": "C:\\Andrew\\MLBDraft\\MlbDraft.API\\obj\\",
+        "outputPath": "C:\\Andrew\\MLBDraft\\MlbDraft.ApI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
