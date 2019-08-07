@@ -12,6 +12,6 @@ namespace MLBDraft.API.Models
         public override string Name { get; set; }
        
        [Required]
-        public override string OwnerId { get; set; }
+        public override string Owner { get; set; }
     }
 }

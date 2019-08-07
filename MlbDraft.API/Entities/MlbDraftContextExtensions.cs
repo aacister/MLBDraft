@@ -11,25 +11,8 @@ namespace MLBDraft.API.Entities
         public static void EnsureSeedDataForContext(this MLBDraftContext context){
 
             
-            context.DraftSelections.RemoveRange(context.DraftSelections);
-            context.SaveChanges();
-
-            context.Drafts.RemoveRange(context.Drafts);
-            context.SaveChanges();
-
-            context.PlayerStatCategories.RemoveRange(context.PlayerStatCategories);
-            context.SaveChanges();
-
+           
             context.Players.RemoveRange(context.Players);
-            context.SaveChanges();
-
-            context.Teams.RemoveRange(context.Teams);
-            context.SaveChanges();
-
-            context.Leagues.RemoveRange(context.Leagues);
-            context.SaveChanges();
-
-            context.Users.RemoveRange(context.Users);
             context.SaveChanges();
 
             context.StatCategories.RemoveRange(context.StatCategories);

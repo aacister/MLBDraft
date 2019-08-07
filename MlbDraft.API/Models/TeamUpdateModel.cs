@@ -8,24 +8,26 @@ namespace MLBDraft.API.Models
          [Required]
         public override string Name { get; set; }
        
-       [Required]
-        public override string OwnerId { get; set; }
+        [Required]
+        public override string Owner { get; set; }
 
+        [Required]
         public Guid? CatcherId {get; set;}
-
+        [Required]
         public Guid? FirstBaseId {get; set;}
+        [Required]
         public Guid? SecondBaseId {get; set;}
 
+        [Required]
         public Guid? ThirdBaseId {get; set;}
-
+        [Required]
         public Guid? ShortStopId {get; set;}
-
+        [Required]
         public Guid? Outfield1Id {get; set;}
 
-
+        [Required]
         public Guid? Outfield2Id {get; set;} 
-
-
+        [Required]
          public Guid? Outfield3Id {get; set;} 
 
         

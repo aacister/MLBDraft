@@ -12,12 +12,13 @@ namespace MLBDraft.API.Models
         public override string FirstName { get; set; }
         [Required]
         public override string LastName { get; set; }
+
         [Required]
-        public override string Team {get; set;}
+        public override string MlbTeamAbbreviation {get; set;}
 
         //TODO: Add byte[] Image {get; set;} -- convert to Player entity with custom model binder
         [Required]
-        public override string Position {get; set;}
+        public override string PositionAbbreviation {get; set;}
        
     }
 }

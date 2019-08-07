@@ -25,6 +25,7 @@ using MLBDraft.API.Entities;
 using MLBDraft.API.Models;
 using MLBDraft.API.Converters;
 using MLBDraft.API.Security;
+using MLBDraft.API.Middleware;
 using AutoMapper;
 
 
@@ -43,7 +44,7 @@ namespace MLBDraft
         public void ConfigureServices(IServiceCollection services)
         {;
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(); //SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddHttpContextAccessor();
  
@@ -82,6 +83,8 @@ namespace MLBDraft
 
             //register the repository
             services.AddScoped<IMlbDraftRepository, MlbDraftRepository>();
+            services.AddScoped<IMlbTeamRepository, MlbTeamRepository>();
+            services.AddScoped<IPositionRepository, PositionRepository>();
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddScoped<ITeamRepository, TeamRepository>();
             services.AddScoped<ILeagueRepository, LeagueRepository>();
@@ -158,8 +161,9 @@ namespace MLBDraft
 
             app.UseHttpsRedirection();
             app.UseAuthentication(); //Uses jwt authentication
+            app.UseMiddleware<DeChunkerMiddleware>();
 
-            mlbDraftContext.EnsureSeedDataForContext();
+      //      mlbDraftContext.EnsureSeedDataForContext();
             app.UseMvc();
         }
     }

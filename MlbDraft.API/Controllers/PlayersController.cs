@@ -21,18 +21,24 @@ namespace MLBDraft.API.Controllers
     {
         private IMlbDraftRepository _mlbDraftRepository;
         private IPlayerRepository _playerRepository;
+        private IMlbTeamRepository _mlbTeamRepository;
+        private IPositionRepository _positionRepository;
         private IMapper _mapper;
         private ILogger<PlayersController> _logger;
 
         private IUrlHelper _urlHelper;
     
         public PlayersController(IPlayerRepository playerRepository,
+        IMlbTeamRepository mlbTeamRepository,
         IMlbDraftRepository mlbDraftRepository,
+        IPositionRepository positionRepository,
         IMapper mapper,
         ILogger<PlayersController> logger,
         IUrlHelper urlHelper)
         {
             _playerRepository = playerRepository;
+            _mlbTeamRepository = mlbTeamRepository;
+            _positionRepository = positionRepository;
             _mlbDraftRepository = mlbDraftRepository;
             _mapper = mapper;
             _logger = logger;
@@ -48,7 +54,7 @@ namespace MLBDraft.API.Controllers
                     _logger.LogWarning("No players were found.");
                     return NotFound();
                 }
-
+ 
                 var previousPageLink = players.HasPrevious ?
                 CreatePlayersUri(playerParams,
                 PageUriType.PreviousPage) : null;
@@ -103,7 +109,20 @@ namespace MLBDraft.API.Controllers
                 return BadRequest();
             }
 
+            var mlbTeam = _mlbTeamRepository.GetMlbTeam(playerCreateModel.MlbTeamAbbreviation);
+            if(mlbTeam == null)
+            {
+                return BadRequest();
+            }
+
+            var position = _positionRepository.GetPosition(playerCreateModel.PositionAbbreviation);
+            if(position == null){
+                return BadRequest();
+            }
+
             var playerEntity = _mapper.Map<Player>(playerCreateModel);
+            playerEntity.Position = position;
+            playerEntity.MlbTeam = mlbTeam;
             _playerRepository.AddPlayer(playerEntity);
 
             if(!_mlbDraftRepository.Save()){
@@ -116,6 +135,8 @@ namespace MLBDraft.API.Controllers
                     new Player{Id = playerToReturn.Id},
                     playerToReturn);
         }
+
+        
 
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
@@ -147,7 +168,7 @@ namespace MLBDraft.API.Controllers
             {
                 case PageUriType.PreviousPage:
                     return _urlHelper.Link("GetPlayers",
-                      new
+                      new 
                       {
                           position = playerParams.Position,
                           team = playerParams.Team,
@@ -156,7 +177,7 @@ namespace MLBDraft.API.Controllers
                       });
                 case PageUriType.NextPage:
                     return _urlHelper.Link("GetPlayers",
-                      new
+                      new 
                       {
                           position = playerParams.Position,
                           team = playerParams.Team,
@@ -166,10 +187,10 @@ namespace MLBDraft.API.Controllers
 
                 default:
                     return _urlHelper.Link("GetPlayers",
-                    new
+                    new 
                     {
                         position = playerParams.Position,
-                          team = playerParams.Team,
+                        team = playerParams.Team,
                         pageNumber = playerParams.PageNumber,
                         pageSize = playerParams.PageSize
                     });

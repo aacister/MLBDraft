@@ -2,6 +2,7 @@ using MLBDraft.API.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using MLBDraft.API.Helpers;
 
 namespace MLBDraft.API.Repositories
@@ -21,11 +22,19 @@ namespace MLBDraft.API.Repositories
 
         public Player GetPlayer(Guid playerId)
         {
-            return _context.Players.FirstOrDefault(a => a.Id == playerId);
+            return _context.Players
+            .Include(p => p.MlbTeam)
+            .Include(p => p.Position)
+            .Include(p => p.StatCategories)
+            .FirstOrDefault(a => a.Id == playerId);
         }
 
         public PagedList<Player> GetPlayers(PlayerParameters playerParams){
             var playerColl = _context.Players
+                .Include(p => p.MlbTeam)
+                .Include(p => p.Position)
+                .Include(p => p.StatCategories)
+                .ThenInclude(p => p.StatCategory)
                 .OrderBy(a => a.LastName)
                 .OrderBy(a => a.FirstName)
                 .AsQueryable();

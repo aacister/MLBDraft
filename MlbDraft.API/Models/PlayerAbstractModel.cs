@@ -13,11 +13,13 @@ namespace MLBDraft.API.Models
 
         public virtual string LastName { get; set; }
 
-        public virtual string Team {get; set;}
+        public string Name {get; set;}
+
+        public virtual string MlbTeamAbbreviation {get; set;}
 
         //TODO: Add byte[] Image {get; set;} -- convert to Player entity with custom model binder
 
-        public virtual string Position {get; set;}
+        public virtual string PositionAbbreviation {get; set;}
         public string BattingAverage {get; set; }
 
         public string HomeRuns {get; set;}

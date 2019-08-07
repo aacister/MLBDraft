@@ -1,0 +1,186 @@
+2019-08-07 10:37:54.7330|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-07 10:53:34.6304|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-07 10:53:34.6369|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-07 10:53:34.6369|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-07 11:10:44.9975|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:10:44.9975|WARN|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|The response has already started, the error handler will not be executed.
+2019-08-07 11:10:45.0034|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:10:45.0034|WARN|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|The response has already started, the error page middleware will not be executed.
+2019-08-07 11:10:45.0034|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLOR8JAK0AI4", Request id "0HLOR8JAK0AI4:00000008": An unhandled exception was thrown by the application.
+2019-08-07 11:12:14.6302|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:12:14.6302|WARN|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|The response has already started, the error handler will not be executed.
+2019-08-07 11:12:14.6302|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:12:14.6302|WARN|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|The response has already started, the error page middleware will not be executed.
+2019-08-07 11:12:14.6495|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLOR8JAK0AI5", Request id "0HLOR8JAK0AI5:00000001": An unhandled exception was thrown by the application.
+2019-08-07 11:14:39.0759|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:14:39.0921|WARN|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|The response has already started, the error handler will not be executed.
+2019-08-07 11:14:39.0974|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:14:39.0974|WARN|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|The response has already started, the error page middleware will not be executed.
+2019-08-07 11:14:39.0974|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLOR8JAK0AI6", Request id "0HLOR8JAK0AI6:00000001": An unhandled exception was thrown by the application.
+2019-08-07 11:22:02.5909|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:22:02.6009|WARN|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|The response has already started, the error handler will not be executed.
+2019-08-07 11:22:02.6009|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:22:02.6009|WARN|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|The response has already started, the error page middleware will not be executed.
+2019-08-07 11:22:02.6150|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLOR8JAK0AI7", Request id "0HLOR8JAK0AI7:00000001": An unhandled exception was thrown by the application.
+2019-08-07 11:23:56.3486|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:23:56.3563|WARN|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|The response has already started, the error handler will not be executed.
+2019-08-07 11:23:56.4173|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:23:56.4173|WARN|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|The response has already started, the error page middleware will not be executed.
+2019-08-07 11:23:56.4173|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLOR8JAK0AI8", Request id "0HLOR8JAK0AI8:00000001": An unhandled exception was thrown by the application.
+2019-08-07 11:25:47.7545|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:25:47.7698|WARN|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|The response has already started, the error handler will not be executed.
+2019-08-07 11:25:47.7884|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:25:47.7884|WARN|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|The response has already started, the error page middleware will not be executed.
+2019-08-07 11:25:47.7884|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLOR8JAK0AI9", Request id "0HLOR8JAK0AI9:00000001": An unhandled exception was thrown by the application.
+2019-08-07 11:27:38.0950|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:27:38.1046|WARN|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|The response has already started, the error handler will not be executed.
+2019-08-07 11:27:38.1046|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:27:38.1185|WARN|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|The response has already started, the error page middleware will not be executed.
+2019-08-07 11:27:38.1307|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLOR8JAK0AIA", Request id "0HLOR8JAK0AIA:00000001": An unhandled exception was thrown by the application.
+2019-08-07 11:28:28.2534|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:28:28.2595|WARN|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|The response has already started, the error handler will not be executed.
+2019-08-07 11:28:28.2595|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:28:28.2709|WARN|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|The response has already started, the error page middleware will not be executed.
+2019-08-07 11:28:28.2709|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLOR8JAK0AIB", Request id "0HLOR8JAK0AIB:00000001": An unhandled exception was thrown by the application.
+2019-08-07 11:28:57.4041|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:28:57.4041|WARN|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|The response has already started, the error handler will not be executed.
+2019-08-07 11:28:57.4146|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:28:57.4146|WARN|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|The response has already started, the error page middleware will not be executed.
+2019-08-07 11:28:57.4146|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLOR8JAK0AIC", Request id "0HLOR8JAK0AIC:00000001": An unhandled exception was thrown by the application.
+2019-08-07 11:36:52.6019|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:36:52.6019|WARN|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|The response has already started, the error handler will not be executed.
+2019-08-07 11:36:52.6106|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:36:52.6106|WARN|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|The response has already started, the error page middleware will not be executed.
+2019-08-07 11:36:52.6106|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLOR8JAK0AID", Request id "0HLOR8JAK0AID:00000001": An unhandled exception was thrown by the application.
+2019-08-07 11:37:20.1305|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:37:20.1305|WARN|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|The response has already started, the error handler will not be executed.
+2019-08-07 11:37:20.1405|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 11:37:20.1405|WARN|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|The response has already started, the error page middleware will not be executed.
+2019-08-07 11:37:20.1405|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLOR8JAK0AIE", Request id "0HLOR8JAK0AIE:00000001": An unhandled exception was thrown by the application.
+2019-08-07 11:38:15.9388|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-07 12:13:21.0502|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-07 12:17:55.6379|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-07 12:17:55.6556|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-07 12:17:55.6556|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-07 12:22:49.6209|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 12:22:49.6209|WARN|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|The response has already started, the error handler will not be executed.
+2019-08-07 12:22:49.6209|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 12:22:49.6209|WARN|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|The response has already started, the error page middleware will not be executed.
+2019-08-07 12:22:49.6209|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLORA8L6OP61", Request id "0HLORA8L6OP61:00000007": An unhandled exception was thrown by the application.
+2019-08-07 12:23:31.5372|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 12:23:31.5372|WARN|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|The response has already started, the error handler will not be executed.
+2019-08-07 12:23:31.5731|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 12:23:31.5731|WARN|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|The response has already started, the error page middleware will not be executed.
+2019-08-07 12:23:31.5770|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLORA8L6OP62", Request id "0HLORA8L6OP62:00000001": An unhandled exception was thrown by the application.
+2019-08-07 12:25:21.7856|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 12:25:21.7856|WARN|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|The response has already started, the error handler will not be executed.
+2019-08-07 12:25:21.7856|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 12:25:21.7856|WARN|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|The response has already started, the error page middleware will not be executed.
+2019-08-07 12:25:21.7996|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLORA8L6OP63", Request id "0HLORA8L6OP63:00000001": An unhandled exception was thrown by the application.
+2019-08-07 12:25:44.1722|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 12:25:44.1722|WARN|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|The response has already started, the error handler will not be executed.
+2019-08-07 12:25:44.1812|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 12:25:44.1812|WARN|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|The response has already started, the error page middleware will not be executed.
+2019-08-07 12:25:44.1812|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLORA8L6OP64", Request id "0HLORA8L6OP64:00000001": An unhandled exception was thrown by the application.
+2019-08-07 12:39:03.1402|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-07 12:39:39.3297|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 12:39:39.3597|ERROR|Global exception logger|Self referencing loop detected with type 'MLBDraft.API.Models.TeamModel'. Path 'league.teams'.
+2019-08-07 12:39:39.3884|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An exception was thrown attempting to execute the error handler.
+2019-08-07 12:39:39.3933|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 12:39:39.3933|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An exception was thrown attempting to display the error page.
+2019-08-07 12:39:39.3933|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLORAN0OUDT3", Request id "0HLORAN0OUDT3:00000001": An unhandled exception was thrown by the application.
+2019-08-07 12:40:16.6581|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 12:40:16.6595|ERROR|Global exception logger|Self referencing loop detected with type 'MLBDraft.API.Models.TeamModel'. Path 'league.teams'.
+2019-08-07 12:40:16.6890|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An exception was thrown attempting to execute the error handler.
+2019-08-07 12:40:16.6930|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 12:40:16.6930|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An exception was thrown attempting to display the error page.
+2019-08-07 12:40:16.6930|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLORAN0OUDT3", Request id "0HLORAN0OUDT3:00000002": An unhandled exception was thrown by the application.
+2019-08-07 12:43:24.2352|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-07 12:44:07.0570|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 12:44:07.0767|ERROR|Global exception logger|Self referencing loop detected with type 'MLBDraft.API.Models.TeamModel'. Path 'league.teams'.
+2019-08-07 12:44:07.1117|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An exception was thrown attempting to execute the error handler.
+2019-08-07 12:44:07.1189|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 12:44:07.1189|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An exception was thrown attempting to display the error page.
+2019-08-07 12:44:07.1189|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLORAPEJ728Q", Request id "0HLORAPEJ728Q:00000001": An unhandled exception was thrown by the application.
+2019-08-07 12:44:57.7901|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 12:44:57.7901|ERROR|Global exception logger|Self referencing loop detected with type 'MLBDraft.API.Models.TeamModel'. Path 'league.teams'.
+2019-08-07 12:44:57.8490|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An exception was thrown attempting to execute the error handler.
+2019-08-07 12:44:57.8565|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 12:44:57.8565|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An exception was thrown attempting to display the error page.
+2019-08-07 12:44:57.8696|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLORAPEJ728Q", Request id "0HLORAPEJ728Q:00000002": An unhandled exception was thrown by the application.
+2019-08-07 12:45:34.2135|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 12:45:34.2135|ERROR|Global exception logger|Self referencing loop detected with type 'MLBDraft.API.Models.TeamModel'. Path 'league.teams'.
+2019-08-07 12:45:34.2488|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An exception was thrown attempting to execute the error handler.
+2019-08-07 12:45:34.2488|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-07 12:45:34.2488|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An exception was thrown attempting to display the error page.
+2019-08-07 12:45:34.2488|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLORAPEJ728Q", Request id "0HLORAPEJ728Q:00000003": An unhandled exception was thrown by the application.
+2019-08-07 12:55:32.7303|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-07 13:12:18.6443|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-07 13:15:19.9789|ERROR|Microsoft.EntityFrameworkCore.Database.Command|Failed executing DbCommand (5ms) [Parameters=[@p0='?'], CommandType='Text', CommandTimeout='30']
+DELETE FROM "Players"
+WHERE "Id" = @p0;
+SELECT changes();
+2019-08-07 13:15:20.1697|ERROR|Microsoft.EntityFrameworkCore.Update|An exception occurred in the database while saving changes for context type 'MLBDraft.API.Entities.MLBDraftContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Microsoft.Data.Sqlite.SqliteException: SQLite Error 19: 'FOREIGN KEY constraint failed'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.NoopExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+2019-08-07 13:16:07.0544|ERROR|Microsoft.EntityFrameworkCore.Database.Command|Failed executing DbCommand (2ms) [Parameters=[@p0='?'], CommandType='Text', CommandTimeout='30']
+DELETE FROM "Players"
+WHERE "Id" = @p0;
+SELECT changes();
+2019-08-07 13:16:07.1628|ERROR|Microsoft.EntityFrameworkCore.Update|An exception occurred in the database while saving changes for context type 'MLBDraft.API.Entities.MLBDraftContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Microsoft.Data.Sqlite.SqliteException: SQLite Error 19: 'FOREIGN KEY constraint failed'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.NoopExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+2019-08-07 13:21:14.4989|ERROR|Microsoft.EntityFrameworkCore.Database.Command|Failed executing DbCommand (2ms) [Parameters=[@p0='?'], CommandType='Text', CommandTimeout='30']
+DELETE FROM "Players"
+WHERE "Id" = @p0;
+SELECT changes();
+2019-08-07 13:21:14.5975|ERROR|Microsoft.EntityFrameworkCore.Update|An exception occurred in the database while saving changes for context type 'MLBDraft.API.Entities.MLBDraftContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> Microsoft.Data.Sqlite.SqliteException: SQLite Error 19: 'FOREIGN KEY constraint failed'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.NoopExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+2019-08-07 13:22:03.5942|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-07 13:24:40.8847|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-07 13:42:39.8733|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-07 13:44:00.2577|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-07 13:47:08.2803|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.

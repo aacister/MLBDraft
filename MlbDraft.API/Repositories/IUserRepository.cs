@@ -9,7 +9,7 @@ namespace MLBDraft.API.Repositories
         bool UserExists(string username);
         User GetUser(string username);
         IEnumerable<User> GetUsers();
-        IEnumerable<User> GetUsers(IEnumerable<string> usernames);
+     
 
         void AddUser(User user);
 

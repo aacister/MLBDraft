@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace MLBDraft.API.Entities
 {
@@ -26,9 +27,9 @@ namespace MLBDraft.API.Entities
         [ForeignKey("PositionId")]
         public Position Position { get; set; }
 
-        public Guid? PositionId {get; set;}
+       public Guid? PositionId {get; set;}
 
-        public ICollection<PlayerStatCategory> StatCategories { get; set; }
+        public IEnumerable<PlayerStatCategory> StatCategories { get; set; }
             = new List<PlayerStatCategory>();
 
         

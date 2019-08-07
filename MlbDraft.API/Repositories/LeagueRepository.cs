@@ -22,25 +22,52 @@ namespace MLBDraft.API.Repositories
         public League GetLeague(Guid leagueId)
         {
             return _context.Leagues
-            .Include(league => league.Teams)
+             .Include(league => league.Teams)
+                    .ThenInclude(p => p.Catcher)
+                .Include(league => league.Teams)
+                    .ThenInclude(p => p.FirstBase)
+                .Include(league => league.Teams)
+                    .ThenInclude(p => p.SecondBase)
+                .Include(league => league.Teams)
+                    .ThenInclude(p => p.ShortStop)
+                .Include(league => league.Teams)
+                    .ThenInclude(p => p.ThirdBase)
+                .Include(league => league.Teams)
+                    .ThenInclude(p => p.Outfield1)
+                .Include(league => league.Teams)
+                    .ThenInclude(p => p.Outfield2)
+                .Include(league => league.Teams)
+                    .ThenInclude(p => p.Outfield3)
+                .Include(league => league.Teams)
+                    .ThenInclude(p => p.StartingPitcher)
             .FirstOrDefault(a => a.Id == leagueId);
         }
 
         public IEnumerable<League> GetLeagues(){
             return _context.Leagues
+                 .Include(league => league.Teams)
+                    .ThenInclude(p => p.Catcher)
                 .Include(league => league.Teams)
+                    .ThenInclude(p => p.FirstBase)
+                .Include(league => league.Teams)
+                    .ThenInclude(p => p.SecondBase)
+                .Include(league => league.Teams)
+                    .ThenInclude(p => p.ShortStop)
+                .Include(league => league.Teams)
+                    .ThenInclude(p => p.ThirdBase)
+                .Include(league => league.Teams)
+                    .ThenInclude(p => p.Outfield1)
+                .Include(league => league.Teams)
+                    .ThenInclude(p => p.Outfield2)
+                .Include(league => league.Teams)
+                    .ThenInclude(p => p.Outfield3)
+                .Include(league => league.Teams)
+                    .ThenInclude(p => p.StartingPitcher)
+
                 .OrderBy(a => a.Name)
                 .ToList();
         }
 
-         public IEnumerable<League> GetLeagues(IEnumerable<Guid> leagueIds)
-        {
-            return _context.Leagues.
-                Where(a => leagueIds.Contains(a.Id))
-                .Include(league => league.Teams)
-                .OrderBy(a => a.Name)
-                .ToList();
-        }
 
          public void AddLeague(League league)
         {

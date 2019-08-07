@@ -1,0 +1,168 @@
+2019-08-06 09:30:52.8678|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 09:33:20.9173|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 09:33:20.9173|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 09:33:20.9335|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 09:34:53.9583|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 09:35:08.6622|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 09:35:08.6622|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 09:35:08.6622|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 09:39:00.9643|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 09:39:13.7066|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 09:39:13.7066|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 09:39:13.7066|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:19:33.7857|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 11:19:43.1059|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:19:43.1059|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:19:43.1196|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:21:06.0499|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 11:21:25.3658|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:21:25.3658|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:21:25.3731|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:21:47.7153|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 11:21:47.7564|ERROR|Global exception logger|Error mapping types.
+
+Mapping types:
+PagedList`1 -> IEnumerable`1
+MLBDraft.API.Helpers.PagedList`1[[MLBDraft.API.Entities.Player, MLBDraft, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.IEnumerable`1[[MLBDraft.API.Models.PlayerModel, MLBDraft, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+2019-08-06 11:22:13.2471|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 11:22:17.9420|ERROR|Global exception logger|Error mapping types.
+
+Mapping types:
+PagedList`1 -> IEnumerable`1
+MLBDraft.API.Helpers.PagedList`1[[MLBDraft.API.Entities.Player, MLBDraft, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.IEnumerable`1[[MLBDraft.API.Models.PlayerModel, MLBDraft, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+2019-08-06 11:22:37.1464|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 11:22:37.1865|ERROR|Global exception logger|Error mapping types.
+
+Mapping types:
+PagedList`1 -> IEnumerable`1
+MLBDraft.API.Helpers.PagedList`1[[MLBDraft.API.Entities.Player, MLBDraft, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.IEnumerable`1[[MLBDraft.API.Models.PlayerModel, MLBDraft, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+2019-08-06 11:22:39.1482|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 11:22:39.1501|ERROR|Global exception logger|Error mapping types.
+
+Mapping types:
+PagedList`1 -> IEnumerable`1
+MLBDraft.API.Helpers.PagedList`1[[MLBDraft.API.Entities.Player, MLBDraft, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.IEnumerable`1[[MLBDraft.API.Models.PlayerModel, MLBDraft, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+2019-08-06 11:22:59.3502|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 11:22:59.3502|ERROR|Global exception logger|Error mapping types.
+
+Mapping types:
+PagedList`1 -> IEnumerable`1
+MLBDraft.API.Helpers.PagedList`1[[MLBDraft.API.Entities.Player, MLBDraft, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.IEnumerable`1[[MLBDraft.API.Models.PlayerModel, MLBDraft, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+2019-08-06 11:24:10.2102|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 11:24:10.2296|ERROR|Global exception logger|Error mapping types.
+
+Mapping types:
+PagedList`1 -> IEnumerable`1
+MLBDraft.API.Helpers.PagedList`1[[MLBDraft.API.Entities.Player, MLBDraft, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.IEnumerable`1[[MLBDraft.API.Models.PlayerModel, MLBDraft, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+2019-08-06 11:27:51.6643|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 11:28:03.7929|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:28:03.8142|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:28:03.8353|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:40:01.8684|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 11:40:03.0514|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:40:03.0514|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:40:03.0514|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:41:46.9894|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 11:41:50.6071|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:41:50.6186|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:41:50.6186|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:44:33.7236|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 11:44:39.6087|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:44:39.6539|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:44:39.6746|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 11:49:47.0545|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 12:59:18.5101|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 12:59:20.3312|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 12:59:20.4658|ERROR|Global exception logger|Unable to resolve service for type 'MLBDraft.API.Repositories.IMlbTeamRepository' while attempting to activate 'MLBDraft.API.Controllers.PlayersController'.
+2019-08-06 12:59:31.2856|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 12:59:31.2856|ERROR|Global exception logger|Unable to resolve service for type 'MLBDraft.API.Repositories.IMlbTeamRepository' while attempting to activate 'MLBDraft.API.Controllers.PlayersController'.
+2019-08-06 12:59:49.1543|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 12:59:49.1543|ERROR|Global exception logger|Unable to resolve service for type 'MLBDraft.API.Repositories.IMlbTeamRepository' while attempting to activate 'MLBDraft.API.Controllers.PlayersController'.
+2019-08-06 13:00:09.9750|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 13:00:09.9750|ERROR|Global exception logger|Unable to resolve service for type 'MLBDraft.API.Repositories.IMlbTeamRepository' while attempting to activate 'MLBDraft.API.Controllers.PlayersController'.
+2019-08-06 13:01:15.3982|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 13:01:25.6001|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 13:01:25.6192|ERROR|Global exception logger|Unable to resolve service for type 'MLBDraft.API.Repositories.IMlbTeamRepository' while attempting to activate 'MLBDraft.API.Controllers.PlayersController'.
+2019-08-06 13:02:49.4428|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 13:02:49.4428|ERROR|Global exception logger|Unable to resolve service for type 'MLBDraft.API.Repositories.IMlbTeamRepository' while attempting to activate 'MLBDraft.API.Controllers.PlayersController'.
+2019-08-06 13:03:07.7035|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 13:03:07.7105|ERROR|Global exception logger|Unable to resolve service for type 'MLBDraft.API.Repositories.IMlbTeamRepository' while attempting to activate 'MLBDraft.API.Controllers.PlayersController'.
+2019-08-06 13:03:19.3482|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 13:03:19.3482|ERROR|Global exception logger|Unable to resolve service for type 'MLBDraft.API.Repositories.IMlbTeamRepository' while attempting to activate 'MLBDraft.API.Controllers.PlayersController'.
+2019-08-06 13:05:24.1128|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 13:05:29.6369|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 13:05:29.6668|ERROR|Global exception logger|Unable to resolve service for type 'MLBDraft.API.Repositories.IMlbTeamRepository' while attempting to activate 'MLBDraft.API.Controllers.PlayersController'.
+2019-08-06 13:08:08.2357|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 13:08:15.2656|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'where ([t].Abbreviation.ToLowerInvariant() == __ToLowerInvariant_0)' could not be translated and will be evaluated locally.
+2019-08-06 13:08:15.2800|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'FirstOrDefault()' could not be translated and will be evaluated locally.
+2019-08-06 13:08:18.7860|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'where ([t].Abbreviation.ToLowerInvariant() == __ToLowerInvariant_0)' could not be translated and will be evaluated locally.
+2019-08-06 13:08:18.7948|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'FirstOrDefault()' could not be translated and will be evaluated locally.
+2019-08-06 14:57:33.2042|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 14:57:37.5744|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 14:57:37.5846|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 14:57:37.5846|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:04:20.3676|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 15:04:22.2516|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:04:22.2688|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:04:22.2688|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:06:21.2722|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 15:07:41.3403|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:07:41.3493|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:07:41.3493|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:10:06.0259|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 15:10:07.6692|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:10:07.6839|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:10:07.6839|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:11:20.0053|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 15:11:20.0699|ERROR|Global exception logger|Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+2019-08-06 15:17:32.3319|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 15:18:01.8777|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:18:01.8777|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:18:01.8777|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:20:12.5732|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 15:20:14.4437|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:20:14.4525|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:20:14.4525|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:35:35.4218|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 15:35:39.1559|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:35:39.1559|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:35:39.1559|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:37:27.9423|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 15:37:31.6433|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:37:31.6545|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 15:37:31.6545|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-06 16:31:44.8457|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 16:35:47.4267|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 16:44:38.4498|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 16:44:38.4755|ERROR|Global exception logger|Error mapping types.
+
+Mapping types:
+TeamCreateModel -> Team
+MLBDraft.API.Models.TeamCreateModel -> MLBDraft.API.Entities.Team
+
+Type Map configuration:
+TeamCreateModel -> Team
+MLBDraft.API.Models.TeamCreateModel -> MLBDraft.API.Entities.Team
+
+Destination Member:
+Owner
+
+2019-08-06 16:54:24.9594|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 16:55:44.6774|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-06 17:04:36.9656|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 17:04:36.9656|WARN|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|The response has already started, the error handler will not be executed.
+2019-08-06 17:04:36.9706|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 17:04:36.9706|WARN|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|The response has already started, the error page middleware will not be executed.
+2019-08-06 17:04:36.9706|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLOQM1PFQ769", Request id "0HLOQM1PFQ769:00000009": An unhandled exception was thrown by the application.
+2019-08-06 17:05:25.9097|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 17:05:25.9097|WARN|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|The response has already started, the error handler will not be executed.
+2019-08-06 17:05:25.9241|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 17:05:25.9241|WARN|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|The response has already started, the error page middleware will not be executed.
+2019-08-06 17:05:25.9241|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLOQM1PFQ76A", Request id "0HLOQM1PFQ76A:00000001": An unhandled exception was thrown by the application.
+2019-08-06 17:05:52.1290|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 17:05:52.1290|WARN|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|The response has already started, the error handler will not be executed.
+2019-08-06 17:05:52.1290|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-06 17:05:52.1449|WARN|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|The response has already started, the error page middleware will not be executed.
+2019-08-06 17:05:52.1449|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLOQM1PFQ76B", Request id "0HLOQM1PFQ76B:00000001": An unhandled exception was thrown by the application.
+2019-08-06 17:06:47.8952|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.

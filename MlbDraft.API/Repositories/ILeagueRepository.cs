@@ -11,8 +11,6 @@ namespace MLBDraft.API.Repositories
 
         IEnumerable<League> GetLeagues();
 
-        IEnumerable<League> GetLeagues(IEnumerable<Guid> leagueIds);
-
         void AddLeague(League league);
 
         void DeleteLeague(League league);

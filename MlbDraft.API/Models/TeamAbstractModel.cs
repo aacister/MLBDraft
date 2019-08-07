@@ -4,6 +4,7 @@ namespace MLBDraft.API.Models
     {
         public virtual string Name { get; set; }
        
-        public virtual string OwnerId { get; set; }
+        public virtual string Owner { get; set; }
+        
     }
 }

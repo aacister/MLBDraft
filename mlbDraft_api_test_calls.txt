@@ -63,7 +63,7 @@ POST http://localhost:5050/api/teams/30c7f14f-c74b-4a55-8a63-2524594b7b14
 
 {
 "name": "Team #1",
-"ownerId": "username"
+"owner": "username"
 }
 
 GET http://localhost:5050/api/teams/e8889984-7ee6-447f-8980-db2907cfe54c

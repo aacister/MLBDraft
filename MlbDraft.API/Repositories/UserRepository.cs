@@ -32,14 +32,6 @@ namespace MLBDraft.API.Repositories
                 .OrderBy(a => a.Username)
                 .ToList();
         }
-        public IEnumerable<User> GetUsers(IEnumerable<string> usernames)
-        {
-            return _context.Users
-                .Where(a => usernames.Contains(a.Username))
-                .Include(u => u.Teams)
-                .OrderBy(a => a.Username)
-                .ToList();
-        }
 
          public void AddUser(User user)
         { 

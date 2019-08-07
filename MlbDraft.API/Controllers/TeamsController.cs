@@ -21,17 +21,21 @@ namespace MLBDraft.API.Controllers
         private IMlbDraftRepository _mlbDraftRepository;
         private ITeamRepository _teamRepository;
         private ILeagueRepository _leagueRepository;
+
+        private IUserRepository _userRepository;
         private IMapper _mapper;
         private ILogger<TeamsController> _logger;
     
         public TeamsController(ITeamRepository teamRepository,
         ILeagueRepository leagueRepository,
+        IUserRepository userRepository,
         IMlbDraftRepository mlbDraftRepository,
         IMapper mapper,
         ILogger<TeamsController> logger)
         {
             _teamRepository = teamRepository;
             _leagueRepository = leagueRepository;
+            _userRepository = userRepository;
             _mlbDraftRepository = mlbDraftRepository;
             _mapper = mapper;
             _logger = logger;
@@ -87,9 +91,18 @@ namespace MLBDraft.API.Controllers
 
             var leagueEntity = _leagueRepository.GetLeague(leagueId);
 
+
             var teamEntity = _mapper.Map<Team>(teamCreateModel);
             teamEntity.League = leagueEntity;
             teamEntity.LeagueId = leagueEntity.Id;
+
+            var owner = _userRepository.GetUser(teamCreateModel.Owner);
+            if(owner == null){
+                return BadRequest();
+            }
+
+            teamEntity.Owner = owner;
+            teamEntity.OwnerId = owner.Username;
             
             _teamRepository.AddTeam(teamEntity);
 
