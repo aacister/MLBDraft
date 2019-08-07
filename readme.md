@@ -15,6 +15,7 @@ Includes 2 projects:
  * AutoMapper
  * NLog
  * Player paging, filtering, and search
+ * Custom Validation
 
 
 
