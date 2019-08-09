@@ -43,7 +43,7 @@ namespace MLBDraft.API.Validators {
                     if(playerRepository.PlayerExists(teamUpdateModel.FirstBaseId.Value))
                     {
                         var position = positionRepository.GetPosition("1B");
-                        var firstBase = playerRepository.GetPlayer(teamUpdateModel.CatcherId.Value);
+                        var firstBase = playerRepository.GetPlayer(teamUpdateModel.FirstBaseId.Value);
         
                         if(firstBase.PositionId != position.Id)
                         {
@@ -100,7 +100,7 @@ namespace MLBDraft.API.Validators {
                 {
                     if(playerRepository.PlayerExists(teamUpdateModel.Outfield1Id.Value))
                     {
-                        var position = positionRepository.GetPosition("OF1");
+                        var position = positionRepository.GetPosition("OF");
                         var of1 = playerRepository.GetPlayer(teamUpdateModel.Outfield1Id.Value);
     
                         if(of1.PositionId != position.Id)
@@ -115,7 +115,7 @@ namespace MLBDraft.API.Validators {
                 {
                     if(playerRepository.PlayerExists(teamUpdateModel.Outfield2Id.Value))
                     {
-                        var position = positionRepository.GetPosition("OF2");
+                        var position = positionRepository.GetPosition("OF");
                         var of2 = playerRepository.GetPlayer(teamUpdateModel.Outfield2Id.Value);
     
                         if(of2.PositionId != position.Id)
@@ -131,7 +131,7 @@ namespace MLBDraft.API.Validators {
                 {
                     if(playerRepository.PlayerExists(teamUpdateModel.Outfield3Id.Value))
                     {
-                        var position = positionRepository.GetPosition("OF3");
+                        var position = positionRepository.GetPosition("OF");
                         var of3 = playerRepository.GetPlayer(teamUpdateModel.Outfield3Id.Value);
     
                         if(of3.PositionId != position.Id)

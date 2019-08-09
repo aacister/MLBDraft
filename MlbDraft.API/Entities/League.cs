@@ -21,6 +21,9 @@ namespace MLBDraft.API.Entities
 
          public ICollection<Team> Teams { get; set; }
             = new List<Team>();
+        
+        public ICollection<Draft> Drafts {get; set;} 
+            = new List<Draft>();
 
     }
 }

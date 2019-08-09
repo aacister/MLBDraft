@@ -40,6 +40,8 @@ namespace MLBDraft.API.Repositories
                     .ThenInclude(p => p.Outfield3)
                 .Include(league => league.Teams)
                     .ThenInclude(p => p.StartingPitcher)
+                .Include(league => league.Drafts)
+                    .ThenInclude(s => s.DraftSelections)
             .FirstOrDefault(a => a.Id == leagueId);
         }
 
@@ -63,7 +65,8 @@ namespace MLBDraft.API.Repositories
                     .ThenInclude(p => p.Outfield3)
                 .Include(league => league.Teams)
                     .ThenInclude(p => p.StartingPitcher)
-
+                .Include(league => league.Drafts)
+                    .ThenInclude(s => s.DraftSelections)
                 .OrderBy(a => a.Name)
                 .ToList();
         }

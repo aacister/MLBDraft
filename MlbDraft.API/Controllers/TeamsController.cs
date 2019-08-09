@@ -14,7 +14,7 @@ using Microsoft.Extensions.Logging;
 namespace MLBDraft.API.Controllers
 {
     [EnableCors("MlbDraftCors")]
-    [Route("api/teams")]
+    [Route("api/leagues/{leagueId}/teams")]
     [ApiController]
     public class TeamsController : ControllerBase
     {
@@ -42,37 +42,49 @@ namespace MLBDraft.API.Controllers
         }
 
         [HttpGet(Name = "GetTeams")]
-        public IActionResult Get()
+        public IActionResult Get(Guid leagueId)
         {
-                var teams = _teamRepository.GetTeams();
+            if (!_leagueRepository.LeagueExists(leagueId))
+            {
+                _logger.LogWarning($"No league found for {leagueId}.");
+                return NotFound();
+            }
+
+                var teams = _teamRepository.GetTeamsForLeague(leagueId);
                 
                 if(teams == null){
-                    _logger.LogWarning("No teams were found.");
+                    _logger.LogWarning($"No teams were found for league {leagueId}.");
                     return NotFound();
                 }
                 
                 var teamModels = _mapper.Map<IEnumerable<TeamModel>>(teams);
-                _logger.LogInformation($"{teamModels.Count()} teams were found.");
+                _logger.LogInformation($"{teamModels.Count()} teams were found for {leagueId}.");
                 return Ok(teamModels);
 
         }
 
         [HttpGet("{id}", Name="GetTeam")]
-        public IActionResult GetTeam(Guid id)
+        public IActionResult GetTeam(Guid leagueId, Guid id)
         {
-                if(!_teamRepository.TeamExists(id))
+            if (!_leagueRepository.LeagueExists(leagueId))
+            {
+                _logger.LogWarning($"No league found for {leagueId}.");
+                return NotFound();
+            }
+
+                if(!_teamRepository.TeamExistsForLeague(leagueId, id))
                 {
-                    _logger.LogError($"Team {id} does not exist.");
+                    _logger.LogError($"Team {id} does not exist in league {leagueId}.");
                     return NotFound();
                 }
-                var team = _teamRepository.GetTeam(id);
+                var team = _teamRepository.GetTeamForLeague(leagueId,id);
 
                 var teamModel = _mapper.Map<TeamModel>(team);
                 return Ok(teamModel);
 
         }
 
-        [HttpPost("{leagueId}")]
+        [HttpPost()]
         public IActionResult CreateTeamForLeague(Guid leagueId, [FromBody] TeamCreateModel teamCreateModel){
             if(teamCreateModel == null)
             {
@@ -117,7 +129,7 @@ namespace MLBDraft.API.Controllers
                     teamToReturn);
         }
 
-         [HttpPut("{leagueId}/{id}")]
+         [HttpPut("{id}")]
         public IActionResult UpdateTeamForLeague(Guid leagueId, Guid id,
             [FromBody] TeamUpdateModel team)
         {
@@ -141,6 +153,8 @@ namespace MLBDraft.API.Controllers
             var teamForLeagueFromRepo = _teamRepository.GetTeamForLeague(leagueId, id);
             if (teamForLeagueFromRepo == null)
             {
+
+                //add
                 var teamToAdd = _mapper.Map<Team>(team);
                 teamToAdd.Id = id;
 
@@ -159,7 +173,7 @@ namespace MLBDraft.API.Controllers
             }
 
             var teamUpdate = _mapper.Map<Team>(team);
-            _teamRepository.UpdateTeamForLeague(teamForLeagueFromRepo, teamUpdate);
+            _teamRepository.UpdateTeamForLeague(leagueId, teamForLeagueFromRepo, teamUpdate);
 
             if (!_mlbDraftRepository.Save())
             {
@@ -172,15 +186,22 @@ namespace MLBDraft.API.Controllers
 
         
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
+        public IActionResult Delete(Guid leagueId, Guid id)
         {
-            if(!_teamRepository.TeamExists(id))
+
+            if (!_leagueRepository.LeagueExists(leagueId))
             {
-                _logger.LogError("Team does not exist.");
+                _logger.LogWarning($"No league found for {leagueId}.");
                 return NotFound();
             }
 
-            var team = _teamRepository.GetTeam(id);
+            if(!_teamRepository.TeamExistsForLeague(leagueId, id))
+            {
+                _logger.LogError($"Team does not exist for league {leagueId}.");
+                return NotFound();
+            }
+
+            var team = _teamRepository.GetTeamForLeague(leagueId, id);
 
             _teamRepository.DeleteTeam(team);
             if(!_mlbDraftRepository.Save())

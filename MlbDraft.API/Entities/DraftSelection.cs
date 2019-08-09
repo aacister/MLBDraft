@@ -26,10 +26,10 @@ namespace MLBDraft.API.Entities
         public Guid? PlayerId {get; set;}
 
         [Required]
-        public string Round { get; set; }
+        public int Round { get; set; }
 
         [Required]
-        public string SelectionNo {get; set;}
+        public int SelectionNo {get; set;}
 
     }
 }

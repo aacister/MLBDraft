@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,7 +17,9 @@ namespace MLBDraft.API.Entities
         
         [Required]
         public DateTime StartDate {get; set;}
-        public DateTime EndDate {get; set;}
+        public DateTime? EndDate {get; set;}
+
+        public ICollection<DraftSelection> DraftSelections {get; set;} = new List<DraftSelection>();
 
  
 

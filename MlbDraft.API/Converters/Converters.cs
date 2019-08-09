@@ -100,6 +100,9 @@ namespace MLBDraft.API.Converters
             CreateMap<League, LeagueModel>();
             CreateMap<LeagueCreateModel, League>();
 
+            CreateMap<Draft, DraftModel>();
+            CreateMap<DraftCreateModel, Draft>();
+
            
             CreateMap<User, CredentialModel>();
 

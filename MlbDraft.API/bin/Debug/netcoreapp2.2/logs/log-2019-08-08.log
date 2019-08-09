@@ -1,0 +1,28 @@
+2019-08-08 09:06:34.5200|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-08 09:15:48.5177|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'where ([t].Abbreviation.ToLowerInvariant() == __ToLowerInvariant_0)' could not be translated and will be evaluated locally.
+2019-08-08 09:15:48.5177|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'FirstOrDefault()' could not be translated and will be evaluated locally.
+2019-08-08 09:17:27.8711|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-08 09:17:27.9209|ERROR|Global exception logger|Object reference not set to an instance of an object.
+2019-08-08 09:17:27.9494|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An exception was thrown attempting to execute the error handler.
+2019-08-08 09:17:27.9494|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-08 09:17:27.9494|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An exception was thrown attempting to display the error page.
+2019-08-08 09:17:27.9494|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLOS04UJ7CV5", Request id "0HLOS04UJ7CV5:00000007": An unhandled exception was thrown by the application.
+2019-08-08 09:19:00.1575|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-08 09:19:08.8039|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'where ([t].Abbreviation.ToLowerInvariant() == __ToLowerInvariant_0)' could not be translated and will be evaluated locally.
+2019-08-08 09:19:08.8158|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'FirstOrDefault()' could not be translated and will be evaluated locally.
+2019-08-08 09:21:43.0102|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-08 09:21:43.0102|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-08 09:21:43.0102|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-08 09:39:28.0465|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-08 09:40:33.6268|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-08 09:41:03.1700|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'where ([t].Abbreviation.ToLowerInvariant() == __ToLowerInvariant_0)' could not be translated and will be evaluated locally.
+2019-08-08 09:41:03.1855|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'FirstOrDefault()' could not be translated and will be evaluated locally.
+2019-08-08 09:42:13.8211|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-08 09:42:14.5607|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'where ([t].Abbreviation.ToLowerInvariant() == __ToLowerInvariant_0)' could not be translated and will be evaluated locally.
+2019-08-08 09:42:14.5751|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'FirstOrDefault()' could not be translated and will be evaluated locally.
+2019-08-08 09:46:35.6647|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-08 09:46:49.5579|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'where ([t].Abbreviation.ToLowerInvariant() == __ToLowerInvariant_0)' could not be translated and will be evaluated locally.
+2019-08-08 09:46:49.5696|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'FirstOrDefault()' could not be translated and will be evaluated locally.
+2019-08-08 09:51:54.7742|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-08 09:51:54.7742|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-08 09:51:54.7742|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.

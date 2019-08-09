@@ -17,6 +17,8 @@ namespace MLBDraft.API.Models
 
         public IList<TeamModel> Teams { get; set; } = new List<TeamModel>();
 
+        public IList<DraftModel> Drafts {get; set; } = new List<DraftModel>();
+
             
     }
 }

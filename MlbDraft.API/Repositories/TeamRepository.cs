@@ -19,6 +19,14 @@ namespace MLBDraft.API.Repositories
             return _context.Teams.Any(a => a.Id == teamId);
         }
 
+        public bool TeamExistsForLeague(Guid leagueId, Guid teamId)
+        {
+            return _context.Teams
+                .Any(t => t.League.Id == leagueId 
+                && t.Id == teamId);
+               
+        }
+
         public Team GetTeam(Guid teamId)
         {
             return _context.Teams
@@ -37,21 +45,6 @@ namespace MLBDraft.API.Repositories
 
          public IEnumerable<Team> GetTeams(){
             return _context.Teams
-                .Include(t => t.League)
-                .Include(t => t.Catcher)
-                .Include(t => t.FirstBase)
-                .Include(t => t.SecondBase)
-                .Include(t => t.ShortStop)
-                .Include(t => t.ThirdBase)
-                .Include(t => t.Outfield1)
-                .Include(t => t.Outfield2)
-                .Include(t => t.Outfield3)
-                .OrderBy(a => a.Name)
-                .ToList();
-        }
-         public IEnumerable<Team> GetTeams(IEnumerable<Guid> teamIds)
-        {
-            return _context.Teams.Where(a => teamIds.Contains(a.Id))
                 .Include(t => t.League)
                 .Include(t => t.Catcher)
                 .Include(t => t.FirstBase)
@@ -111,14 +104,15 @@ namespace MLBDraft.API.Repositories
 
             if(league != null)
             {
+                team.Id = Guid.NewGuid();
                 league.Teams.Add(team);
             }
         }
 
-        public void UpdateTeamForLeague(Team teamToUpdate, Team team)
+        public void UpdateTeamForLeague(Guid leagueId, Team teamToUpdate, Team team)
         {
            var tU = _context.Teams
-            .Where(t => t.Id == teamToUpdate.Id)
+            .Where(t => t.Id == teamToUpdate.Id && t.League.Id == leagueId )
             .FirstOrDefault();
             
             if(tU != null)

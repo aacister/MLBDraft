@@ -87,6 +87,7 @@ namespace MLBDraft
             services.AddScoped<IPositionRepository, PositionRepository>();
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddScoped<ITeamRepository, TeamRepository>();
+            services.AddScoped<IDraftRepository, DraftRepository>();
             services.AddScoped<ILeagueRepository, LeagueRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             

@@ -7,11 +7,10 @@ namespace MLBDraft.API.Repositories
     public interface ITeamRepository
     {
         bool TeamExists(Guid teamId);
+        bool TeamExistsForLeague(Guid leagueId, Guid teamId);
         Team GetTeam(Guid teamId);
 
         IEnumerable<Team> GetTeams();
-
-        IEnumerable<Team> GetTeams(IEnumerable<Guid> teamIds);
 
         Team GetTeamForLeague(Guid leagueId, Guid teamId);
 
@@ -21,7 +20,7 @@ namespace MLBDraft.API.Repositories
 
         void AddTeamForLeague(Guid leagueId, Team team);
 
-        void UpdateTeamForLeague(Team teamToUpdate, Team team);
+        void UpdateTeamForLeague(Guid leagueId, Team teamToUpdate, Team team);
         void DeleteTeam(Team team);
         
     }
