@@ -28,8 +28,7 @@ namespace MLBDraft.API.Entities
         [Required]
         public int Round { get; set; }
 
-        [Required]
-        public int SelectionNo {get; set;}
+ 
 
     }
 }

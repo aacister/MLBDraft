@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MLBDraft.Migrations
 {
-    public partial class MlbDraftInitialCreate : Migration
+    public partial class mlbDraft : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -81,7 +81,7 @@ namespace MLBDraft.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     LeagueId = table.Column<Guid>(nullable: false),
                     StartDate = table.Column<DateTime>(nullable: false),
-                    EndDate = table.Column<DateTime>(nullable: false)
+                    EndDate = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -245,8 +245,7 @@ namespace MLBDraft.Migrations
                     DraftId = table.Column<Guid>(nullable: false),
                     TeamId = table.Column<Guid>(nullable: false),
                     PlayerId = table.Column<Guid>(nullable: true),
-                    Round = table.Column<string>(nullable: false),
-                    SelectionNo = table.Column<string>(nullable: false)
+                    Round = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

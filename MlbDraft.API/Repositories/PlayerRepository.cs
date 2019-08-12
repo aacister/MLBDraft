@@ -26,7 +26,13 @@ namespace MLBDraft.API.Repositories
             .Include(p => p.MlbTeam)
             .Include(p => p.Position)
             .Include(p => p.StatCategories)
+                .ThenInclude(p => p.StatCategory)
             .FirstOrDefault(a => a.Id == playerId);
+        }
+
+        public int GetPlayerCount()
+        {
+            return _context.Players.Count();
         }
 
         public PagedList<Player> GetPlayers(PlayerParameters playerParams){

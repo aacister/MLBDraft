@@ -21,7 +21,7 @@ namespace MLBDraft.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("EndDate");
+                    b.Property<DateTime?>("EndDate");
 
                     b.Property<Guid>("LeagueId");
 
@@ -43,11 +43,8 @@ namespace MLBDraft.Migrations
 
                     b.Property<Guid?>("PlayerId");
 
-                    b.Property<string>("Round")
-                        .IsRequired();
+                    b.Property<int>("Round");
 
-                    b.Property<string>("SelectionNo")
-                        .IsRequired();
 
                     b.Property<Guid>("TeamId");
 
@@ -248,7 +245,7 @@ namespace MLBDraft.Migrations
             modelBuilder.Entity("MLBDraft.API.Entities.Draft", b =>
                 {
                     b.HasOne("MLBDraft.API.Entities.League", "League")
-                        .WithMany()
+                        .WithMany("Drafts")
                         .HasForeignKey("LeagueId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -256,7 +253,7 @@ namespace MLBDraft.Migrations
             modelBuilder.Entity("MLBDraft.API.Entities.DraftSelection", b =>
                 {
                     b.HasOne("MLBDraft.API.Entities.Draft", "Draft")
-                        .WithMany()
+                        .WithMany("DraftSelections")
                         .HasForeignKey("DraftId")
                         .OnDelete(DeleteBehavior.Cascade);
 

@@ -12,7 +12,6 @@ namespace MLBDraft.API.Models
 
         public virtual int Round { get; set; }
 
-        public virtual int SelectionNo { get; set; }
 
 
             

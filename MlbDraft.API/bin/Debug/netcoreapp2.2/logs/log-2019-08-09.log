@@ -1,0 +1,20 @@
+2019-08-09 15:10:38.3001|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-09 15:37:57.4933|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-09 16:11:16.6408|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-09 16:12:16.8921|ERROR|MLBDraft.API.Controllers.AuthController|Failed to login.  Failed to create token.
+2019-08-09 16:12:30.2860|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-09 16:12:36.2783|ERROR|Global exception logger|Failed to login.  Failed to create token.
+2019-08-09 16:12:42.2413|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An exception was thrown attempting to execute the error handler.
+2019-08-09 16:12:42.3432|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-09 16:12:42.5137|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An exception was thrown attempting to display the error page.
+2019-08-09 16:12:42.5813|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLOT0MU1BOQR", Request id "0HLOT0MU1BOQR:00000001": An unhandled exception was thrown by the application.
+2019-08-09 16:12:47.5162|ERROR|MLBDraft.API.Controllers.AuthController|Failed to login.  Failed to create token.
+2019-08-09 16:12:50.4296|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-09 16:12:50.4296|ERROR|Global exception logger|Failed to login.  Failed to create token.
+2019-08-09 16:12:50.6030|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An exception was thrown attempting to execute the error handler.
+2019-08-09 16:12:50.6262|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-09 16:12:50.6262|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An exception was thrown attempting to display the error page.
+2019-08-09 16:12:50.6262|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLOT0MU1BOQS", Request id "0HLOT0MU1BOQS:00000001": An unhandled exception was thrown by the application.
+2019-08-09 16:13:22.2859|ERROR|MLBDraft.API.Controllers.AuthController|Failed to login.  Failed to create token.
+2019-08-09 16:17:42.8585|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-09 17:45:48.6392|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.

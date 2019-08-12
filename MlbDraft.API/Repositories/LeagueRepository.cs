@@ -19,6 +19,11 @@ namespace MLBDraft.API.Repositories
             return _context.Leagues.Any(a => a.Id == leagueId);
         }
 
+        public bool LeagueNameExists(string leagueName)
+        {
+            return _context.Leagues.Any(l => l.Name.ToLowerInvariant() == leagueName.ToLowerInvariant());
+        }
+
         public League GetLeague(Guid leagueId)
         {
             return _context.Leagues

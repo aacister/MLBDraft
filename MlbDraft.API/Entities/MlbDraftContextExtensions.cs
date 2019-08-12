@@ -1,17 +1,23 @@
 using System;
 using System.Collections.Generic;
 using MLBDraft.API.Entities;
+using MLBDraft.API.Models;
+using MLBDraft.API.Repositories;
+using MLBDraft.API.Security;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
+
 
 namespace MLBDraft.API.Entities
 {
     public static class MLBDraftContextExtensions
     {
+  
         public static void EnsureSeedDataForContext(this MLBDraftContext context){
 
             
-           
+            
             context.Players.RemoveRange(context.Players);
             context.SaveChanges();
 
@@ -23,7 +29,28 @@ namespace MLBDraft.API.Entities
 
             context.Positions.RemoveRange(context.Positions);
             context.SaveChanges();
+            
+            context.Teams.RemoveRange(context.Teams);
+            context.SaveChanges();
 
+            context.Leagues.RemoveRange(context.Leagues);
+            context.SaveChanges();
+
+            context.Users.RemoveRange(context.Users);
+            context.SaveChanges();
+
+            var user = new User();
+            user.Username = "username";
+            byte[] salt = new byte[24];
+            var keyGenerator = RandomNumberGenerator.Create();
+            keyGenerator.GetBytes(salt);
+            user.Salt = salt;
+            IPasswordHasher _passwordHasher = new PasswordHasher();
+            user.Hash = _passwordHasher.Hash("password", user.Salt);
+
+            context.Users.Add(user);
+            context.SaveChanges();
+            
 
             var mlbTeams = new List<MlbTeam>()
             {
@@ -2612,6 +2639,46 @@ namespace MLBDraft.API.Entities
 
             context.Players.AddRange(players);
             context.SaveChanges();
+
+
+             var leagues = new List<League>()
+            {
+                new League(){
+                Id = new Guid("d803d697-7f22-412a-b24b-f9ee91eca40f"),
+                    Name = "League #1",
+                    MinTeams = 2,
+                    MaxTeams = 10
+                }
+            };
+
+            context.Leagues.AddRange(leagues);
+            context.SaveChanges();
+
+            var teams = new List<Team>()
+            {
+                new Team(){
+                    Id = new Guid("903753bf-0b3a-4fc7-993f-1a56b096ab7b"),
+                    Name = "Team #1",
+                    Owner = context.Users.Where(t => t.Username == "username").FirstOrDefault(),
+                    League = context.Leagues.Where(l => l.Name == "League #1").FirstOrDefault(),
+                },
+                 new Team(){
+                    Id = new Guid("c5c8f500-8170-4628-b92a-b6db10c51e5f"),
+                    Name = "Team #2",
+                    Owner = context.Users.Where(t => t.Username == "username").FirstOrDefault(),
+                    League = context.Leagues.Where(l => l.Name == "League #1").FirstOrDefault(),
+                },
+                 new Team(){
+                    Id = new Guid("e22e4c52-85f6-4841-9950-ec855571ff74"),
+                    Name = "Team #3",
+                    Owner = context.Users.Where(t => t.Username == "username").FirstOrDefault(),
+                    League = context.Leagues.Where(l => l.Name == "League #1").FirstOrDefault(),
+                }
+            };
+
+            context.Teams.AddRange(teams);
+            context.SaveChanges();
+
 
 
         }

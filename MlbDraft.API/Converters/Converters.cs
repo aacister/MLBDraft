@@ -12,9 +12,15 @@ namespace MLBDraft.API.Converters
 
              CreateMap<User, UserModel>();
 
+             CreateMap<StatCategory, PlayerStatsModel>()
+                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Abbreviation));
+
             CreateMap<PlayerStatCategory, PlayerStatsModel>()
                 .ForMember(dest => dest.Value, opt => opt.MapFrom(src => src.Value))
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.StatCategory.Abbreviation));
+           
+
+            CreateMap<PlayerStatsModel, PlayerStatCategory>();
 
             CreateMap<Position, PositionModel>();
 
@@ -67,6 +73,30 @@ namespace MLBDraft.API.Converters
             
             CreateMap<PlayerCreateModel, Player>();
 
+            CreateMap<Team, TeamShallowModel>()
+                .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.Owner.Username))
+                .ForMember(dest => dest.LeagueId, opt => opt.MapFrom(src => 
+                (src.League.Id)))
+                .ForMember(dest => dest.CatcherId, opt => opt.MapFrom(src => 
+                (src.Catcher.Id)))
+                .ForMember(dest => dest.FirstBaseId, opt => opt.MapFrom(src => 
+                (src.FirstBase.Id)))
+                .ForMember(dest => dest.SecondBaseId, opt => opt.MapFrom(src => 
+                (src.SecondBase.Id)))
+                .ForMember(dest => dest.ThirdBaseId, opt => opt.MapFrom(src => 
+                (src.ThirdBase.Id)))
+                .ForMember(dest => dest.ShortStopId, opt => opt.MapFrom(src => 
+                (src.ShortStop.Id)))
+                .ForMember(dest => dest.Outfield1Id, opt => opt.MapFrom(src => 
+                (src.Outfield1.Id)))
+                .ForMember(dest => dest.Outfield2Id, opt => opt.MapFrom(src => 
+                (src.Outfield2.Id)))
+                .ForMember(dest => dest.Outfield3Id, opt => opt.MapFrom(src => 
+                (src.Outfield3.Id)))
+                .ForMember(dest => dest.StartingPitcherId, opt => opt.MapFrom(src => 
+                (src.StartingPitcher.Id)))
+                .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.Owner.Username));
+
             CreateMap<Team, TeamModel>()
                 .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.Owner.Username))
                 .ForMember(dest => dest.LeagueId, opt => opt.MapFrom(src => 
@@ -101,7 +131,10 @@ namespace MLBDraft.API.Converters
             CreateMap<LeagueCreateModel, League>();
 
             CreateMap<Draft, DraftModel>();
-            CreateMap<DraftCreateModel, Draft>();
+            CreateMap<DraftModel, Draft>();
+
+            CreateMap<DraftSelection, DraftSelectionModel>();
+            CreateMap<DraftSelectionCreateModel, DraftSelection>();
 
            
             CreateMap<User, CredentialModel>();

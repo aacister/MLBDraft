@@ -9,7 +9,7 @@ namespace MLBDraft.API.Models
     public class PlayerStatsModel 
     {
 
- 
+        
         public string Category { get; set; }
 
         public string Value {get; set;}

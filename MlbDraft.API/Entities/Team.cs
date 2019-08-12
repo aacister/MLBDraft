@@ -20,7 +20,7 @@ namespace MLBDraft.API.Entities
         [ForeignKey("LeagueId")]
         public League League {get; set; }
 
-        public Guid LeagueId {get; set;}
+        public Guid? LeagueId {get; set;}
 
         [ForeignKey("CatcherId")]
         public Player Catcher {get; set;}

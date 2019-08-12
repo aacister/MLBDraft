@@ -9,6 +9,9 @@ namespace MLBDraft.API.Repositories
     public interface IPlayerRepository
     {
         bool PlayerExists(Guid playerId);
+
+        int GetPlayerCount();
+
         Player GetPlayer(Guid playerId);
 
         void AddPlayer(Player player);

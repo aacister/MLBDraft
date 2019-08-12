@@ -7,6 +7,9 @@ namespace MLBDraft.API.Repositories
     public interface ILeagueRepository
     {
         bool LeagueExists(Guid leagueId);
+
+        bool LeagueNameExists(string leagueName);
+        
         League GetLeague(Guid leagueId);
 
         IEnumerable<League> GetLeagues();

@@ -43,6 +43,7 @@ namespace MLBDraft.API.Repositories
                     .ThenInclude(s => s.Team)
              .Include(draft => draft.DraftSelections)
                     .ThenInclude(s => s.Player)
+            .Include(d => d.League)
             .FirstOrDefault();
         }
 
@@ -53,6 +54,7 @@ namespace MLBDraft.API.Repositories
                     .ThenInclude(s => s.Team)
                 .Include(draft => draft.DraftSelections)
                     .ThenInclude(s => s.Player) 
+                .Include(d => d.League)
                 .ToList();
         }
 
@@ -64,6 +66,7 @@ namespace MLBDraft.API.Repositories
                     .ThenInclude(s => s.Team)
                 .Include(draft => draft.DraftSelections)
                     .ThenInclude(s => s.Player)
+                .Include(d => d.League)
                 .ToList();
         }
 
@@ -92,6 +95,7 @@ namespace MLBDraft.API.Repositories
             if(league != null)
             {
                 draft.Id = Guid.NewGuid();
+                draft.LeagueId = leagueId;
                 league.Drafts.Add(draft);
 
                 if (draft.DraftSelections.Any())

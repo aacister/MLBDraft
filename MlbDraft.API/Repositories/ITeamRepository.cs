@@ -7,7 +7,11 @@ namespace MLBDraft.API.Repositories
     public interface ITeamRepository
     {
         bool TeamExists(Guid teamId);
+
         bool TeamExistsForLeague(Guid leagueId, Guid teamId);
+        
+        bool TeamNameExists(string teamName);
+
         Team GetTeam(Guid teamId);
 
         IEnumerable<Team> GetTeams();

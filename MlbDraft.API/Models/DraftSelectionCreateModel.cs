@@ -21,8 +21,7 @@ namespace MLBDraft.API.Models
         [Required]        
         public override int Round { get; set; }
 
-        [Required]
-        public override int SelectionNo { get; set; }
+   
   
     }
 }

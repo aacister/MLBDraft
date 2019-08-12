@@ -27,6 +27,12 @@ namespace MLBDraft.API.Repositories
                
         }
 
+        public  bool TeamNameExists(string teamName)
+        {
+            return _context.Teams
+                .Any(t => t.Name.ToLowerInvariant() == teamName.ToLowerInvariant());
+        }
+
         public Team GetTeam(Guid teamId)
         {
             return _context.Teams
@@ -63,6 +69,9 @@ namespace MLBDraft.API.Repositories
             return _context.Teams
                 .Where(t => t.LeagueId == leagueId && t.Id == teamId)
                 .Include(t => t.League)
+                .Include(t => t.Owner)
+                .Include(t => t.Catcher)
+                .Include(t => t.Catcher)
                 .Include(t => t.Catcher)
                 .Include(t => t.FirstBase)
                 .Include(t => t.SecondBase)
@@ -78,6 +87,7 @@ namespace MLBDraft.API.Repositories
             return _context.Teams
                 .Where(t => t.LeagueId == leagueId)
                 .Include(t => t.League)
+                .Include(t => t.Owner)
                 .Include(t => t.Catcher)
                 .Include(t => t.FirstBase)
                 .Include(t => t.SecondBase)
@@ -117,7 +127,7 @@ namespace MLBDraft.API.Repositories
             
             if(tU != null)
             {
-                tU.Name = team.Name;
+                //Cannot update team name
                 tU.CatcherId = team.CatcherId;
                 tU.FirstBaseId = team.FirstBaseId;
                 tU.SecondBaseId = team.SecondBaseId;

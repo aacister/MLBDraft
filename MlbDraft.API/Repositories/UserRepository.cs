@@ -22,13 +22,51 @@ namespace MLBDraft.API.Repositories
         public User GetUser(string username)
         {
             return _context.Users
-            .Include(u => u.Teams)
+            .Include(u => u.Teams)  
+                .ThenInclude(t => t.League)
+                .Include(u => u.Teams)
+                    .ThenInclude(t => t.Catcher)
+                .Include(u => u.Teams)
+                    .ThenInclude(t => t.FirstBase)
+                .Include(u => u.Teams)
+                    .ThenInclude(t => t.SecondBase)
+                .Include(u => u.Teams)
+                    .ThenInclude(t => t.ThirdBase)
+                .Include(u => u.Teams)
+                    .ThenInclude(t => t.ShortStop)
+                .Include(u => u.Teams)
+                    .ThenInclude(t => t.Outfield1)
+                .Include(u => u.Teams)
+                    .ThenInclude(t => t.Outfield2)
+                .Include(u => u.Teams)
+                    .ThenInclude(t => t.Outfield3)
+                .Include(u => u.Teams)
+                    .ThenInclude(t => t.StartingPitcher)
             .FirstOrDefault(a => a.Username == username);
         }
 
         public IEnumerable<User> GetUsers(){
             return _context.Users
                 .Include(u => u.Teams)
+                    .ThenInclude(t => t.League)
+                .Include(u => u.Teams)
+                    .ThenInclude(t => t.Catcher)
+                .Include(u => u.Teams)
+                    .ThenInclude(t => t.FirstBase)
+                .Include(u => u.Teams)
+                    .ThenInclude(t => t.SecondBase)
+                .Include(u => u.Teams)
+                    .ThenInclude(t => t.ThirdBase)
+                .Include(u => u.Teams)
+                    .ThenInclude(t => t.ShortStop)
+                .Include(u => u.Teams)
+                    .ThenInclude(t => t.Outfield1)
+                .Include(u => u.Teams)
+                    .ThenInclude(t => t.Outfield2)
+                .Include(u => u.Teams)
+                    .ThenInclude(t => t.Outfield3)
+                .Include(u => u.Teams)
+                    .ThenInclude(t => t.StartingPitcher)
                 .OrderBy(a => a.Username)
                 .ToList();
         }

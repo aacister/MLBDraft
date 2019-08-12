@@ -6,14 +6,14 @@ namespace MLBDraft.API.Repositories
 {
     public interface IDraftSelectionRepository
     {
-        bool DraftSelectionExists(Guid draftId, Guid teamId, int round, int selectionNo );
-        DraftSelection GetDraftSelection(Guid draftId, Guid teamId, int round, int selectionNo);
+        bool LeagueDraftSelectionExists(Guid leagueId, Guid draftId, Guid teamId, int round );
+        DraftSelection GetLeagueDraftSelection(Guid leagueId, Guid draftId, Guid teamId, int round);
 
-        IEnumerable<DraftSelection> GetDraftSelections(Guid draftId);
+        IEnumerable<DraftSelection> GetLeagueDraftSelectionsForLeague(Guid leagueId, Guid draftId);
 
-        IEnumerable<DraftSelection> GetDraftSelectionsForTeam(Guid draftId, Guid teamId);
+        IEnumerable<DraftSelection> GetLeagueDraftSelectionsForTeam(Guid leagueId, Guid draftId, Guid teamId);
 
-        void AddDraftSelectionToDraft(Guid draftId, DraftSelection draftSelection);
+        void AddDraftSelectionToDraft(Guid leagueId, Guid draftId, DraftSelection draftSelection);
 
         
     }
