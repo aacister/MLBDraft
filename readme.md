@@ -1,7 +1,7 @@
 
 # MLBDraft (In progress) #
 
-MLBDraft is used to simulate online fantasy baseball snake drafts.
+MLBDraft is used to simulate online fantasy baseball snake drafts. Create your team, join a league, and simulate a draft, selecting from a pool of players.
 
 Includes 2 projects:
  1. MlbDraft.Api
