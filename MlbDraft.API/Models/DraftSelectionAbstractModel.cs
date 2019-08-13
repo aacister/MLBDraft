@@ -9,7 +9,8 @@ namespace MLBDraft.API.Models
 {
     public class DraftSelectionAbstractModel
     {
-
+      
+        public Guid DraftId { get; set; }
         public virtual int Round { get; set; }
 
 

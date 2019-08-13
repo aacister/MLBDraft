@@ -14,7 +14,7 @@ using Microsoft.Extensions.Logging;
 namespace MLBDraft.API.Controllers
 {
     [EnableCors("MlbDraftCors")]
-    [Route("api/leagues/{leagueId}/drafts/{draftid}/draftSelection")]
+    [Route("api/leagues/{leagueId}/drafts/{draftId}/draftSelections")]
     [ApiController]
     public class DraftSelectionController : ControllerBase
     {
@@ -55,7 +55,7 @@ namespace MLBDraft.API.Controllers
                     _logger.LogWarning($"Draft {draftId} not found for league {leagueId}.");
                     return NotFound();
                 }
-                var draftSelections = _draftSelectionRepository.GetLeagueDraftSelectionsForLeague(leagueId, draftId);
+                var draftSelections = _draftSelectionRepository.GetLeagueDraftSelectionsForLeague(draftId);
                 
                 if(draftSelections == null){
                     _logger.LogWarning($"No draft selections were found for league {leagueId} and draft {draftId}.");
@@ -67,7 +67,9 @@ namespace MLBDraft.API.Controllers
 
         }
 
-        [HttpGet("team/{teamId}", Name = "GetTeamDraftSelections")]
+
+
+        [HttpGet("teams/{teamId}", Name = "GetTeamDraftSelections")]
         public IActionResult GetTeamDraftSelections(Guid leagueId, Guid draftId, Guid teamId)
         {
                 if (!_leagueRepository.LeagueExists(leagueId))
@@ -81,7 +83,7 @@ namespace MLBDraft.API.Controllers
                     _logger.LogWarning($"Draft {draftId} not found for league {leagueId}.");
                     return NotFound();
                 }
-                var draftSelections = _draftSelectionRepository.GetLeagueDraftSelectionsForTeam(leagueId, draftId, teamId);
+                var draftSelections = _draftSelectionRepository.GetLeagueDraftSelectionsForTeam(draftId, teamId);
                 
                 if(draftSelections == null){
                     _logger.LogWarning($"No draft selections were found for league {leagueId}, draft {draftId}, and team {teamId}.");
@@ -93,7 +95,7 @@ namespace MLBDraft.API.Controllers
 
         }
 
-        [HttpGet("team/{teamId}/round/{round}/selectionNo/{selectionNo}", Name="GetDraftSelection")]
+        [HttpGet("teams/{teamId}/rounds/{round}", Name="GetDraftSelection")]
         public IActionResult GetDraftSelection(Guid leagueId, Guid draftId, Guid teamId, int round)
         {
              if (!_leagueRepository.LeagueExists(leagueId))
@@ -108,20 +110,20 @@ namespace MLBDraft.API.Controllers
                     return NotFound();
             }
 
-            if (!_draftSelectionRepository.LeagueDraftSelectionExists(leagueId, draftId, teamId, round))
+            if (!_draftSelectionRepository.LeagueDraftSelectionExists(draftId, teamId, round))
             {
-                _logger.LogWarning($"No draft selection found for: league {leagueId}, draft {draftId}, team {teamId}, round {round}.");
+                _logger.LogWarning($"No draft selection found for: draft {draftId}, team {teamId}, round {round}.");
                 return NotFound();
             }
 
-            var draftSelection = _draftSelectionRepository.GetLeagueDraftSelection(leagueId, draftId, teamId, round);
+            var draftSelection = _draftSelectionRepository.GetLeagueDraftSelection(draftId, teamId, round);
 
             var draftSelectionModel = _mapper.Map<DraftSelectionModel>(draftSelection);
             return Ok(draftSelectionModel);
 
         }
 
-        [HttpPost]
+        [HttpPut]
         public IActionResult CreateDraftSelection(Guid leagueId, Guid draftId, [FromBody] DraftSelectionCreateModel draftSelectionCreateModel){
             if (!_leagueRepository.LeagueExists(leagueId))
             {
@@ -138,19 +140,15 @@ namespace MLBDraft.API.Controllers
             {
                 return BadRequest();
             }
-
+            draftSelectionCreateModel.DraftId = draftId;
             var draftSelectionEntity = _mapper.Map<DraftSelection>(draftSelectionCreateModel);
-            _draftSelectionRepository.AddDraftSelectionToDraft(leagueId, draftId, draftSelectionEntity);
+            _draftSelectionRepository.UpdateDraftSelectionToDraft(draftId, draftSelectionEntity);
 
             if(!_mlbDraftRepository.Save()){
-                throw new Exception("Creating a draft failed on save.");
+                throw new Exception($"Updating draft {draftId} failed on save.");
             }
 
-            var draftSelectionToReturn = _mapper.Map<DraftSelectionModel>(draftSelectionEntity);
-
-            return CreatedAtRoute("GetDraftSelection",
-                    new DraftSelection{Id = draftSelectionToReturn.Id},
-                    draftSelectionToReturn);
+            return NoContent();
         }
 
     }

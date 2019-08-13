@@ -10,8 +10,7 @@ namespace MLBDraft.API.Models
     public class DraftSelectionCreateModel : DraftSelectionAbstractModel
     {
 
-        [Required]
-        public Guid DraftId { get; set; }
+     
 
         [Required]
         public Guid TeamId {get; set;}
