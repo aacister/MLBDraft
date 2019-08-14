@@ -15,7 +15,7 @@ namespace MLBDraft.API.Models
 
         public override int MaxTeams { get; set; }
 
-        public IList<TeamShallowModel> Teams { get; set; } = new List<TeamShallowModel>();
+        public IList<TeamModel> Teams { get; set; } = new List<TeamModel>();
 
         public IList<DraftModel> Drafts {get; set; } = new List<DraftModel>();
 

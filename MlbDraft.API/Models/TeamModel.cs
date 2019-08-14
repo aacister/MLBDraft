@@ -14,7 +14,7 @@ namespace MLBDraft.API.Models
 
         public Guid? LeagueId {get; set;}
 
- 
+ /* 
         public PlayerModel Catcher {get; set;}
 
         public PlayerModel FirstBase {get; set;}
@@ -32,6 +32,7 @@ namespace MLBDraft.API.Models
          public PlayerModel Outfield3 {get; set;}
 
         public PlayerModel StartingPitcher {get; set;}
+    */
 
     }
 }

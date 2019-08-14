@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MLBDraft.API.Models
 {
-    public class DraftSelectionCreateModel : DraftSelectionAbstractModel
+    public class DraftSelectionUpdateModel : DraftSelectionAbstractModel
     {
 
         [Required]
@@ -18,6 +18,9 @@ namespace MLBDraft.API.Models
 
         [Required]        
         public override int Round { get; set; }
+
+        [Required]
+        public Guid PlayerId {get; set;}
 
    
   

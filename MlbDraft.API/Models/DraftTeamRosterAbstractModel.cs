@@ -7,12 +7,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MLBDraft.API.Models
 {
-    public class DraftSelectionAbstractModel
+    public class DraftTeamRosterAbstractModel
     {
       
-        public virtual Guid DraftId { get; set; }
+        public virtual  Guid DraftId { get; set; }
         public virtual Guid  TeamId {get; set; }
-        public virtual int Round { get; set; }
            
     }
 }

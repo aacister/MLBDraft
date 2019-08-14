@@ -57,7 +57,7 @@ namespace MLBDraft.API.Controllers
                     return NotFound();
                 }
                 
-                var teamModels = _mapper.Map<IEnumerable<TeamShallowModel>>(teams);
+                var teamModels = _mapper.Map<IEnumerable<TeamModel>>(teams);
                 _logger.LogInformation($"{teamModels.Count()} teams were found for {leagueId}.");
                 return Ok(teamModels);
 
@@ -79,7 +79,7 @@ namespace MLBDraft.API.Controllers
                 }
                 var team = _teamRepository.GetTeamForLeague(leagueId,id);
 
-                var teamModel = _mapper.Map<TeamShallowModel>(team);
+                var teamModel = _mapper.Map<TeamModel>(team);
                 return Ok(teamModel);
 
         }
@@ -128,7 +128,7 @@ namespace MLBDraft.API.Controllers
                     new { leagueId = leagueId, id = teamToReturn.Id},
                     teamToReturn);
         }
-
+/* 
          [HttpPut("{id}")]
         public IActionResult UpdateTeamForLeague(Guid leagueId, Guid id,
             [FromBody] TeamUpdateModel team)
@@ -183,7 +183,7 @@ namespace MLBDraft.API.Controllers
            return NoContent();
         }
 
-
+*/
         
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid leagueId, Guid id)

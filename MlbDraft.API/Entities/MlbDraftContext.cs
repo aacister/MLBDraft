@@ -21,6 +21,7 @@ namespace MLBDraft.API.Entities
         public DbSet<PlayerStatCategory> PlayerStatCategories {get; set;}
         public DbSet<Draft> Drafts { get; set; }
         public DbSet<DraftSelection> DraftSelections {get; set;}
+        public DbSet<DraftTeamRoster> DraftTeamRosters {get; set; }
 
 
         

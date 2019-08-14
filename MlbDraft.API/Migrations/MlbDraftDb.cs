@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MLBDraft.Migrations
 {
-    public partial class mlbDraft : Migration
+    public partial class MlbDraftDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -155,7 +155,7 @@ namespace MLBDraft.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     OwnerId = table.Column<string>(nullable: true),
-                    LeagueId = table.Column<Guid>(nullable: false),
+                    LeagueId = table.Column<Guid>(nullable: true),
                     CatcherId = table.Column<Guid>(nullable: true),
                     FirstBaseId = table.Column<Guid>(nullable: true),
                     SecondBaseId = table.Column<Guid>(nullable: true),
@@ -186,7 +186,7 @@ namespace MLBDraft.Migrations
                         column: x => x.LeagueId,
                         principalTable: "Leagues",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Teams_Players_Outfield1Id",
                         column: x => x.Outfield1Id,
@@ -270,6 +270,94 @@ namespace MLBDraft.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "DraftTeamRosters",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    DraftId = table.Column<Guid>(nullable: false),
+                    TeamId = table.Column<Guid>(nullable: false),
+                    CatcherId = table.Column<Guid>(nullable: true),
+                    FirstBaseId = table.Column<Guid>(nullable: true),
+                    SecondBaseId = table.Column<Guid>(nullable: true),
+                    ThirdBaseId = table.Column<Guid>(nullable: true),
+                    ShortStopId = table.Column<Guid>(nullable: true),
+                    Outfield1Id = table.Column<Guid>(nullable: true),
+                    Outfield2Id = table.Column<Guid>(nullable: true),
+                    Outfield3Id = table.Column<Guid>(nullable: true),
+                    StartingPitcherId = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DraftTeamRosters", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DraftTeamRosters_Players_CatcherId",
+                        column: x => x.CatcherId,
+                        principalTable: "Players",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_DraftTeamRosters_Drafts_DraftId",
+                        column: x => x.DraftId,
+                        principalTable: "Drafts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DraftTeamRosters_Players_FirstBaseId",
+                        column: x => x.FirstBaseId,
+                        principalTable: "Players",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_DraftTeamRosters_Players_Outfield1Id",
+                        column: x => x.Outfield1Id,
+                        principalTable: "Players",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_DraftTeamRosters_Players_Outfield2Id",
+                        column: x => x.Outfield2Id,
+                        principalTable: "Players",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_DraftTeamRosters_Players_Outfield3Id",
+                        column: x => x.Outfield3Id,
+                        principalTable: "Players",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_DraftTeamRosters_Players_SecondBaseId",
+                        column: x => x.SecondBaseId,
+                        principalTable: "Players",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_DraftTeamRosters_Players_ShortStopId",
+                        column: x => x.ShortStopId,
+                        principalTable: "Players",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_DraftTeamRosters_Players_StartingPitcherId",
+                        column: x => x.StartingPitcherId,
+                        principalTable: "Players",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_DraftTeamRosters_Teams_TeamId",
+                        column: x => x.TeamId,
+                        principalTable: "Teams",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DraftTeamRosters_Players_ThirdBaseId",
+                        column: x => x.ThirdBaseId,
+                        principalTable: "Players",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Drafts_LeagueId",
                 table: "Drafts",
@@ -289,6 +377,61 @@ namespace MLBDraft.Migrations
                 name: "IX_DraftSelections_TeamId",
                 table: "DraftSelections",
                 column: "TeamId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DraftTeamRosters_CatcherId",
+                table: "DraftTeamRosters",
+                column: "CatcherId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DraftTeamRosters_DraftId",
+                table: "DraftTeamRosters",
+                column: "DraftId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DraftTeamRosters_FirstBaseId",
+                table: "DraftTeamRosters",
+                column: "FirstBaseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DraftTeamRosters_Outfield1Id",
+                table: "DraftTeamRosters",
+                column: "Outfield1Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DraftTeamRosters_Outfield2Id",
+                table: "DraftTeamRosters",
+                column: "Outfield2Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DraftTeamRosters_Outfield3Id",
+                table: "DraftTeamRosters",
+                column: "Outfield3Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DraftTeamRosters_SecondBaseId",
+                table: "DraftTeamRosters",
+                column: "SecondBaseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DraftTeamRosters_ShortStopId",
+                table: "DraftTeamRosters",
+                column: "ShortStopId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DraftTeamRosters_StartingPitcherId",
+                table: "DraftTeamRosters",
+                column: "StartingPitcherId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DraftTeamRosters_TeamId",
+                table: "DraftTeamRosters",
+                column: "TeamId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DraftTeamRosters_ThirdBaseId",
+                table: "DraftTeamRosters",
+                column: "ThirdBaseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Players_MlbTeamId",
@@ -370,6 +513,9 @@ namespace MLBDraft.Migrations
         {
             migrationBuilder.DropTable(
                 name: "DraftSelections");
+
+            migrationBuilder.DropTable(
+                name: "DraftTeamRosters");
 
             migrationBuilder.DropTable(
                 name: "PlayerStatCategories");

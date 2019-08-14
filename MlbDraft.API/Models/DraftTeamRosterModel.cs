@@ -2,20 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace MLBDraft.API.Models
 {
-    public class TeamShallowModel: TeamAbstractModel
+    public class DraftTeamRosterModel : DraftTeamRosterAbstractModel
     {
-       
+      
         public Guid Id { get; set; }
 
-         public override string Name { get; set; }
-
-        public Guid? LeagueId {get; set;}
- 
         public Guid? CatcherId {get; set;}
-
         public Guid? FirstBaseId {get; set;}
 
         public Guid? SecondBaseId {get; set;}
@@ -26,11 +23,11 @@ namespace MLBDraft.API.Models
 
         public Guid? Outfield1Id {get; set;}
 
-        public Guid? Outfield2Id {get; set;}
+        public Guid? Outfield2Id {get; set;} 
 
-         public Guid? Outfield3Id {get; set;}
+         public Guid? Outfield3Id {get; set;} 
 
-        public Guid? StartingPitcherId {get; set;}
-
+        public Guid? StartingPitcherId {get; set;} 
+           
     }
 }

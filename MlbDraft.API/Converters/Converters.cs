@@ -73,10 +73,29 @@ namespace MLBDraft.API.Converters
             
             CreateMap<PlayerCreateModel, Player>();
 
-            CreateMap<Team, TeamShallowModel>()
+            CreateMap<Team, TeamModel>()
                 .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.Owner.Username))
                 .ForMember(dest => dest.LeagueId, opt => opt.MapFrom(src => 
-                (src.League.Id)))
+                (src.League.Id)));
+            CreateMap<TeamCreateModel, Team>()
+                 .ForMember(dest => dest.Owner, opt => opt.Ignore());
+              //   .ForMember(dest => dest.League, opt => opt.Ignore());
+
+            CreateMap<League, LeagueModel>();
+            CreateMap<LeagueCreateModel, League>();
+
+            CreateMap<Draft, DraftModel>();
+            CreateMap<DraftModel, Draft>();
+
+            CreateMap<DraftSelection, DraftSelectionModel>();
+            CreateMap<DraftSelectionCreateModel, DraftSelection>();
+            CreateMap<DraftSelectionUpdateModel, DraftSelection>();
+
+            CreateMap<DraftTeamRoster, DraftTeamRosterModel>()
+                .ForMember(dest => dest.TeamId, opt => opt.MapFrom(src => 
+                        src.Id))
+                .ForMember(dest => dest.DraftId, opt => opt.MapFrom(src => 
+                        src.DraftId))
                 .ForMember(dest => dest.CatcherId, opt => opt.MapFrom(src => 
                 (src.Catcher.Id)))
                 .ForMember(dest => dest.FirstBaseId, opt => opt.MapFrom(src => 
@@ -94,48 +113,9 @@ namespace MLBDraft.API.Converters
                 .ForMember(dest => dest.Outfield3Id, opt => opt.MapFrom(src => 
                 (src.Outfield3.Id)))
                 .ForMember(dest => dest.StartingPitcherId, opt => opt.MapFrom(src => 
-                (src.StartingPitcher.Id)))
-                .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.Owner.Username));
+                (src.StartingPitcher.Id)));
 
-            CreateMap<Team, TeamModel>()
-                .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.Owner.Username))
-                .ForMember(dest => dest.LeagueId, opt => opt.MapFrom(src => 
-                (src.League.Id)))
-                .ForMember(dest => dest.Catcher, opt => opt.MapFrom(src => 
-                (src.Catcher)))
-                .ForMember(dest => dest.FirstBase, opt => opt.MapFrom(src => 
-                (src.FirstBase)))
-                .ForMember(dest => dest.SecondBase, opt => opt.MapFrom(src => 
-                (src.SecondBase)))
-                .ForMember(dest => dest.ThirdBase, opt => opt.MapFrom(src => 
-                (src.ThirdBase)))
-                .ForMember(dest => dest.ShortStop, opt => opt.MapFrom(src => 
-                (src.ShortStop)))
-                .ForMember(dest => dest.Outfield1, opt => opt.MapFrom(src => 
-                (src.Outfield1)))
-                .ForMember(dest => dest.Outfield2, opt => opt.MapFrom(src => 
-                (src.Outfield2)))
-                .ForMember(dest => dest.Outfield3, opt => opt.MapFrom(src => 
-                (src.Outfield3)))
-                .ForMember(dest => dest.StartingPitcher, opt => opt.MapFrom(src => 
-                (src.StartingPitcher)));
-
-            CreateMap<TeamCreateModel, Team>()
-                 .ForMember(dest => dest.Owner, opt => opt.Ignore());
-              //   .ForMember(dest => dest.League, opt => opt.Ignore());
-            CreateMap<TeamUpdateModel, Team>()
-                 .ForMember(dest => dest.Owner, opt => opt.Ignore());
-            //     .ForMember(dest => dest.League, opt => opt.Ignore());
-
-            CreateMap<League, LeagueModel>();
-            CreateMap<LeagueCreateModel, League>();
-
-            CreateMap<Draft, DraftModel>();
-            CreateMap<DraftModel, Draft>();
-
-            CreateMap<DraftSelection, DraftSelectionModel>();
-            CreateMap<DraftSelectionCreateModel, DraftSelection>();
-
+            CreateMap<DraftTeamRosterCreateModel, DraftTeamRoster>();
            
             CreateMap<User, CredentialModel>();
 

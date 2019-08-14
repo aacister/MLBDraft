@@ -90,6 +90,7 @@ namespace MLBDraft
             services.AddScoped<ITeamRepository, TeamRepository>();
             services.AddScoped<IDraftRepository, DraftRepository>();
             services.AddScoped<IDraftSelectionRepository, DraftSelectionRepository>();
+            services.AddScoped<IDraftTeamRosterRepository, DraftTeamRosterRepository>();
             services.AddScoped<ILeagueRepository, LeagueRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             
@@ -166,7 +167,7 @@ namespace MLBDraft
             app.UseAuthentication(); //Uses jwt authentication
             app.UseMiddleware<DeChunkerMiddleware>();
 
-      //      mlbDraftContext.EnsureSeedDataForContext();
+            mlbDraftContext.EnsureSeedDataForContext();
              
             app.UseMvc();
 

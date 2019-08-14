@@ -24,7 +24,6 @@ namespace MLBDraft.API.Repositories
 
         void AddTeamForLeague(Guid leagueId, Team team);
 
-        void UpdateTeamForLeague(Guid leagueId, Team teamToUpdate, Team team);
         void DeleteTeam(Team team);
         
     }

@@ -45,7 +45,6 @@ namespace MLBDraft.Migrations
 
                     b.Property<int>("Round");
 
-
                     b.Property<Guid>("TeamId");
 
                     b.HasKey("Id");
@@ -57,6 +56,60 @@ namespace MLBDraft.Migrations
                     b.HasIndex("TeamId");
 
                     b.ToTable("DraftSelections");
+                });
+
+            modelBuilder.Entity("MLBDraft.API.Entities.DraftTeamRoster", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("CatcherId");
+
+                    b.Property<Guid>("DraftId");
+
+                    b.Property<Guid?>("FirstBaseId");
+
+                    b.Property<Guid?>("Outfield1Id");
+
+                    b.Property<Guid?>("Outfield2Id");
+
+                    b.Property<Guid?>("Outfield3Id");
+
+                    b.Property<Guid?>("SecondBaseId");
+
+                    b.Property<Guid?>("ShortStopId");
+
+                    b.Property<Guid?>("StartingPitcherId");
+
+                    b.Property<Guid>("TeamId");
+
+                    b.Property<Guid?>("ThirdBaseId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CatcherId");
+
+                    b.HasIndex("DraftId");
+
+                    b.HasIndex("FirstBaseId");
+
+                    b.HasIndex("Outfield1Id");
+
+                    b.HasIndex("Outfield2Id");
+
+                    b.HasIndex("Outfield3Id");
+
+                    b.HasIndex("SecondBaseId");
+
+                    b.HasIndex("ShortStopId");
+
+                    b.HasIndex("StartingPitcherId");
+
+                    b.HasIndex("TeamId");
+
+                    b.HasIndex("ThirdBaseId");
+
+                    b.ToTable("DraftTeamRosters");
                 });
 
             modelBuilder.Entity("MLBDraft.API.Entities.League", b =>
@@ -180,7 +233,7 @@ namespace MLBDraft.Migrations
 
                     b.Property<Guid?>("FirstBaseId");
 
-                    b.Property<Guid>("LeagueId");
+                    b.Property<Guid?>("LeagueId");
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -267,6 +320,55 @@ namespace MLBDraft.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("MLBDraft.API.Entities.DraftTeamRoster", b =>
+                {
+                    b.HasOne("MLBDraft.API.Entities.Player", "Catcher")
+                        .WithMany()
+                        .HasForeignKey("CatcherId");
+
+                    b.HasOne("MLBDraft.API.Entities.Draft", "Draft")
+                        .WithMany("DraftRosters")
+                        .HasForeignKey("DraftId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MLBDraft.API.Entities.Player", "FirstBase")
+                        .WithMany()
+                        .HasForeignKey("FirstBaseId");
+
+                    b.HasOne("MLBDraft.API.Entities.Player", "Outfield1")
+                        .WithMany()
+                        .HasForeignKey("Outfield1Id");
+
+                    b.HasOne("MLBDraft.API.Entities.Player", "Outfield2")
+                        .WithMany()
+                        .HasForeignKey("Outfield2Id");
+
+                    b.HasOne("MLBDraft.API.Entities.Player", "Outfield3")
+                        .WithMany()
+                        .HasForeignKey("Outfield3Id");
+
+                    b.HasOne("MLBDraft.API.Entities.Player", "SecondBase")
+                        .WithMany()
+                        .HasForeignKey("SecondBaseId");
+
+                    b.HasOne("MLBDraft.API.Entities.Player", "ShortStop")
+                        .WithMany()
+                        .HasForeignKey("ShortStopId");
+
+                    b.HasOne("MLBDraft.API.Entities.Player", "StartingPitcher")
+                        .WithMany()
+                        .HasForeignKey("StartingPitcherId");
+
+                    b.HasOne("MLBDraft.API.Entities.Team", "Team")
+                        .WithMany()
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MLBDraft.API.Entities.Player", "ThirdBase")
+                        .WithMany()
+                        .HasForeignKey("ThirdBaseId");
+                });
+
             modelBuilder.Entity("MLBDraft.API.Entities.Player", b =>
                 {
                     b.HasOne("MLBDraft.API.Entities.MlbTeam", "MlbTeam")
@@ -303,8 +405,7 @@ namespace MLBDraft.Migrations
 
                     b.HasOne("MLBDraft.API.Entities.League", "League")
                         .WithMany("Teams")
-                        .HasForeignKey("LeagueId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("LeagueId");
 
                     b.HasOne("MLBDraft.API.Entities.Player", "Outfield1")
                         .WithMany()

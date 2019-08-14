@@ -18,23 +18,33 @@ namespace MLBDraft.API.Controllers
     [ApiController]
     public class DraftSelectionController : ControllerBase
     {
+        private MLBDraftContext _context;
         private IMlbDraftRepository _mlbDraftRepository;
         private IDraftSelectionRepository _draftSelectionRepository;
+        private IDraftTeamRosterRepository _draftTeamRosterRepository;
         private IDraftRepository _draftRepository;
         private ILeagueRepository _leagueRepository;
+        private IPlayerRepository _playerRepository;
         private IMapper _mapper;
         private ILogger<LeaguesController> _logger;
     
-        public DraftSelectionController(IDraftSelectionRepository draftSelectionRepository,
+        public DraftSelectionController(
+        MLBDraftContext context, 
+        IDraftSelectionRepository draftSelectionRepository,
+        IDraftTeamRosterRepository draftTeamRosterRepository,
         IDraftRepository draftRepository,
         ILeagueRepository leagueRepository,
+        IPlayerRepository playerRepository,
         IMlbDraftRepository mlbDraftRepository,
         IMapper mapper,
         ILogger<LeaguesController> logger)
         {
+            _context = context;
             _draftSelectionRepository = draftSelectionRepository;
+            _draftTeamRosterRepository = draftTeamRosterRepository;
             _draftRepository = draftRepository;
             _leagueRepository = leagueRepository;
+            _playerRepository = playerRepository;
             _mlbDraftRepository = mlbDraftRepository;
             _mapper = mapper;
             _logger = logger;
@@ -124,32 +134,105 @@ namespace MLBDraft.API.Controllers
         }
 
         [HttpPut]
-        public IActionResult CreateDraftSelection(Guid leagueId, Guid draftId, [FromBody] DraftSelectionCreateModel draftSelectionCreateModel){
+        public IActionResult UpdateDraftSelection(Guid leagueId, Guid draftId, [FromBody] DraftSelectionUpdateModel draftSelectionUpdateModel){
             if (!_leagueRepository.LeagueExists(leagueId))
             {
                 _logger.LogWarning($"No league found for {leagueId}.");
                 return NotFound();
             }
-
-            if(draftSelectionCreateModel == null)
+   
+            if(draftSelectionUpdateModel == null)
             {
                 return BadRequest();
             }
+
+             if(!_playerRepository.PlayerExists(draftSelectionUpdateModel.PlayerId))
+            {
+                _logger.LogWarning($"Player {draftSelectionUpdateModel.PlayerId} not found.");
+                return NotFound();
+            }
+
 
              if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-            draftSelectionCreateModel.DraftId = draftId;
-            var draftSelectionEntity = _mapper.Map<DraftSelection>(draftSelectionCreateModel);
-            _draftSelectionRepository.UpdateDraftSelectionToDraft(draftId, draftSelectionEntity);
 
-            if(!_mlbDraftRepository.Save()){
-                throw new Exception($"Updating draft {draftId} failed on save.");
+            using(var transaction = _context.Database.BeginTransaction()){
+                try{
+                    //Update draft selection
+                    draftSelectionUpdateModel.DraftId = draftId;
+                    var draftSelectionEntity = _mapper.Map<DraftSelection>(draftSelectionUpdateModel);
+                    _draftSelectionRepository.UpdateDraftSelectionToDraft(draftId, draftSelectionEntity);
+
+                    if(!_mlbDraftRepository.Save()){
+                        throw new Exception($"Updating draft {draftId} failed on save.");
+                    }
+
+                    var player = _playerRepository.GetPlayer(draftSelectionUpdateModel.PlayerId);
+                    var roster = _draftTeamRosterRepository.GetDraftTeamRoster(draftId, draftSelectionUpdateModel.TeamId);      
+                    var isFilled = _draftTeamRosterRepository.IsDraftTeamRosterPositionFilled(roster.Id, player.Position.Id);     
+
+                    if(isFilled)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Position is Filled");
+                    }
+                    else{
+                    //Update team roster
+                    AddPlayerToRosterPositon(player, roster);
+                    _draftTeamRosterRepository.UpdateDraftTeamRoster(roster);
+                    }
+
+                    transaction.Commit();
+
+                    return NoContent();
+                }
+                catch(Exception){
+                    transaction.Rollback();
+                    throw;
+                }
             }
 
-            return NoContent();
+            
         }
+
+       private void AddPlayerToRosterPositon(Player player, DraftTeamRoster roster)
+       {
+           var position = player.Position.Abbreviation;
+           switch (position)
+            {
+                case "SP":
+                    roster.StartingPitcherId = player.Id;
+                    break;
+                case "C":
+                    roster.CatcherId = player.Id;
+                    break;
+                case "1B":
+                    roster.FirstBaseId = player.Id;
+                    break;
+                case "2B":
+                    roster.SecondBaseId = player.Id;
+                    break;
+                case "SS":
+                    roster.ShortStopId = player.Id;
+                    break;
+                case "3B":
+                    roster.ThirdBaseId = player.Id;
+                    break;
+                case "OF":
+                    if(!roster.Outfield1Id.HasValue)
+                        roster.Outfield1Id = player.Id;
+                    else if(!roster.Outfield2Id.HasValue)
+                        roster.Outfield2Id = player.Id;
+                    else if (!roster.Outfield3Id.HasValue)
+                        roster.Outfield3Id = player.Id;
+                    break;
+                default:
+                    throw new Exception("Position could not be filled.");
+         
+            }
+       }
 
     }
 }

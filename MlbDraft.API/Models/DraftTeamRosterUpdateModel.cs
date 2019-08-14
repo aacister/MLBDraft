@@ -4,11 +4,14 @@ using MLBDraft.API.Validators;
 
 namespace MLBDraft.API.Models
 {
-    public class TeamUpdateModel : TeamAbstractModel
+    public class DraftTeamRosterUpdateModel : DraftTeamRosterAbstractModel
     {
        
         [Required]
-        public override string Owner { get; set; }
+        public override Guid DraftId { get; set; }
+
+        [Required]
+        public override Guid TeamId {get; set;}
 
         [Required]
         [TeamPlayerPosValidation("C")]

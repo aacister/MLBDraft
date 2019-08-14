@@ -18,24 +18,30 @@ namespace MLBDraft.API.Controllers
     [ApiController]
     public class DraftsController : ControllerBase
     {
+        private MLBDraftContext _context;
         private IMlbDraftRepository _mlbDraftRepository;
         private IDraftRepository _draftRepository;
         private IDraftSelectionRepository _draftSelectionRepository;
+        private IDraftTeamRosterRepository _draftTeamRosterRepository;
         private ILeagueRepository _leagueRepository;
         private IPlayerRepository _playerRepository;
         private IMapper _mapper;
         private ILogger<LeaguesController> _logger;
     
-        public DraftsController(IDraftRepository draftRepository,
+        public DraftsController(MLBDraftContext context, 
+        IDraftRepository draftRepository,
         IDraftSelectionRepository draftSelectionRepository,
+        IDraftTeamRosterRepository draftTeamRosterRepository,
         ILeagueRepository leagueRepository,
         IPlayerRepository playerRepository,
         IMlbDraftRepository mlbDraftRepository,
         IMapper mapper,
         ILogger<LeaguesController> logger)
         {
+            _context = context;
             _draftRepository = draftRepository;
             _draftSelectionRepository = draftSelectionRepository;
+            _draftTeamRosterRepository = draftTeamRosterRepository;
             _leagueRepository = leagueRepository;
             _playerRepository = playerRepository;
             _mlbDraftRepository = mlbDraftRepository;
@@ -106,25 +112,36 @@ namespace MLBDraft.API.Controllers
                 return BadRequest();
             }
 
-            var draftModel = new DraftModel();
-            draftModel.StartDate = DateTime.Now;
-            draftModel.LeagueId = leagueId;
-            var draftEntity = _mapper.Map<Draft>(draftModel);
-            _draftRepository.AddDraft(draftEntity);
+            using(var transaction = _context.Database.BeginTransaction()){
+                try
+                {
+                    //Add draft
+                    var draftModel = new DraftModel();
+                    draftModel.StartDate = DateTime.Now;
+                    draftModel.LeagueId = leagueId;
+                    var draftEntity = _mapper.Map<Draft>(draftModel);
+                    _draftRepository.AddDraft(draftEntity);
 
-            if(!_mlbDraftRepository.Save()){
-                throw new Exception("Creating a draft failed on save.");
-            }
+                    if(!_mlbDraftRepository.Save()){
+                        throw new Exception("Creating a draft failed on save.");
+                    }
 
-            //Create draft Selections
-            CreateDraftSelections(draftEntity);
-            var draftToReturn = _mapper.Map<DraftModel>(draftEntity);
+                    //Create draft Selections and draft team rosters
+                    CreateDraftSelectionsAndRosters(draftEntity);
+                    var draftToReturn = _mapper.Map<DraftModel>(draftEntity);
+                    transaction.Commit();
     
-
-            return CreatedAtRoute("GetDraft",
+                    return CreatedAtRoute("GetDraft",
                     new {leagueId = leagueId,
                     id = draftToReturn.Id},
                     draftToReturn);
+                }
+                catch(Exception){
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+           
         }
 
         [HttpDelete("{id}")]
@@ -159,7 +176,7 @@ namespace MLBDraft.API.Controllers
 
         }
 
-        private void CreateDraftSelections(Draft draft)
+        private void CreateDraftSelectionsAndRosters(Draft draft)
         {
             var league = _leagueRepository.GetLeague(draft.LeagueId);
             var totalTeams = league.Teams.Count();
@@ -168,6 +185,19 @@ namespace MLBDraft.API.Controllers
             var totalRounds = Convert.ToInt32(Math.Floor(totalPlayers/Convert.ToDouble(totalTeams)));
             for(int x=0; x < totalRounds; x++){
                 foreach(var team in league.Teams){
+                    if(x == 0)
+                    {
+                        //Create draft rosters on first round loop. Creates roster for each team
+                         var draftTeamRosterCreateModel = new DraftTeamRosterCreateModel();
+                        draftTeamRosterCreateModel.DraftId = draft.Id;
+                        draftTeamRosterCreateModel.TeamId = team.Id;
+                        var draftTeamRosterEntity = _mapper.Map<DraftTeamRoster>(draftTeamRosterCreateModel);
+                        _draftTeamRosterRepository.AddTeamRosterToDraft(draft.Id, draftTeamRosterEntity);
+                        if(!_mlbDraftRepository.Save()){
+                            throw new Exception("Creating a draft roster failed on save.");
+                        }
+                    }
+
                     var draftSelectionCreateModel = new DraftSelectionCreateModel();
                     draftSelectionCreateModel.DraftId = draft.Id;
                     draftSelectionCreateModel.TeamId = team.Id;
@@ -179,10 +209,7 @@ namespace MLBDraft.API.Controllers
                     }
                 }
             }
-
-            
         }
-
 
     }
 }

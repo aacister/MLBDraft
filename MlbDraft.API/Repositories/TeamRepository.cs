@@ -37,29 +37,14 @@ namespace MLBDraft.API.Repositories
         {
             return _context.Teams
             .Include(t => t.League)
-            .Include(t => t.Catcher)
-            .Include(t => t.FirstBase)
-            .Include(t => t.SecondBase)
-            .Include(t => t.ShortStop)
-            .Include(t => t.ThirdBase)
-            .Include(t => t.Outfield1)
-            .Include(t => t.Outfield2)
-            .Include(t => t.Outfield3)
-            .Include(t => t.StartingPitcher)
+            .Include(t => t.Owner)
             .FirstOrDefault(a => a.Id == teamId);
         }
 
          public IEnumerable<Team> GetTeams(){
             return _context.Teams
                 .Include(t => t.League)
-                .Include(t => t.Catcher)
-                .Include(t => t.FirstBase)
-                .Include(t => t.SecondBase)
-                .Include(t => t.ShortStop)
-                .Include(t => t.ThirdBase)
-                .Include(t => t.Outfield1)
-                .Include(t => t.Outfield2)
-                .Include(t => t.Outfield3)
+                .Include(t => t.Owner)
                 .OrderBy(a => a.Name)
                 .ToList();
         }
@@ -70,16 +55,6 @@ namespace MLBDraft.API.Repositories
                 .Where(t => t.LeagueId == leagueId && t.Id == teamId)
                 .Include(t => t.League)
                 .Include(t => t.Owner)
-                .Include(t => t.Catcher)
-                .Include(t => t.Catcher)
-                .Include(t => t.Catcher)
-                .Include(t => t.FirstBase)
-                .Include(t => t.SecondBase)
-                .Include(t => t.ShortStop)
-                .Include(t => t.ThirdBase)
-                .Include(t => t.Outfield1)
-                .Include(t => t.Outfield2)
-                .Include(t => t.Outfield3)
                 .FirstOrDefault();
         }
 
@@ -87,15 +62,7 @@ namespace MLBDraft.API.Repositories
             return _context.Teams
                 .Where(t => t.LeagueId == leagueId)
                 .Include(t => t.League)
-                .Include(t => t.Owner)
-                .Include(t => t.Catcher)
-                .Include(t => t.FirstBase)
-                .Include(t => t.SecondBase)
-                .Include(t => t.ShortStop)
-                .Include(t => t.ThirdBase)
-                .Include(t => t.Outfield1)
-                .Include(t => t.Outfield2)
-                .Include(t => t.Outfield3)
+                .Include(t => t.Owner)              
                 .OrderBy(t => t.Name).ToList();
         }
 
@@ -119,26 +86,7 @@ namespace MLBDraft.API.Repositories
             }
         }
 
-        public void UpdateTeamForLeague(Guid leagueId, Team teamToUpdate, Team team)
-        {
-           var tU = _context.Teams
-            .Where(t => t.Id == teamToUpdate.Id && t.League.Id == leagueId )
-            .FirstOrDefault();
-            
-            if(tU != null)
-            {
-                //Cannot update team name
-                tU.CatcherId = team.CatcherId;
-                tU.FirstBaseId = team.FirstBaseId;
-                tU.SecondBaseId = team.SecondBaseId;
-                tU.ShortStopId = team.ShortStopId;
-                tU.ThirdBaseId = team.ThirdBaseId;
-                tU.Outfield1Id = team.Outfield1Id;
-                tU.Outfield2Id = team.Outfield2Id;
-                tU.Outfield3Id = team.Outfield3Id;
-                tU.StartingPitcherId = team.StartingPitcherId;
-            }
-        }
+
 
         public void DeleteTeam(Team team)
         {
