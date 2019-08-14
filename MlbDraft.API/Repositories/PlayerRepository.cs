@@ -35,6 +35,18 @@ namespace MLBDraft.API.Repositories
             return _context.Players.Count();
         }
 
+        public IEnumerable<Player> GetPlayers()
+        {
+             return _context.Players
+                .Include(p => p.MlbTeam)
+                .Include(p => p.Position)
+                .Include(p => p.StatCategories)
+                .ThenInclude(p => p.StatCategory)
+                .OrderBy(a => a.LastName)
+                .OrderBy(a => a.FirstName)
+                .ToList<Player>();
+        }
+
         public PagedList<Player> GetPlayers(PlayerParameters playerParams){
             var playerColl = _context.Players
                 .Include(p => p.MlbTeam)

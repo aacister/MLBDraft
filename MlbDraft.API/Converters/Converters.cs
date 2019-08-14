@@ -1,3 +1,4 @@
+using System;
 using AutoMapper;
 using MLBDraft.API.Models;
 using MLBDraft.API.Entities;
@@ -91,9 +92,10 @@ namespace MLBDraft.API.Converters
             CreateMap<DraftSelectionCreateModel, DraftSelection>();
             CreateMap<DraftSelectionUpdateModel, DraftSelection>();
 
+            CreateMap<DraftTeamRosterModel, DraftTeamRoster>();
             CreateMap<DraftTeamRoster, DraftTeamRosterModel>()
                 .ForMember(dest => dest.TeamId, opt => opt.MapFrom(src => 
-                        src.Id))
+                        src.TeamId))
                 .ForMember(dest => dest.DraftId, opt => opt.MapFrom(src => 
                         src.DraftId))
                 .ForMember(dest => dest.CatcherId, opt => opt.MapFrom(src => 

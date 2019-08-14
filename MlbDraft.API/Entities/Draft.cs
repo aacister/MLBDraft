@@ -20,7 +20,7 @@ namespace MLBDraft.API.Entities
         public DateTime? EndDate {get; set;}
 
         public ICollection<DraftSelection> DraftSelections {get; set;} = new List<DraftSelection>();
-        public ICollection<DraftTeamRoster> DraftRosters {get; set;} = new List<DraftTeamRoster>();
+        public ICollection<DraftTeamRoster> TeamRosters {get; set;} = new List<DraftTeamRoster>();
 
  
 

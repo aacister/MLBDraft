@@ -85,7 +85,7 @@ namespace MLBDraft.API.Repositories
 
             if(draft != null)
             {
-                draft.DraftRosters.Add(roster);
+                draft.TeamRosters.Add(roster);
             }
 
         }
@@ -137,15 +137,24 @@ namespace MLBDraft.API.Repositories
 
             if(roster != null){
                 var playersList = new List<Player>();
-                playersList.Add(roster.Outfield1);
-                playersList.Add(roster.Outfield2);
-                playersList.Add(roster.Outfield3);
-                playersList.Add(roster.Catcher);
-                playersList.Add(roster.FirstBase);
-                playersList.Add(roster.SecondBase);
-                playersList.Add(roster.ShortStop);
-                playersList.Add(roster.ThirdBase);
-                playersList.Add(roster.StartingPitcher);
+                if(roster.Outfield1 != null)
+                    playersList.Add(roster.Outfield1);
+                if(roster.Outfield2 != null)
+                    playersList.Add(roster.Outfield2);
+                if(roster.Outfield3 != null)
+                    playersList.Add(roster.Outfield3);
+                if(roster.Catcher != null)
+                    playersList.Add(roster.Catcher);
+                if(roster.FirstBase != null)
+                    playersList.Add(roster.FirstBase);
+                if(roster.SecondBase != null)
+                    playersList.Add(roster.SecondBase);
+                if(roster.ShortStop != null)
+                    playersList.Add(roster.ShortStop);
+                if(roster.ThirdBase != null)
+                    playersList.Add(roster.ThirdBase);
+                if(roster.StartingPitcher != null)
+                    playersList.Add(roster.StartingPitcher);
 
                return playersList.Select(p => p.Position).Any(p => p.Id == positionId);
             }

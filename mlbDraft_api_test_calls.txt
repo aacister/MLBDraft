@@ -68,20 +68,6 @@ POST http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/team
 "owner": "username"
 }
 
-PUT http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/teams/903753bf-0b3a-4fc7-993f-1a56b096ab7b
-{
-
-	"owner": "username",
-	"catcherId": "f2d2aefe-ff6e-4d40-9656-c5dd01a735ab",
-	"firstBaseId": "5e109be4-45d6-4b09-9d64-ab2cef47e0de",
-    "secondBaseId":  "ae72100e-7f50-4c5d-bee4-2d6db4ad0ad5",
-	"shortStopId": "4af0341c-a285-4f79-931d-3bb653a177e2",
-    "thirdBaseId":  "85ad97a5-8de9-4203-9c5f-3b4e02d9bf4d",
-	"outfield1Id": "3510d06e-f826-449f-8229-44f5998da8de",
-	"outfield2Id": "4adcf3cd-366e-47ee-ab6b-eb3368d78bf8",
-    "outfield3Id":  "1b8f8b37-42d7-4fc9-b821-20045e6c84c2",
-	"startingPitcherId": "1762a454-6514-4dc3-82f8-85c2f4abe51c"
-}
 
 Delete http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/teams/903753bf-0b3a-4fc7-993f-1a56b096ab7b
 
@@ -97,9 +83,9 @@ DELETE http://localhost:5050/api/users/username
 DRAFTCONTROLLER.CS
 GET http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/drafts
 
-GET http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/drafts/80834091-58f9-4f47-9295-bf2ec8b7728e
+GET http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/drafts/80834091-58f9-4f47-9295-bf2ec8b7728e returns a draft's selections and team rosters as well
 
-POST http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/drafts  --- creates draft order with empty team draft selections 
+POST http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/drafts  --- creates draft order with empty team draft selections and team rosters
 
 
 -------------------------------------------------
@@ -111,10 +97,21 @@ GET http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/draft
 GET http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/drafts/c0ca9dd3-6ad1-4f0d-981b-53eb9ddfa4cc/draftSelections/teams/903753bf-0b3a-4fc7-993f-1a56b096ab7b/rounds/2    =>Get team seletion for round
 
 
-PUT http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/drafts/c0ca9dd3-6ad1-4f0d-981b-53eb9ddfa4cc/draftSelections -- updates draft selection with player
+PUT http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/drafts/c0ca9dd3-6ad1-4f0d-981b-53eb9ddfa4cc/draftSelections -- updates draft selection with player (used to draft a player)
 
 {
+"draftId": "ba6395e9-d4e3-4c65-848f-cee1b5f32055",
 "teamId": "903753bf-0b3a-4fc7-993f-1a56b096ab7b",
 "round": 1,
 "playerId": "6079e089-3405-4454-b666-7e3d6f0abfd6"
+
 }
+--------------------------------------------------------
+DRAFTTEAMROSTERCONTROLLER.CS
+
+GET http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/drafts/ba6395e9-d4e3-4c65-848f-cee1b5f32055/rosters    -- retrieves rosters for a draft
+
+GET http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/drafts/ba6395e9-d4e3-4c65-848f-cee1b5f32055/rosters/teams/903753bf-0b3a-4fc7-993f-1a56b096ab7b   -- retrieve a team's rosters for a draft
+
+
+

@@ -1,0 +1,129 @@
+2019-08-14 13:13:23.4617|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 13:24:54.5983|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 13:25:02.6132|ERROR|Microsoft.AspNetCore.Mvc.Internal.ActionSelector|Request matched multiple actions resulting in ambiguity. Matching actions: MLBDraft.API.Controllers.PlayersController.Get (MLBDraft)
+MLBDraft.API.Controllers.PlayersController.Get (MLBDraft)
+2019-08-14 13:25:02.6930|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-14 13:25:02.7367|ERROR|Global exception logger|Multiple actions matched. The following actions matched route data and had all constraints satisfied:
+
+MLBDraft.API.Controllers.PlayersController.Get (MLBDraft)
+MLBDraft.API.Controllers.PlayersController.Get (MLBDraft)
+2019-08-14 13:25:02.7806|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An exception was thrown attempting to execute the error handler.
+2019-08-14 13:25:02.7806|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-14 13:25:02.7806|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An exception was thrown attempting to display the error page.
+2019-08-14 13:25:02.7933|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLP0RH96V4CD", Request id "0HLP0RH96V4CD:00000001": An unhandled exception was thrown by the application.
+2019-08-14 13:25:41.7425|ERROR|Microsoft.AspNetCore.Mvc.Internal.ActionSelector|Request matched multiple actions resulting in ambiguity. Matching actions: MLBDraft.API.Controllers.PlayersController.Get (MLBDraft)
+MLBDraft.API.Controllers.PlayersController.Get (MLBDraft)
+2019-08-14 13:25:41.7850|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-14 13:25:41.7850|ERROR|Global exception logger|Multiple actions matched. The following actions matched route data and had all constraints satisfied:
+
+MLBDraft.API.Controllers.PlayersController.Get (MLBDraft)
+MLBDraft.API.Controllers.PlayersController.Get (MLBDraft)
+2019-08-14 13:25:41.8260|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An exception was thrown attempting to execute the error handler.
+2019-08-14 13:25:41.8260|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-14 13:25:41.8260|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An exception was thrown attempting to display the error page.
+2019-08-14 13:25:41.8260|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLP0RH96V4CD", Request id "0HLP0RH96V4CD:00000002": An unhandled exception was thrown by the application.
+2019-08-14 13:26:27.6299|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 13:26:29.3110|ERROR|Microsoft.AspNetCore.Mvc.Internal.ActionSelector|Request matched multiple actions resulting in ambiguity. Matching actions: MLBDraft.API.Controllers.PlayersController.Get (MLBDraft)
+MLBDraft.API.Controllers.PlayersController.Get (MLBDraft)
+2019-08-14 13:26:29.3838|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-14 13:26:29.4080|ERROR|Global exception logger|Multiple actions matched. The following actions matched route data and had all constraints satisfied:
+
+MLBDraft.API.Controllers.PlayersController.Get (MLBDraft)
+MLBDraft.API.Controllers.PlayersController.Get (MLBDraft)
+2019-08-14 13:26:29.4575|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An exception was thrown attempting to execute the error handler.
+2019-08-14 13:26:29.4575|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-14 13:26:29.4671|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An exception was thrown attempting to display the error page.
+2019-08-14 13:26:29.4671|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLP0RI4RHCED", Request id "0HLP0RI4RHCED:00000001": An unhandled exception was thrown by the application.
+2019-08-14 13:29:35.7281|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 13:29:36.2103|ERROR|Microsoft.AspNetCore.Mvc.Internal.ActionSelector|Request matched multiple actions resulting in ambiguity. Matching actions: MLBDraft.API.Controllers.PlayersController.Get (MLBDraft)
+MLBDraft.API.Controllers.PlayersController.GetAll (MLBDraft)
+2019-08-14 13:29:36.2848|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-14 13:29:36.3025|ERROR|Global exception logger|Multiple actions matched. The following actions matched route data and had all constraints satisfied:
+
+MLBDraft.API.Controllers.PlayersController.Get (MLBDraft)
+MLBDraft.API.Controllers.PlayersController.GetAll (MLBDraft)
+2019-08-14 13:29:36.3472|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An exception was thrown attempting to execute the error handler.
+2019-08-14 13:29:36.3472|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-14 13:29:36.3828|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An exception was thrown attempting to display the error page.
+2019-08-14 13:29:36.3914|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLP0RJSTOISB", Request id "0HLP0RJSTOISB:00000001": An unhandled exception was thrown by the application.
+2019-08-14 13:32:08.5999|ERROR|Microsoft.AspNetCore.Mvc.Internal.ActionSelector|Request matched multiple actions resulting in ambiguity. Matching actions: MLBDraft.API.Controllers.PlayersController.Get (MLBDraft)
+MLBDraft.API.Controllers.PlayersController.GetAll (MLBDraft)
+2019-08-14 13:32:08.6439|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-14 13:32:08.6439|ERROR|Global exception logger|Multiple actions matched. The following actions matched route data and had all constraints satisfied:
+
+MLBDraft.API.Controllers.PlayersController.Get (MLBDraft)
+MLBDraft.API.Controllers.PlayersController.GetAll (MLBDraft)
+2019-08-14 13:32:08.6787|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An exception was thrown attempting to execute the error handler.
+2019-08-14 13:32:08.6787|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-14 13:32:08.6889|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An exception was thrown attempting to display the error page.
+2019-08-14 13:32:08.6889|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLP0RJSTOISD", Request id "0HLP0RJSTOISD:00000001": An unhandled exception was thrown by the application.
+2019-08-14 13:33:45.7532|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 13:35:16.2683|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 13:37:08.0144|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'where ([t].Abbreviation.ToLowerInvariant() == __ToLowerInvariant_0)' could not be translated and will be evaluated locally.
+2019-08-14 13:37:08.0285|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'FirstOrDefault()' could not be translated and will be evaluated locally.
+2019-08-14 13:37:12.3655|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'where ([t].Abbreviation.ToLowerInvariant() == __ToLowerInvariant_0)' could not be translated and will be evaluated locally.
+2019-08-14 13:37:12.3655|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'FirstOrDefault()' could not be translated and will be evaluated locally.
+2019-08-14 13:38:42.2806|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].MlbTeam' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-14 13:38:42.2806|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].Position' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-14 13:38:42.2806|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[p].StatCategories.StatCategory' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-14 13:39:49.7555|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 13:42:41.0456|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'where ([l].Name.ToLowerInvariant() == __ToLowerInvariant_0)' could not be translated and will be evaluated locally.
+2019-08-14 13:42:41.0692|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'Any()' could not be translated and will be evaluated locally.
+2019-08-14 13:44:40.8787|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'where ([t].Name.ToLowerInvariant() == __ToLowerInvariant_0)' could not be translated and will be evaluated locally.
+2019-08-14 13:44:40.8837|WARN|Microsoft.EntityFrameworkCore.Query|The LINQ expression 'Any()' could not be translated and will be evaluated locally.
+2019-08-14 13:49:35.3613|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 13:57:04.4208|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 13:57:05.8000|WARN|MLBDraft.API.Controllers.LeaguesController|No draft found for fd017e40-8875-4887-95b2-c27b4fe37b01.
+2019-08-14 13:57:10.4328|WARN|MLBDraft.API.Controllers.LeaguesController|No draft found for fd017e40-8875-4887-95b2-c27b4fe37b01.
+2019-08-14 14:08:24.7054|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 14:20:23.8013|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 14:24:58.3152|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[s].Team' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-14 14:24:58.3316|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[s].Player' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-14 14:24:58.3316|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[s].Draft.League' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-14 14:30:01.9903|WARN|MLBDraft.API.Controllers.LeaguesController|No draft rosters were found for league d803d697-7f22-412a-b24b-f9ee91eca40f, draft ba6395e9-d4e3-4c65-848f-cee1b5f32055, and team dcf6ab3b-5f85-44c6-8772-24e420e9909a.
+2019-08-14 14:30:26.3056|WARN|MLBDraft.API.Controllers.LeaguesController|No draft rosters were found for league d803d697-7f22-412a-b24b-f9ee91eca40f, draft ba6395e9-d4e3-4c65-848f-cee1b5f32055, and team dcf6ab3b-5f85-44c6-8772-24e420e9909a.
+2019-08-14 14:31:10.3596|WARN|MLBDraft.API.Controllers.LeaguesController|No draft rosters were found for league d803d697-7f22-412a-b24b-f9ee91eca40f, draft ba6395e9-d4e3-4c65-848f-cee1b5f32055, and team dcf6ab3b-5f85-44c6-8772-24e420e9909a.
+2019-08-14 14:39:44.9034|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 14:56:36.9686|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 14:58:19.6501|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 14:59:05.1654|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-14 14:59:05.2257|ERROR|Global exception logger|Missing type map configuration or unsupported mapping.
+
+Mapping types:
+DraftTeamRoster -> IEnumerable`1
+MLBDraft.API.Entities.DraftTeamRoster -> System.Collections.Generic.IEnumerable`1[[MLBDraft.API.Models.DraftTeamRosterModel, MLBDraft, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+2019-08-14 14:59:05.2940|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An exception was thrown attempting to execute the error handler.
+2019-08-14 14:59:05.3002|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-14 14:59:05.3155|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An exception was thrown attempting to display the error page.
+2019-08-14 14:59:05.3155|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLP0T5FKD0M3", Request id "0HLP0T5FKD0M3:00000001": An unhandled exception was thrown by the application.
+2019-08-14 14:59:17.6877|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-14 14:59:17.6877|ERROR|Global exception logger|Missing type map configuration or unsupported mapping.
+
+Mapping types:
+DraftTeamRoster -> IEnumerable`1
+MLBDraft.API.Entities.DraftTeamRoster -> System.Collections.Generic.IEnumerable`1[[MLBDraft.API.Models.DraftTeamRosterModel, MLBDraft, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+2019-08-14 14:59:17.7424|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An exception was thrown attempting to execute the error handler.
+2019-08-14 14:59:17.7424|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-14 14:59:17.7424|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An exception was thrown attempting to display the error page.
+2019-08-14 14:59:17.7424|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLP0T5FKD0M3", Request id "0HLP0T5FKD0M3:00000002": An unhandled exception was thrown by the application.
+2019-08-14 14:59:30.4247|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-14 14:59:30.4247|ERROR|Global exception logger|Missing type map configuration or unsupported mapping.
+
+Mapping types:
+DraftTeamRoster -> IEnumerable`1
+MLBDraft.API.Entities.DraftTeamRoster -> System.Collections.Generic.IEnumerable`1[[MLBDraft.API.Models.DraftTeamRosterModel, MLBDraft, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+2019-08-14 14:59:30.4770|ERROR|Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware|An exception was thrown attempting to execute the error handler.
+2019-08-14 14:59:30.4770|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An unhandled exception has occurred while executing the request.
+2019-08-14 14:59:30.4770|ERROR|Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware|An exception was thrown attempting to display the error page.
+2019-08-14 14:59:30.4770|ERROR|Microsoft.AspNetCore.Server.Kestrel|Connection id "0HLP0T5FKD0M3", Request id "0HLP0T5FKD0M3:00000003": An unhandled exception was thrown by the application.
+2019-08-14 15:04:25.8667|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 15:09:02.2476|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 15:11:12.3452|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 15:16:36.5515|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 15:18:45.4027|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 15:28:18.9357|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 15:33:48.7186|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 15:35:26.4063|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 15:38:05.4501|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[s].Team' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-14 15:38:05.4501|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[s].Player' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-14 15:38:05.4501|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[s].Draft.League' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.

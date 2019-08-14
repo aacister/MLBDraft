@@ -6,15 +6,6 @@ Team
 -TeamName
 -owner (user FK)
 -LeagueId
--C (FK PlayerId) check Constraint on position
--1B
--2B
--3B
--SS
--OF
--OF
--OF
--SP
 
 Player
 -playerId
@@ -62,6 +53,21 @@ DraftSelection
 -PlayerId (foreign key)
 -Round
 -SelectionNo
+
+DraftTeamRoster
+-Id
+-DraftId
+-TeamId
+-C (FK PlayerId) check Constraint on position
+-1B
+-2B
+-3B
+-SS
+-OF
+-OF
+-OF
+-SP
+
 
 
 

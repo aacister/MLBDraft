@@ -24,7 +24,7 @@ namespace MLBDraft.API.Controllers
         private IDraftRepository _draftRepository;
         private ILeagueRepository _leagueRepository;
         private IMapper _mapper;
-        private ILogger<LeaguesController> _logger;
+        private ILogger<DraftTeamRostersController> _logger;
     
         public DraftTeamRostersController(
         IDraftSelectionRepository draftSelectionRepository,
@@ -33,7 +33,7 @@ namespace MLBDraft.API.Controllers
         ILeagueRepository leagueRepository,
         IMlbDraftRepository mlbDraftRepository,
         IMapper mapper,
-        ILogger<LeaguesController> logger)
+        ILogger<DraftTeamRostersController> logger)
         {
             _draftSelectionRepository = draftSelectionRepository;
             _draftTeamRosterRepository = draftTeamRosterRepository;
@@ -89,15 +89,15 @@ namespace MLBDraft.API.Controllers
                     return NotFound();
                 }
 
-                var draftRosters = _draftTeamRosterRepository.GetDraftTeamRoster(draftId, teamId);
+                var draftRoster = _draftTeamRosterRepository.GetDraftTeamRoster(draftId, teamId);
                 
-                if(draftRosters == null){
+                if(draftRoster == null){
                     _logger.LogWarning($"No draft rosters were found for league {leagueId}, draft {draftId}, and team {teamId}.");
                     return NotFound();
                 }
                 
-                var draftRosterModels = _mapper.Map<IEnumerable<DraftTeamRosterModel>>(draftRosters);
-                return Ok(draftRosterModels);
+                var draftRosterModel = _mapper.Map<DraftTeamRosterModel>(draftRoster);
+                return Ok(draftRosterModel);
 
         }
     }

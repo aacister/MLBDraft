@@ -18,6 +18,8 @@ namespace MLBDraft.API.Repositories
 
         void DeletePlayer(Player player);
 
+        IEnumerable<Player> GetPlayers();
+
         PagedList<Player> GetPlayers(PlayerParameters playerParams);
  
 

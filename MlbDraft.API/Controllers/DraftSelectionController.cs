@@ -180,8 +180,12 @@ namespace MLBDraft.API.Controllers
                     }
                     else{
                     //Update team roster
-                    AddPlayerToRosterPositon(player, roster);
-                    _draftTeamRosterRepository.UpdateDraftTeamRoster(roster);
+                        AddPlayerToRosterPositon(player, roster);
+
+                        _draftTeamRosterRepository.UpdateDraftTeamRoster(roster);
+                        if(!_mlbDraftRepository.Save()){
+                            throw new Exception($"Updating draft {draftId} failed on save.");
+                        }
                     }
 
                     transaction.Commit();
