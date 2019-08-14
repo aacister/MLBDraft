@@ -19,7 +19,7 @@ Includes 2 projects:
  
  Note:
  * Api test calls included mlbDraft_api_test_calls.txt document.
- * ERD glimpse included in erd.txt document.
+ * ERD included in erd.txt document.
  
  
 
