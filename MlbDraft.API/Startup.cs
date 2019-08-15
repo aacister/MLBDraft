@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using NLog.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,7 @@ using MLBDraft.API.Models;
 using MLBDraft.API.Converters;
 using MLBDraft.API.Security;
 using MLBDraft.API.Middleware;
+using MLBDraft.API.Helpers;
 using AutoMapper;
 
 
@@ -54,14 +56,20 @@ namespace MLBDraft
              services.AddDbContext<MLBDraftContext>
                 (options => options.UseSqlite(connectionString));
 
+            // register Identity 
+            services.AddIdentity<MlbDraftUser, IdentityRole>()
+                .AddEntityFrameworkStores<MLBDraftContext>()
+                .AddDefaultTokenProviders();
+
             
 
             //register bearer token authentication 
             var secretKey = Configuration.GetSection("Tokens:Key").Value;
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
 
-            services.AddAuthentication()
-                .AddJwtBearer(cfg => {
+            services.AddAuthentication(o => {
+                o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                }).AddJwtBearer(cfg => {
                     cfg.RequireHttpsMetadata = false;
                     cfg.SaveToken = true;
                     cfg.TokenValidationParameters = new TokenValidationParameters(){
@@ -74,6 +82,21 @@ namespace MLBDraft
                         ValidateLifetime = false
                    };
                 });
+
+            //register authorization policy
+            services.AddAuthorization(cfg => {
+                cfg.AddPolicy("MlbDraftUsers", p => p.RequireClaim("MlbDraftUsers", "True"));
+            });
+
+            //register cors policy
+            services.AddCors(cfg =>
+            {
+                cfg.AddPolicy("MlbDraftCors", bldr => { 
+                    bldr.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin();  //Restrict origin on load to Prod env.
+                });
+            });
                 
              //add TokenGeneratorOptions object to configuration -- used by TokenGenerator
             services.Configure<TokenGeneratorOptions>(options => {
@@ -95,8 +118,8 @@ namespace MLBDraft
             services.AddScoped<IUserRepository, UserRepository>();
             
             //register security services
-            services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<ITokenGenerator, TokenGenerator>();
+            services.AddTransient<IMlbDraftIdentityInitializer, MlbDraftIdentityInitializer>();
 
             //Add UrlHelper (to create prev/next paging links  for X-Pagination header)
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
@@ -106,16 +129,6 @@ namespace MLBDraft
                 .ActionContext;
                 return new UrlHelper(actionContext);
             });
-            
-            //register cors 
-            services.AddCors(cfg =>
-            {
-                cfg.AddPolicy("MlbDraftCors", bldr => { 
-                    bldr.AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowAnyOrigin();  //Restrict origin on load to Prod env.
-                });
-            });
 
             //Add AutoMapper with profile
             var mappingConfig = new MapperConfiguration(mc =>{
@@ -123,6 +136,9 @@ namespace MLBDraft
             });
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
+
+          
+            
           
         }
 
@@ -167,7 +183,7 @@ namespace MLBDraft
             app.UseAuthentication(); //Uses jwt authentication
             app.UseMiddleware<DeChunkerMiddleware>();
 
-       //     mlbDraftContext.EnsureSeedDataForContext();
+            mlbDraftContext.EnsureSeedDataForContext();
              
             app.UseMvc();
 

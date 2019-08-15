@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
 using MLBDraft.API.Models;
 using MLBDraft.API.Repositories;
@@ -15,6 +16,7 @@ using Microsoft.Extensions.Logging;
 namespace MLBDraft.API.Controllers
 {
     [EnableCors("MlbDraftCors")]
+    [Authorize("MlbDraftUsers")]
     [Route("api/players")]
     [ApiController]
     public class PlayersController : ControllerBase
@@ -44,6 +46,7 @@ namespace MLBDraft.API.Controllers
             _logger = logger;
             _urlHelper = urlHelper;
         }
+
 
         [HttpGet(Name = "GetPlayers")]
         public IActionResult Get(PlayerParameters playerParams)

@@ -127,3 +127,29 @@ MLBDraft.API.Entities.DraftTeamRoster -> System.Collections.Generic.IEnumerable`
 2019-08-14 15:38:05.4501|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[s].Team' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
 2019-08-14 15:38:05.4501|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[s].Player' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
 2019-08-14 15:38:05.4501|WARN|Microsoft.EntityFrameworkCore.Query|The Include operation for navigation '[s].Draft.League' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+2019-08-14 17:31:44.0325|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 17:33:08.3891|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 17:37:25.8057|ERROR|Microsoft.EntityFrameworkCore.Database.Command|Failed executing DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE "Leagues" (
+    "Id" BLOB NOT NULL CONSTRAINT "PK_Leagues" PRIMARY KEY,
+    "Name" TEXT NOT NULL,
+    "MinTeams" INTEGER NOT NULL,
+    "MaxTeams" INTEGER NOT NULL
+);
+2019-08-14 17:37:39.5429|ERROR|Microsoft.EntityFrameworkCore.Database.Command|Failed executing DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE "Leagues" (
+    "Id" BLOB NOT NULL CONSTRAINT "PK_Leagues" PRIMARY KEY,
+    "Name" TEXT NOT NULL,
+    "MinTeams" INTEGER NOT NULL,
+    "MaxTeams" INTEGER NOT NULL
+);
+2019-08-14 17:38:49.7723|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 17:40:56.6328|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.
+2019-08-14 19:36:53.4146|ERROR|Microsoft.EntityFrameworkCore.Database.Command|Failed executing DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE "Leagues" (
+    "Id" BLOB NOT NULL CONSTRAINT "PK_Leagues" PRIMARY KEY,
+    "Name" TEXT NOT NULL,
+    "MinTeams" INTEGER NOT NULL,
+    "MaxTeams" INTEGER NOT NULL
+);
+2019-08-14 20:02:47.6501|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect.

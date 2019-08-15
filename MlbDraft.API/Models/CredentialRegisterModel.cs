@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace MLBDraft.API.Models
 {
-    public class CredentialModel : CredentialAbstractModel
+    public class CredentialRegisterModel : CredentialAbstractModel
     {
+        [Required]
+        public string Name {get; set;}
+        
         [Required]
         public override string UserName { get; set; }
         [Required]

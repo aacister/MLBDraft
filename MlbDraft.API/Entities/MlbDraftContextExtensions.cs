@@ -7,6 +7,7 @@ using MLBDraft.API.Security;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
+using Microsoft.AspNetCore.Identity;
 
 
 namespace MLBDraft.API.Entities
@@ -40,21 +41,6 @@ namespace MLBDraft.API.Entities
             context.Leagues.RemoveRange(context.Leagues);
             context.SaveChanges();
 
-            context.Users.RemoveRange(context.Users);
-            context.SaveChanges();
-
-            var user = new User();
-            user.Username = "username";
-            byte[] salt = new byte[24];
-            var keyGenerator = RandomNumberGenerator.Create();
-            keyGenerator.GetBytes(salt);
-            user.Salt = salt;
-            IPasswordHasher _passwordHasher = new PasswordHasher();
-            user.Hash = _passwordHasher.Hash("password", user.Salt);
-
-            context.Users.Add(user);
-            context.SaveChanges();
-            
 
             var mlbTeams = new List<MlbTeam>()
             {
@@ -2663,19 +2649,19 @@ namespace MLBDraft.API.Entities
                 new Team(){
                     Id = new Guid("903753bf-0b3a-4fc7-993f-1a56b096ab7b"),
                     Name = "Team #1",
-                    Owner = context.Users.Where(t => t.Username == "username").FirstOrDefault(),
+                    Owner = context.MlbDraftUsers.Where(t => t.Username == "username").FirstOrDefault(),
                     League = context.Leagues.Where(l => l.Name == "League #1").FirstOrDefault(),
                 },
                  new Team(){
                     Id = new Guid("c5c8f500-8170-4628-b92a-b6db10c51e5f"),
                     Name = "Team #2",
-                    Owner = context.Users.Where(t => t.Username == "username").FirstOrDefault(),
+                    Owner = context.MlbDraftUsers.Where(t => t.Username == "username").FirstOrDefault(),
                     League = context.Leagues.Where(l => l.Name == "League #1").FirstOrDefault(),
                 },
                  new Team(){
                     Id = new Guid("e22e4c52-85f6-4841-9950-ec855571ff74"),
                     Name = "Team #3",
-                    Owner = context.Users.Where(t => t.Username == "username").FirstOrDefault(),
+                    Owner = context.MlbDraftUsers.Where(t => t.Username == "username").FirstOrDefault(),
                     League = context.Leagues.Where(l => l.Name == "League #1").FirstOrDefault(),
                 }
             };

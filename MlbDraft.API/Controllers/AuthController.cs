@@ -15,6 +15,9 @@ using MLBDraft.API.Repositories;
 using MLBDraft.API.Security;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Cryptography;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Identity;
 
 namespace MLBDraft.API.Controllers
 {
@@ -23,29 +26,37 @@ namespace MLBDraft.API.Controllers
     public class AuthController: ControllerBase
     {
         private ITokenGenerator _tokenGenerator;
-        private IPasswordHasher _passwordHasher;
         private ILogger<AuthController> _logger;
         private IUserRepository _userRepository;
         private IMlbDraftRepository _mlbDraftRepository;
         private IMapper _mapper;
+        private SignInManager<MlbDraftUser> _signInMgr;
+
+        private UserManager<MlbDraftUser> _userMgr;
+        private IPasswordHasher<MlbDraftUser> _hasher;
+        
 
         public AuthController(
             IUserRepository userRepository,
             IMlbDraftRepository mlbDraftRepository,
             ILogger<AuthController> logger,
             ITokenGenerator tokenGenerator,
-            IPasswordHasher passwordHasher,
+            SignInManager<MlbDraftUser> signInMgr,
+            UserManager<MlbDraftUser> userMgr,
+            IPasswordHasher<MlbDraftUser> hasher,
             IMapper mapper){
             _userRepository = userRepository;
             _mlbDraftRepository = mlbDraftRepository;
             _logger = logger;
             _tokenGenerator = tokenGenerator;
-            _passwordHasher = passwordHasher;
+            _signInMgr = signInMgr;
+            _userMgr = userMgr;
+            _hasher = hasher;
             _mapper = mapper;
         }
   
         [HttpPost("login")]
-        public IActionResult Login([FromBody] CredentialModel credModel)
+        public async Task<IActionResult> Login([FromBody] CredentialModel credModel)
         {
                 if(credModel == null){
                     return BadRequest();
@@ -62,35 +73,36 @@ namespace MLBDraft.API.Controllers
                     return NotFound();
                 }
 
-                var user = _userRepository.GetUser(credModel.UserName);
-                if (user.Hash.SequenceEqual(_passwordHasher.Hash(credModel.Password, user.Salt)))
+                 var user = await _userRepository.GetUser(credModel.UserName);
+                if(_hasher.VerifyHashedPassword(user, user.PasswordHash,credModel.Password) == PasswordVerificationResult.Success)
                 {
-                     var userModel = _mapper.Map<UserModel>(user);
-                        //Create token
-                        var token = _tokenGenerator.CreateToken(userModel.UserName);
-                        
-                        if(token.Length >0)
-                        {
-                            userModel.Token = token;
-                            return Ok(userModel);
-                        }
-                        else
-                        {
-                            _logger.LogError("Failed to login.  Failed to create token.");
-                            throw new Exception("Failed to login.  Failed to create token.");
-                        }
-                       
+                    //Create Token
+                    var token = await _tokenGenerator.CreateToken(credModel.UserName);
+                    
+                    if(token != null && token.Length>0)
+                    {
+                        var userModel = _mapper.Map<UserModel>(user);
+                        userModel.Token= token;
+                        await _signInMgr.SignInAsync(user, false);
+                        return Ok(userModel);  
+                    }
+                    else
+                    {
+                        _logger.LogError($"Failed to login user {credModel.UserName}.");
+                        throw new Exception($"Failed to login user {credModel.UserName}.");
+                    }
                 }
                 else
                 {
-                    _logger.LogError("Failed to login.  Failed to create token.");
-                    throw new Exception("Failed to login.  Failed to create token.");
+                    _logger.LogError($"Failed to login user {credModel.UserName}.");
+                    throw new Exception($"Failed to login user {credModel.UserName}.");
                 }
+
         }
 
  
         [HttpPost("register")]
-        public IActionResult Register([FromBody] CredentialModel credModel)
+        public async Task<IActionResult> Register([FromBody] CredentialRegisterModel credModel)
         {
             if(credModel == null){
                     return BadRequest();
@@ -104,43 +116,43 @@ namespace MLBDraft.API.Controllers
             if(_userRepository.UserExists(credModel.UserName))
             {
                 _logger.LogError($"{credModel.UserName} user exists.");
-                return Forbid();  //Need to create custom error code for 409 Conflict
+                return Forbid();  
             }
+
+            var newUser = new MlbDraftUser()
+            {        
+                    UserName = credModel.UserName,
+                    Name = credModel.Name
+            };
+            await _userRepository.AddUser(newUser, credModel.Password);
+
+            var user = await _userRepository.GetUser(credModel.UserName);
+            if(_hasher.VerifyHashedPassword(user, user.PasswordHash,credModel.Password) == PasswordVerificationResult.Success)
+            {
+                //Create Token
+                var token = await _tokenGenerator.CreateToken(credModel.UserName);
                 
-            var user = _mapper.Map<User>(credModel);
-            user.Salt = CreateSalt();
-            user.Hash = _passwordHasher.Hash(credModel.Password, user.Salt);
-            _userRepository.AddUser(user);
-            
-            if(!_mlbDraftRepository.Save())
-            {
-                 _logger.LogError($"Could not register user {credModel.UserName}");
-                 throw new Exception($"Could not register user {credModel.UserName}. Failed on save.");
-            }
-            user = _userRepository.GetUser(credModel.UserName);
-            var userModel = _mapper.Map<UserModel>(user);
-            //Create Token
-            var token = _tokenGenerator.CreateToken(credModel.UserName);
-            
-            if(token != null && token.Length>0)
-            {
-                userModel.Token= token;
-                return Ok(userModel);  
+                if(token != null && token.Length>0)
+                {
+                    var userModel = _mapper.Map<UserModel>(user);
+                    userModel.Token= token;
+                    await _signInMgr.SignInAsync(user, false);
+                    return Ok(userModel);  
+                }
+                else
+                {
+                    _logger.LogError($"Could not register user {credModel.UserName}. Could not create token.");
+                    throw new Exception($"Could not register user {credModel.UserName}. Could not create token.");
+                }
             }
             else
             {
                 _logger.LogError($"Could not register user {credModel.UserName}. Could not create token.");
-                 throw new Exception($"Could not register user {credModel.UserName}. Could not create token.");
+                    throw new Exception($"Could not register user {credModel.UserName}. Could not create token.");
             }
+            
         }
 
-        private byte[] CreateSalt()
-        {
-                byte[] salt = new byte[24];
-                var keyGenerator = RandomNumberGenerator.Create();
-                keyGenerator.GetBytes(salt);
-                return salt;
-        }
 
     }
 }

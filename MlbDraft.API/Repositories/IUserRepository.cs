@@ -1,21 +1,17 @@
 using MLBDraft.API.Entities;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MLBDraft.API.Repositories
 {
     public interface IUserRepository
     {
         bool UserExists(string username);
-        User GetUser(string username);
-        IEnumerable<User> GetUsers();
-     
+        Task<MlbDraftUser> GetUser(string username);
+        Task AddUser(MlbDraftUser user, string password);
 
-        void AddUser(User user);
-
-        bool UpdateUser(string username);
-
-        void DeleteUser(User user);
+  
 
 
     }

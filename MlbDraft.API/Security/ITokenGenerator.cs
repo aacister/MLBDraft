@@ -4,6 +4,6 @@ namespace  MLBDraft.API.Security
 {
     public interface ITokenGenerator
     {
-        string CreateToken(string username);
+        Task<string> CreateToken(string username);
     }
 }

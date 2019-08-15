@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -18,44 +20,52 @@ namespace MLBDraft.API.Security
     {
         private IOptions<TokenGeneratorOptions> _options;
         private ILogger<TokenGenerator> _logger;
-        private IUserRepository _userRepository;
+
+        private UserManager<MlbDraftUser> _userMgr;
         private IMapper _mapper;
         
         public TokenGenerator(IOptions<TokenGeneratorOptions> options,
+            UserManager<MlbDraftUser> userMgr,
             IUserRepository userRepository,
             ILogger<TokenGenerator> logger,
             IMapper mapper){
                 _options = options;
-                _userRepository = userRepository;
+                _userMgr = userMgr;
                 _logger = logger;
                 _mapper = mapper;
         }
-        public string CreateToken(string username)
+        public async Task<string> CreateToken(string username)
         {
             var token = string.Empty;
             try
             {
-                var user = _userRepository.GetUser(username);
-                var userModel= _mapper.Map<UserModel>(user);
+
                 var now = DateTime.UtcNow;
-         
-                var claims = new Claim[]
+
+                var user = await _userMgr.FindByNameAsync(username);
+                if (user != null)
                 {
-                    new Claim(JwtRegisteredClaimNames.Sub, userModel.UserName),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                    new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(now).ToString(), ClaimValueTypes.Integer64)
-                };
+                    var userClaims = await _userMgr.GetClaimsAsync(user);
+         
+                    var claims = new Claim[]
+                    {
+                        new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                        new Claim(JwtRegisteredClaimNames.GivenName, user.Name),
+                        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                        new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(now).ToString(), ClaimValueTypes.Integer64)
+                    }.Union(userClaims);
 
 
-                var jwt = new JwtSecurityToken(
-                    issuer: _options.Value.Issuer,
-                    audience: _options.Value.Audience,
-                    claims: claims,
-                    notBefore: now,
-                    expires: now.Add(_options.Value.Expiration),
-                    signingCredentials: _options.Value.SigningCredentials);
-                
-                token = new JwtSecurityTokenHandler().WriteToken(jwt);
+                    var jwt = new JwtSecurityToken(
+                        issuer: _options.Value.Issuer,
+                        audience: _options.Value.Audience,
+                        claims: claims,
+                        notBefore: now,
+                        expires: now.Add(_options.Value.Expiration),
+                        signingCredentials: _options.Value.SigningCredentials);
+                    
+                    token = new JwtSecurityTokenHandler().WriteToken(jwt);
+                }
 
             }
             catch (Exception ex)

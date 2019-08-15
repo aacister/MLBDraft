@@ -11,7 +11,7 @@ namespace MLBDraft.API.Converters
     public class Converter : Profile{
         public Converter(){
 
-             CreateMap<User, UserModel>();
+             CreateMap<MlbDraftUser, UserModel>();
 
              CreateMap<StatCategory, PlayerStatsModel>()
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Abbreviation));
@@ -119,9 +119,9 @@ namespace MLBDraft.API.Converters
 
             CreateMap<DraftTeamRosterCreateModel, DraftTeamRoster>();
            
-            CreateMap<User, CredentialModel>();
+            CreateMap<MlbDraftUser, CredentialModel>();
 
-            CreateMap<CredentialModel, User>();
+            CreateMap<CredentialModel, MlbDraftUser>();
 
         }
     }

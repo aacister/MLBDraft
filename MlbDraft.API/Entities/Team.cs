@@ -13,7 +13,7 @@ namespace MLBDraft.API.Entities
         public string Name { get; set; }
 
         [ForeignKey("OwnerId")]
-        public User Owner { get; set; }
+        public MlbDraftUser Owner { get; set; }
 
         public string OwnerId { get; set; }
 

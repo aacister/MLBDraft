@@ -1,93 +1,60 @@
 using MLBDraft.API.Entities;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace MLBDraft.API.Repositories
 {
     public class UserRepository : IUserRepository
     {
         private MLBDraftContext _context;
+        private UserManager<MlbDraftUser> _userMgr;
         
-        public UserRepository(MLBDraftContext context){
+        public UserRepository(MLBDraftContext context, 
+        UserManager<MlbDraftUser> userMgr){
             _context = context;
+            _userMgr = userMgr;
         }
 
          public bool UserExists(string username)
         {
-            return _context.Users.Any(a => a.Username == username);
+            return _userMgr.Users.Any(r => r.UserName == username);
+
         }
 
-        public User GetUser(string username)
+        public async Task<MlbDraftUser> GetUser(string username)
         {
-            return _context.Users
-            .Include(u => u.Teams)  
-                .ThenInclude(t => t.League)
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.Catcher)
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.FirstBase)
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.SecondBase)
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.ThirdBase)
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.ShortStop)
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.Outfield1)
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.Outfield2)
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.Outfield3)
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.StartingPitcher)
-            .FirstOrDefault(a => a.Username == username);
+            var user = await _userMgr.FindByNameAsync(username);
+            user.Teams = _context.Teams
+                .Include(t => t.Catcher)
+                .Include(t => t.FirstBase)
+                .Include(t => t.SecondBase)
+                .Include(t => t.ThirdBase)
+                .Include(t => t.ShortStop)
+                .Include(t => t.Outfield1)
+                .Include(t => t.Outfield2)
+                .Include(t => t.Outfield3)
+                .Include(t => t.StartingPitcher)
+            .Where(t => t.OwnerId == username).ToList();
+            return user;
         }
 
-        public IEnumerable<User> GetUsers(){
-            return _context.Users
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.League)
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.Catcher)
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.FirstBase)
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.SecondBase)
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.ThirdBase)
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.ShortStop)
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.Outfield1)
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.Outfield2)
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.Outfield3)
-                .Include(u => u.Teams)
-                    .ThenInclude(t => t.StartingPitcher)
-                .OrderBy(a => a.Username)
-                .ToList();
-        }
-
-         public void AddUser(User user)
+         public async Task AddUser(MlbDraftUser user, string password)
         { 
-            _context.Users.Add(user);
+            var userResult = await _userMgr.CreateAsync(user, password);
+            var claimResult = await _userMgr.AddClaimAsync(user, new Claim("MlbDraftUser", "True"));  
+
+            if(!userResult.Succeeded || !claimResult.Succeeded)
+            {
+                throw new InvalidOperationException("Failed to build user and claims.");
+            }
 
         }
 
-        public bool UpdateUser(string username)
-        {
-
-            return true;
-        }
-
-        public void DeleteUser(User user)
-        {
-
-            _context.Users.Remove(user);
-           
-        }
     }
 }
