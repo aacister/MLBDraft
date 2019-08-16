@@ -36,20 +36,6 @@ namespace MLBDraft.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet(Name = "GetUserss")]
-        public IActionResult Get()
-        {
-                
-                var users =  _userRepository.GetUsers();
-
-                if(users == null){
-                    _logger.LogWarning("No users were found.");
-                    return NotFound();
-                }
-
-                return Ok(_mapper.Map<IEnumerable<UserModel>>(users));
-
-        }
 
         [HttpGet("{username}", Name = "GetUser")]
         public  IActionResult Get(string username)
@@ -65,28 +51,7 @@ namespace MLBDraft.API.Controllers
           
         }
 
-        [HttpDelete("{username}")]
-        public IActionResult Delete(string username)
-        {
-
-            if(!_userRepository.UserExists(username))
-            {
-                _logger.LogError($"{username} User does not exist.");
-                return NotFound();
-            }
-
-            var user =  _userRepository.GetUser(username);
-
-            _userRepository.DeleteUser(user);
-            if(!_mlbDraftRepository.Save())
-            {
-                 _logger.LogError($"Could not delete user {username}");
-                throw new Exception($"Deleting user {username} failed on save.");
-            }
-            
-            return NoContent();
-            
-        }
+       
 
     }
 }

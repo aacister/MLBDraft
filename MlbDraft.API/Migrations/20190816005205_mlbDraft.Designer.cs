@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MLBDraft.Migrations
 {
     [DbContext(typeof(MLBDraftContext))]
-    [Migration("20190814235134_mlbDraft")]
+    [Migration("20190816005205_mlbDraft")]
     partial class mlbDraft
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -129,20 +129,6 @@ namespace MLBDraft.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Leagues");
-                });
-
-            modelBuilder.Entity("MLBDraft.API.Entities.MlbDraftUser", b =>
-                {
-                    b.Property<string>("Username")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<byte[]>("Hash");
-
-                    b.Property<byte[]>("Salt");
-
-                    b.HasKey("Username");
-
-                    b.ToTable("MlbDraftUsers");
                 });
 
             modelBuilder.Entity("MLBDraft.API.Entities.MlbTeam", b =>
@@ -349,6 +335,9 @@ namespace MLBDraft.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
@@ -387,6 +376,8 @@ namespace MLBDraft.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -452,6 +443,15 @@ namespace MLBDraft.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("MLBDraft.API.Entities.MlbDraftUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("Name");
+
+                    b.HasDiscriminator().HasValue("MlbDraftUser");
                 });
 
             modelBuilder.Entity("MLBDraft.API.Entities.Draft", b =>

@@ -75,7 +75,7 @@ namespace MLBDraft.API.Converters
             CreateMap<PlayerCreateModel, Player>();
 
             CreateMap<Team, TeamModel>()
-                .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.Owner.Username))
+                .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.Owner.UserName))
                 .ForMember(dest => dest.LeagueId, opt => opt.MapFrom(src => 
                 (src.League.Id)));
             CreateMap<TeamCreateModel, Team>()

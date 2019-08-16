@@ -8,7 +8,6 @@ namespace MLBDraft.API.Entities
 {
     public class MLBDraftContext : IdentityDbContext
     {
-        private UserManager<MlbDraftUser> _userMgr;
 
         public MLBDraftContext(DbContextOptions<MLBDraftContext> options)
             : base(options)

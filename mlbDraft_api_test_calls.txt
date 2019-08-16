@@ -3,14 +3,14 @@ Based on initial setup:
 AUTHCONTROLLER.CS
 POST http://localhost:5050/api/auth/register
 {
-    "userName" : "username",
-    "password" : "password"
+    "userName" : "username2",
+    "password" : "Password1!"
 }
 
 POST http://localhost:5050/api/auth/login
 {
     "userName" : "username",
-    "password" : "password"
+    "password" : "Password1!"
 }
 -----------------------------------------------------------
 

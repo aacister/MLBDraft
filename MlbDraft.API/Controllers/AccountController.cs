@@ -23,10 +23,10 @@ namespace MLBDraft.API.Controllers
 {
     [EnableCors("MlbDraftCors")]
     [Route("api/auth")]
-    public class AuthController: ControllerBase
+    public class AccountController: ControllerBase
     {
         private ITokenGenerator _tokenGenerator;
-        private ILogger<AuthController> _logger;
+        private ILogger<AccountController> _logger;
         private IUserRepository _userRepository;
         private IMlbDraftRepository _mlbDraftRepository;
         private IMapper _mapper;
@@ -36,10 +36,10 @@ namespace MLBDraft.API.Controllers
         private IPasswordHasher<MlbDraftUser> _hasher;
         
 
-        public AuthController(
+        public AccountController(
             IUserRepository userRepository,
             IMlbDraftRepository mlbDraftRepository,
-            ILogger<AuthController> logger,
+            ILogger<AccountController> logger,
             ITokenGenerator tokenGenerator,
             SignInManager<MlbDraftUser> signInMgr,
             UserManager<MlbDraftUser> userMgr,

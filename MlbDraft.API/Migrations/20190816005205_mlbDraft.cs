@@ -39,7 +39,9 @@ namespace MLBDraft.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -58,19 +60,6 @@ namespace MLBDraft.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Leagues", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MlbDraftUsers",
-                columns: table => new
-                {
-                    Username = table.Column<string>(nullable: false),
-                    Hash = table.Column<byte[]>(nullable: true),
-                    Salt = table.Column<byte[]>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MlbDraftUsers", x => x.Username);
                 });
 
             migrationBuilder.CreateTable(
@@ -351,10 +340,10 @@ namespace MLBDraft.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Teams_MlbDraftUsers_OwnerId",
+                        name: "FK_Teams_AspNetUsers_OwnerId",
                         column: x => x.OwnerId,
-                        principalTable: "MlbDraftUsers",
-                        principalColumn: "Username",
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Teams_Players_SecondBaseId",
@@ -721,9 +710,6 @@ namespace MLBDraft.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Drafts");
 
             migrationBuilder.DropTable(
@@ -739,7 +725,7 @@ namespace MLBDraft.Migrations
                 name: "Leagues");
 
             migrationBuilder.DropTable(
-                name: "MlbDraftUsers");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "MlbTeams");

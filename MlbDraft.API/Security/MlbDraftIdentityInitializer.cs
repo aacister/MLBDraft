@@ -4,41 +4,39 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using MLBDraft.API.Entities;
+using MLBDraft.API.Repositories;
 
 namespace MLBDraft.API.Security
 {
     public class MlbDraftIdentityInitializer : IMlbDraftIdentityInitializer
     {
-        private UserManager<MlbDraftUser> _userMgr;
+        private IUserRepository _userRepository;
+        private IMlbDraftRepository _mlbDraftRepository;
 
-        public MlbDraftIdentityInitializer(UserManager<MlbDraftUser> userMgr){
+        public MlbDraftIdentityInitializer(IUserRepository userRepository,
+        IMlbDraftRepository mlbDraftRepository){
 
-            _userMgr = userMgr;
+            _userRepository = userRepository;
+            _mlbDraftRepository = mlbDraftRepository;
         }
         public async Task Seed()
         {
-                var user = await _userMgr.FindByNameAsync("shawnwildermuth");
 
-                if (user == null)
-                {
-                    user = new MlbDraftUser()
+                if(!_userRepository.UserExists("username")) {
+                    var newUser = new MlbDraftUser()
                     {        
                         UserName = "username",
                         Name = "Test User #1"
                     };
 
-                    var userResult = await _userMgr.CreateAsync(user, "password");
-                    var claimResult = await _userMgr.AddClaimAsync(user, new Claim("MlbDraftUser", "True"));
+                    await _userRepository.AddUser(newUser, "Password1!");
+                    if(!_mlbDraftRepository.Save()){
+                        throw new Exception("Could not seed Identity.");
+                     }
 
-                    if (!userResult.Succeeded || !claimResult.Succeeded)
-                    {
-                    throw new InvalidOperationException("Failed to build user and roles");
-                    }
                 }
         }
 
-            
-        
     }
 
     

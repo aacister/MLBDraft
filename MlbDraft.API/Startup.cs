@@ -85,7 +85,7 @@ namespace MLBDraft
 
             //register authorization policy
             services.AddAuthorization(cfg => {
-                cfg.AddPolicy("MlbDraftUsers", p => p.RequireClaim("MlbDraftUsers", "True"));
+                cfg.AddPolicy("MlbDraftUsers", p => p.RequireClaim("MlbDraftUser", "True"));
             });
 
             //register cors policy
@@ -146,7 +146,8 @@ namespace MLBDraft
         public void Configure(IApplicationBuilder app, 
         IHostingEnvironment env, 
         ILoggerFactory loggerFactory, 
-        MLBDraftContext mlbDraftContext)
+        MLBDraftContext mlbDraftContext,
+        IMlbDraftIdentityInitializer mlbDraftIdentityInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -183,7 +184,9 @@ namespace MLBDraft
             app.UseAuthentication(); //Uses jwt authentication
             app.UseMiddleware<DeChunkerMiddleware>();
 
+            mlbDraftIdentityInitializer.Seed().Wait();
             mlbDraftContext.EnsureSeedDataForContext();
+
              
             app.UseMvc();
 

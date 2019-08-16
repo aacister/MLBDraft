@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
 using MLBDraft.API.Models;
 using MLBDraft.API.Repositories;
@@ -14,6 +16,7 @@ using Microsoft.Extensions.Logging;
 namespace MLBDraft.API.Controllers
 {
     [EnableCors("MlbDraftCors")]
+    [Authorize("MlbDraftUsers")]
     [Route("api/leagues/{leagueId}/teams")]
     [ApiController]
     public class TeamsController : ControllerBase
@@ -108,13 +111,13 @@ namespace MLBDraft.API.Controllers
             teamEntity.League = leagueEntity;
             teamEntity.LeagueId = leagueEntity.Id;
 
-            var owner = _userRepository.GetUser(teamCreateModel.Owner);
+            var owner = _userRepository.GetUser(teamCreateModel.Owner).Result;
             if(owner == null){
                 return BadRequest();
             }
-
+          
             teamEntity.Owner = owner;
-            teamEntity.OwnerId = owner.Username;
+            teamEntity.OwnerId = owner.UserName;
             
             _teamRepository.AddTeam(teamEntity);
 
