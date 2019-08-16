@@ -182,7 +182,6 @@ namespace MLBDraft
 
             app.UseHttpsRedirection();
             app.UseAuthentication(); //Uses jwt authentication
-            app.UseMiddleware<DeChunkerMiddleware>();
 
             mlbDraftIdentityInitializer.Seed().Wait();
             mlbDraftContext.EnsureSeedDataForContext();

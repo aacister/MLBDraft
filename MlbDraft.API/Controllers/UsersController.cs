@@ -38,7 +38,7 @@ namespace MLBDraft.API.Controllers
 
 
         [HttpGet("{username}", Name = "GetUser")]
-        public  IActionResult Get(string username)
+        public  async Task<IActionResult> Get(string username)
         {
             if(!_userRepository.UserExists(username))
             {
@@ -46,7 +46,7 @@ namespace MLBDraft.API.Controllers
                 return NotFound();
             }
             
-            var user =  _userRepository.GetUser(username);
+            var user =   await _userRepository.GetUser(username);
             return Ok(_mapper.Map<UserModel>(user));
           
         }

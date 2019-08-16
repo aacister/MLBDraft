@@ -22,7 +22,7 @@ using Microsoft.AspNetCore.Identity;
 namespace MLBDraft.API.Controllers
 {
     [EnableCors("MlbDraftCors")]
-    [Route("api/auth")]
+    [Route("api/account")]
     public class AccountController: ControllerBase
     {
         private ITokenGenerator _tokenGenerator;

@@ -2653,18 +2653,21 @@ namespace MLBDraft.API.Entities
                     Id = new Guid("903753bf-0b3a-4fc7-993f-1a56b096ab7b"),
                     Name = "Team #1",
                     Owner = context.MlbDraftUsers.Where(t => t.UserName == "username").FirstOrDefault(),
+                    OwnerId = context.MlbDraftUsers.Where(t => t.UserName == "username").FirstOrDefault().UserName,
                     League = context.Leagues.Where(l => l.Name == "League #1").FirstOrDefault(),
                 },
                  new Team(){
                     Id = new Guid("c5c8f500-8170-4628-b92a-b6db10c51e5f"),
                     Name = "Team #2",
                     Owner = context.MlbDraftUsers.Where(t => t.UserName == "username").FirstOrDefault(),
+                    OwnerId = context.MlbDraftUsers.Where(t => t.UserName == "username").FirstOrDefault().UserName,
                     League = context.Leagues.Where(l => l.Name == "League #1").FirstOrDefault(),
                 },
                  new Team(){
                     Id = new Guid("e22e4c52-85f6-4841-9950-ec855571ff74"),
                     Name = "Team #3",
                     Owner = context.MlbDraftUsers.Where(t => t.UserName == "username").FirstOrDefault(),
+                    OwnerId = context.MlbDraftUsers.Where(t => t.UserName == "username").FirstOrDefault().UserName,
                     League = context.Leagues.Where(l => l.Name == "League #1").FirstOrDefault(),
                 }
             };

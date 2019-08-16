@@ -1,0 +1,38 @@
+{
+  "name": "mlbdraft.client",
+  "version": "1.0.0",
+  "description": "MLBDraft Client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrew Cisternino",
+  "license": "ISC",
+  "dependencies": {
+    "@angular/animations": "^8.2.2",
+    "@angular/common": "^8.2.2",
+    "@angular/compiler": "^8.2.2",
+    "@angular/compiler-cli": "^8.2.2",
+    "@angular/core": "^8.2.2",
+    "@angular/forms": "^8.2.2",
+    "@angular/http": "^7.2.15",
+    "@angular/platform-browser": "^8.2.2",
+    "@angular/platform-browser-dynamic": "^8.2.2",
+    "@angular/router": "^8.2.2",
+    "@angular/upgrade": "^8.2.2",
+    "core-js": "^3.2.1",
+    "rxjs": "^6.5.2",
+    "zone.js": "^0.10.2"
+  },
+  "devDependencies": {
+    "angular-router-loader": "^0.8.5",
+    "angular2-template-loader": "^0.6.2",
+    "awesome-typescript-loader": "^5.2.1",
+    "del-cli": "^2.0.0",
+    "html-loader": "^0.5.5",
+    "raw-loader": "^3.1.0",
+    "typescript": "^3.5.3",
+    "webpack": "^4.39.2",
+    "webpack-dev-server": "^3.8.0"
+  }
+}

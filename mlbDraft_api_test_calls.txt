@@ -1,13 +1,13 @@
-Based on initial setup:
+Based on initial setup with seeded data:
 
-AUTHCONTROLLER.CS
-POST http://localhost:5050/api/auth/register
+ACCOUNTCONTROLLER.CS
+POST http://localhost:5050/api/account/register
 {
     "userName" : "username2",
     "password" : "Password1!"
 }
 
-POST http://localhost:5050/api/auth/login
+POST http://localhost:5050/api/account/login
 {
     "userName" : "username",
     "password" : "Password1!"
@@ -64,7 +64,7 @@ GET http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/teams
 POST http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/teams
 
 {
-"name": "Team #5",
+"name": "Team #4",
 "owner": "username"
 }
 
@@ -72,20 +72,20 @@ POST http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/team
 Delete http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/teams/903753bf-0b3a-4fc7-993f-1a56b096ab7b
 
 ------------------------------------------------
-USERSCONTROLLER.CS (Must use auth controller to receive token)
-GET http://localhost:5050/api/users
+USERSCONTROLLER.CS  (Token property will be empty - must use Accounts controller for it.)
 
 GET http://localhost:5050/api/users/username
 
-DELETE http://localhost:5050/api/users/username
 
 -----------------------------------------------------
 DRAFTCONTROLLER.CS
-GET http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/drafts
-
-GET http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/drafts/80834091-58f9-4f47-9295-bf2ec8b7728e returns a draft's selections and team rosters as well
 
 POST http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/drafts  --- creates draft order with empty team draft selections and team rosters
+
+GET http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/drafts
+
+GET http://localhost:5050/api/leagues/d803d697-7f22-412a-b24b-f9ee91eca40f/drafts/3d9a948f-90f4-4351-970e-445f251cef3c -- returns a draft's selections and team rosters as well
+
 
 
 -------------------------------------------------
