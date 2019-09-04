@@ -6,4 +6,4 @@ export * from './draft.model';
 export * from './team.model';
 export * from './league.model';
 export * from './draftSelection.model';
-export * from './teamRoster.model';
+export * from './draftTeamRoster.model';

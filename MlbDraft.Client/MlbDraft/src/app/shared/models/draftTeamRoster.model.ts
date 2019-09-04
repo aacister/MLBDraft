@@ -1,6 +1,6 @@
 import {Guid } from 'guid-typescript';
 
-export class TeamRoster {
+export class DraftTeamRoster {
     public id: Guid;
     public draftId: Guid;
     public teamId: Guid;

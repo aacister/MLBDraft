@@ -1,5 +1,5 @@
 import { DraftSelection } from './draftSelection.model';
-import { TeamRoster } from './teamRoster.model';
+import { DraftTeamRoster } from './draftTeamRoster.model';
 
 import { Guid } from 'guid-typescript';
 
@@ -9,16 +9,16 @@ export class Draft {
     public startDate: Date;
     public endDate: Date;
     public draftSelections: DraftSelection [];
-    public teamRosters : TeamRoster [];
+    public draftTeamRosters : DraftTeamRoster [];
 
 
-    constructor(id: Guid, leagueId: Guid, start: Date, end: Date, draftSelections: DraftSelection [], teamRosters: TeamRoster[]) {
+    constructor(id: Guid, leagueId: Guid, start: Date, end: Date, draftSelections: DraftSelection [], draftTeamRosters: DraftTeamRoster[]) {
         this.id = id;
         this.leagueId = leagueId;
         this.startDate = start;
         this.endDate = end;
         this.draftSelections = draftSelections;
-        this.teamRosters = teamRosters;
+        this.draftTeamRosters = draftTeamRosters;
     
       }
 }
